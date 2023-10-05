@@ -46,6 +46,7 @@ const MainSiteNav = () => {
 				<div>
 					<Button
 						radius="full"
+						variant="light"
 						color="primary"
 					>
 						Sign In
