@@ -1,5 +1,5 @@
 import HomeBanner from './components/home-banner'
-import RecentPosts from './components/recent-posts'
+import FeaturedPosts from './components/featured-posts'
 
 export default function Home() {
 	return (
@@ -8,7 +8,7 @@ export default function Home() {
 				<HomeBanner />
 				<div className="flex gap-4 h-full">
 					<div className="flex-1 ">
-						<RecentPosts />
+						<FeaturedPosts />
 					</div>
 					<div className="flex-[.5] "></div>
 				</div>
