@@ -28,12 +28,20 @@ const config: Config = {
 							DEFAULT: '#e11d48',
 							foreground: '#FFFFFF',
 						},
+						secondary: {
+							DEFAULT: '#fb7185',
+							foreground: '#FFFFFF',
+						},
 					},
 				},
 				dark: {
 					colors: {
 						primary: {
 							DEFAULT: '#6d28d9',
+							foreground: '#FFFFFF',
+						},
+						secondary: {
+							DEFAULT: '#fb7185',
 							foreground: '#FFFFFF',
 						},
 					},
