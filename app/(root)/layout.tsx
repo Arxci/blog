@@ -6,9 +6,9 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<div>
+		<div className="h-screen ">
 			<MainSiteNav />
-			<main>{children}</main>
+			<main className=" h-[calc(100vh-65px)]">{children}</main>
 		</div>
 	)
 }

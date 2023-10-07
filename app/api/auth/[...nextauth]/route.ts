@@ -13,16 +13,15 @@ export const authOptions: NextAuthOptions = {
 			name: 'Credentials',
 
 			credentials: {
-				username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
 				password: { label: 'Password', type: 'password' },
 				email: { label: 'Email', type: 'email' },
 			},
 			async authorize(credentials) {
 				if (!credentials) {
-					return null
+					return { error: 'Invalid credentials' } as any
 				}
 				if (!credentials.password || !credentials.email) {
-					return null
+					return { error: 'Invalid credentials' } as any
 				}
 				const user = await prismaDB.user.findUnique({
 					where: {
@@ -31,34 +30,51 @@ export const authOptions: NextAuthOptions = {
 				})
 
 				if (!user) {
-					return null
+					return { error: 'Invalid credentials' } as any
 				}
 
-				const isMatchingPassword = bcrypt.compare(
+				const isMatchingPassword = await bcrypt.compare(
 					credentials.password,
 					user.password
 				)
 
 				if (!isMatchingPassword) {
-					return null
+					return { error: 'Invalid credentials' } as any
 				}
 				return user
 			},
 		}),
 	],
 	callbacks: {
+		async signIn({ user }: { user: User }) {
+			if (user?.error) {
+				throw new Error(user?.error)
+			}
+
+			return true
+		},
 		async jwt({ token, user }: { token: JWT; user: User }) {
 			if (user) {
 				return {
 					...token,
 					id: user.id,
+					firstName: user.firstName,
+					lastName: user.lastName,
 				}
 			}
 
 			return token
 		},
 		async session({ token, session }: { token: JWT; session: Session }) {
-			return { ...session, user: { ...session.user, id: token.id } }
+			return {
+				...session,
+				user: {
+					...session.user,
+					id: token.id,
+					firstName: token.firstName,
+					lastName: token.lastName,
+				},
+			}
 		},
 	},
 	session: {

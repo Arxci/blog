@@ -41,8 +41,8 @@ const MainSiteNav = () => {
 				/>
 				<NavbarBrand>
 					<Link
-						href="#"
-						className="text-lg hover:text-foreground/80"
+						href="/"
+						className="text-lg text-foreground hover:text-foreground/80"
 					>
 						{siteConfig.name}
 					</Link>

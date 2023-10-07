@@ -1,6 +1,7 @@
 export const siteConfig = {
 	name: 'Garrett Humbert',
-	description: 'NextJS 13 blog app created with MDX',
+	description:
+		'Exploring the Digital Frontier: Unleashing Web Wonders and Creations - Join Me on a Journey through the World of Web Development and Cutting-Edge Technologies',
 	mainNavLinks: [
 		{
 			id: 0,

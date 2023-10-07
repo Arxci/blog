@@ -22,6 +22,8 @@ const UserButton = () => {
 		return
 	}
 
+	const userInitials = session?.user?.firstName[0] + session?.user?.lastName[0]
+
 	return (
 		<Dropdown
 			showArrow
@@ -35,15 +37,13 @@ const UserButton = () => {
 				<Button
 					isIconOnly={true}
 					className="rounded-full "
-					color="secondary"
-					variant="shadow"
 				>
 					<Avatar
 						src={session?.user?.image || '/'}
+						name={userInitials}
 						showFallback
 						classNames={{
-							base: 'bg-gradient-to-br from-secondary to-primary ',
-							icon: 'text-foreground ',
+							base: 'bg-foreground text-background ',
 						}}
 					/>
 				</Button>
@@ -82,7 +82,8 @@ const UserButton = () => {
 							}}
 							avatarProps={{
 								showFallback: true,
-								fallback: <AvatarIcon />,
+								name: userInitials,
+								className: 'bg-foreground text-background',
 								size: 'sm',
 								src: session?.user?.image || '/',
 							}}
@@ -90,7 +91,6 @@ const UserButton = () => {
 					</DropdownItem>
 					<DropdownItem
 						endContent={<Switch />}
-						autoFocus
 						description="Change your color theme"
 					>
 						<span>Dark Mode</span>

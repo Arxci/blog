@@ -5,9 +5,9 @@ import prismaDB from '@/lib/prisma'
 export const POST = async (req: Request) => {
 	const body = await req.json()
 
-	const { name, password, email } = body
+	const { firstName, lastName, password, email } = body
 
-	if (!name || !password || !email) {
+	if (!firstName || !lastName || !password || !email) {
 		return new NextResponse('Please enter name, password, and email', {
 			status: 400,
 		})
@@ -25,9 +25,13 @@ export const POST = async (req: Request) => {
 
 	const hashedPassword = await bcrypt.hash(password, 10)
 
+	const name = firstName + ' ' + lastName
+
 	const user = await prismaDB.user.create({
 		data: {
 			name,
+			firstName,
+			lastName,
 			password: hashedPassword,
 			email,
 		},

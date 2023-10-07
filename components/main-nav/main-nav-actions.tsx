@@ -16,15 +16,15 @@ const MainNavActions = () => {
 				</NavbarItem>
 			) : (
 				<>
-					<NavbarItem>
+					<NavbarItem className="hidden sm:block">
 						<Link
-							className="text-foreground"
+							className="text-foreground "
 							href="/auth/sign-in"
 						>
 							Login
 						</Link>
 					</NavbarItem>
-					<NavbarItem>
+					<NavbarItem className="hidden sm:block">
 						<Button
 							as={Link}
 							color="primary"
