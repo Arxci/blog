@@ -8,7 +8,7 @@ import { Button, Link } from '@nextui-org/react'
 
 const HomeBanner = () => {
 	return (
-		<div className="w-full h-[600px] relative z-1 overflow-hidden rounded-b-2xl">
+		<div className="w-full h-[600px] relative z-1 overflow-hidden rounded-b-2xl shadow-md">
 			<div className="-z-1 absolute w-full h-full top-0 left-0 ">
 				<div className="relative h-full ">
 					<Image
@@ -20,7 +20,7 @@ const HomeBanner = () => {
 					<div className="absolute bg-gradient-to-t from-black/60 to--transparent h-full w-full" />
 				</div>
 			</div>
-			<div className=" relative p-4 h-full flex flex-col justify-center gap-4">
+			<div className="relative p-4 h-full flex flex-col justify-center gap-4">
 				<h1 className="font-bold text-4xl text-primary">Welcome To My Blog!</h1>
 				<p className="text-white">
 					Exploring the Digital Frontier: Unleashing Web Wonders and Creations -

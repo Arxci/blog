@@ -32,24 +32,35 @@ const MainSiteNav = () => {
 							<Link
 								href={link.href}
 								className={cn(
-									'text-sm text-foreground/80 hover:text-foreground/60',
+									'text-sm  text-foreground/80 hover:text-foreground/60',
 									pathName === link.title
 										? 'text-primary hover:text-primary/60'
 										: undefined
 								)}
 							>
-								{link.title}
+								<span>{link.title}</span>
 							</Link>
 						</li>
 					))}
 				</ul>
 				<div>
 					<Button
+						as={Link}
+						href="/auth/sign-in"
 						radius="full"
 						variant="light"
 						color="primary"
 					>
 						Sign In
+					</Button>
+					<Button
+						as={Link}
+						href="/auth/sign-up"
+						radius="full"
+						variant="light"
+						color="primary"
+					>
+						Sign Up
 					</Button>
 				</div>
 			</header>

@@ -5,22 +5,22 @@ export const siteConfig = {
 		{
 			id: 0,
 			title: 'Home',
-			href: '#',
+			href: '/',
 		},
 		{
 			id: 1,
 			title: 'Posts',
-			href: '#',
+			href: '/',
 		},
 		{
 			id: 2,
 			title: 'About',
-			href: '#',
+			href: '/',
 		},
 		{
 			id: 3,
 			title: 'Contact',
-			href: '#',
+			href: '/',
 		},
 	],
 }

@@ -5,6 +5,7 @@ import { siteConfig } from '@/config/site'
 import NextUIProvider from '@/providers/NextUIProvider'
 
 import './globals.css'
+import SessionProvider from '@/providers/SessionProvier'
 
 const font = Nunito({ subsets: ['latin'] })
 
@@ -25,7 +26,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={font.className}>
-				<NextUIProvider>{children}</NextUIProvider>
+				<NextUIProvider>
+					<SessionProvider>{children}</SessionProvider>
+				</NextUIProvider>
 			</body>
 		</html>
 	)
