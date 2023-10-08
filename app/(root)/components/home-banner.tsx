@@ -32,7 +32,12 @@ const HomeBanner = () => {
 					variant="shadow"
 					size="md"
 					className="mr-auto "
-					endContent={<FontAwesomeIcon icon={faArrowRight} />}
+					endContent={
+						<FontAwesomeIcon
+							className="w-4 h-4"
+							icon={faArrowRight}
+						/>
+					}
 				>
 					Check out my posts
 				</Button>

@@ -37,13 +37,14 @@ const UserButton = () => {
 				<Button
 					isIconOnly={true}
 					className="rounded-full "
+					variant="solid"
 				>
 					<Avatar
 						src={session?.user?.image || '/'}
 						name={userInitials}
 						showFallback
 						classNames={{
-							base: 'bg-foreground text-background ',
+							base: 'bg-foreground text-background focus-within:bg-foreground',
 						}}
 					/>
 				</Button>

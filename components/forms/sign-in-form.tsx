@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 
@@ -7,6 +9,9 @@ import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Input } from '@nextui-org/react'
+import { toast } from 'sonner'
+
+import PasswordInput from '../ui/password-input'
 
 const formSchema = z.object({
 	email: z
@@ -21,6 +26,7 @@ const formSchema = z.object({
 type SignInFormValues = z.infer<typeof formSchema>
 
 const SignInForm = () => {
+	const [loading, setLoading] = useState(false)
 	const router = useRouter()
 
 	const defaultValues = {
@@ -34,12 +40,17 @@ const SignInForm = () => {
 	})
 
 	const submitFormHandle = async (data: SignInFormValues) => {
+		setLoading(true)
 		const res = await signIn('credentials', { ...data, redirect: false })
 
 		if (res?.error) {
-			console.log(res?.error)
+			toast.error('Failed to sign in', {
+				description: res?.error,
+			})
+			setLoading(false)
 		} else if (res?.status === 200) {
 			router.push('/')
+			setLoading(false)
 		}
 	}
 
@@ -51,6 +62,7 @@ const SignInForm = () => {
 			<Input
 				{...form.register('email')}
 				isRequired
+				isDisabled={loading}
 				type="text"
 				label="Email"
 				placeholder="Enter your email."
@@ -60,22 +72,15 @@ const SignInForm = () => {
 						: undefined
 				}
 			/>
-			<Input
-				{...form.register('password')}
-				isRequired
-				type="text"
-				label="Password"
-				placeholder="Enter your password."
-				errorMessage={
-					form.formState.errors.password
-						? form.formState.errors.password.message
-						: undefined
-				}
+			<PasswordInput
+				form={form}
+				loading={loading}
 			/>
 			<Button
 				type="submit"
 				className="w-full "
 				color="primary"
+				isLoading={loading}
 			>
 				Sign in
 			</Button>

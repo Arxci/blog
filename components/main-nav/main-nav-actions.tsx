@@ -21,7 +21,7 @@ const MainNavActions = () => {
 							className="text-foreground "
 							href="/auth/sign-in"
 						>
-							Login
+							Sign in
 						</Link>
 					</NavbarItem>
 					<NavbarItem className="hidden sm:block">
@@ -29,7 +29,7 @@ const MainNavActions = () => {
 							as={Link}
 							color="primary"
 							href="/auth/sign-up"
-							variant="flat"
+							variant="shadow"
 						>
 							Sign Up
 						</Button>

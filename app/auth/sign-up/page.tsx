@@ -33,6 +33,7 @@ const SignUp = () => {
 							className="object-cover object-right-bottom"
 							src="/HomeBannerHighRes.jpg"
 							alt="Home Banner"
+							sizes="2000px, (max-width: 1500px) 1000px, (max-width: 1024px) 512px"
 							fill
 						/>
 						<div className="absolute bg-gradient-to-t from-black/60 to--transparent h-full w-full" />
@@ -51,7 +52,7 @@ const SignUp = () => {
 				</div>
 			</div>
 			<div className="lg:p-8 w-full 0">
-				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[500px]">
+				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
 					<div className="flex flex-col space-y-2 text-center">
 						<h1 className="text-2xl font-semibold tracking-tight">
 							Create an account

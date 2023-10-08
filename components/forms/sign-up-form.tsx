@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import { useRouter } from 'next/navigation'
 
 import * as z from 'zod'
@@ -7,22 +9,15 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { Button, Input } from '@nextui-org/react'
+import { toast } from 'sonner'
 
-const formSchema = z.object({
-	email: z
-		.string()
-		.min(1, { message: 'This field has to be filled in.' })
-		.email('This is not a valid email.'),
-	firstName: z.string().min(1, { message: 'This field has to be filled in.' }),
-	lastName: z.string().min(1, { message: 'This field has to be filled in.' }),
-	password: z
-		.string()
-		.min(5, { message: 'Please enter at least 5 characters' }),
-})
+import PasswordInput from '../ui/password-input'
+import { UserSchema } from '@/schemas/zod'
 
-type SignUpFormValues = z.infer<typeof formSchema>
+type SignUpFormValues = z.infer<typeof UserSchema>
 
 const SignUpForm = () => {
+	const [loading, setLoading] = useState(false)
 	const router = useRouter()
 
 	const defaultValues = {
@@ -33,16 +28,23 @@ const SignUpForm = () => {
 	}
 
 	const form = useForm<SignUpFormValues>({
-		resolver: zodResolver(formSchema),
+		resolver: zodResolver(UserSchema),
 		defaultValues,
 	})
 
 	const submitFormHandle = async (data: SignUpFormValues) => {
+		setLoading(true)
 		try {
 			await axios.post('/api/register', data)
 
+			setLoading(false)
 			router.push('/auth/sign-in')
-		} catch (error) {}
+		} catch (error) {
+			setLoading(false)
+			toast.error('Failed to create account', {
+				description: 'Please try again',
+			})
+		}
 	}
 
 	return (
@@ -53,6 +55,7 @@ const SignUpForm = () => {
 			<Input
 				{...form.register('email')}
 				isRequired
+				isDisabled={loading}
 				type="text"
 				label="Email"
 				placeholder="Enter your email."
@@ -65,6 +68,7 @@ const SignUpForm = () => {
 			<Input
 				{...form.register('firstName')}
 				isRequired
+				isDisabled={loading}
 				type="text"
 				label="Fist Name"
 				placeholder="Enter your first name."
@@ -77,6 +81,7 @@ const SignUpForm = () => {
 			<Input
 				{...form.register('lastName')}
 				isRequired
+				isDisabled={loading}
 				type="text"
 				label="Last Name"
 				placeholder="Enter your last name."
@@ -86,21 +91,14 @@ const SignUpForm = () => {
 						: undefined
 				}
 			/>
-			<Input
-				{...form.register('password')}
-				isRequired
-				type="text"
-				label="Password"
-				placeholder="Enter your password."
-				errorMessage={
-					form.formState.errors.password
-						? form.formState.errors.password.message
-						: undefined
-				}
+			<PasswordInput
+				form={form}
+				loading={loading}
 			/>
 
 			<Button
 				type="submit"
+				isLoading={loading}
 				className="w-full "
 				color="primary"
 			>
