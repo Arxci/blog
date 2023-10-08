@@ -51,17 +51,17 @@ const UserButton = () => {
 						className="rounded-full "
 						aria-label="User"
 						disableRipple
+						isDisabled={!session}
 					>
 						<Skeleton
 							isLoaded={!!session}
 							className="flex rounded-full "
 						>
 							<Avatar
-								src={session?.user?.image || '/'}
 								name={userInitials}
 								showFallback
 								classNames={{
-									base: 'bg-primary text-foreground flex items-center justify-center',
+									base: 'bg-primary text-white font-bold flex items-center justify-center',
 								}}
 							/>
 						</Skeleton>
@@ -93,7 +93,7 @@ const UserButton = () => {
 								avatarProps={{
 									showFallback: true,
 									name: userInitials,
-									className: 'bg-primary text-background',
+									className: 'bg-primary text-white',
 									size: 'sm',
 									src: session?.user?.image || '/',
 								}}

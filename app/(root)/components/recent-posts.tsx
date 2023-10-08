@@ -2,7 +2,7 @@ import RecentPost from '@/components/ui/recent-post'
 import { getPostWhere } from '@/lib/posts'
 
 const RecentPosts = () => {
-	const posts = getPostWhere({ where: { stop: 4 } })
+	const posts = getPostWhere({ where: { stop: 3 } })
 
 	return (
 		<div className="flex-[.4] py-6">
@@ -17,6 +17,7 @@ const RecentPosts = () => {
 							title={post.meta.title}
 							description={post.meta.description}
 							date={post.meta.date}
+							slug={post.slug}
 						/>
 					))}
 			</div>

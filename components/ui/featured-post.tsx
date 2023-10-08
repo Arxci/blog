@@ -45,7 +45,13 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 						<div className="flex flex-col col-span-6 md:col-span-8 overflow-hidden">
 							<div className="flex justify-between items-start">
 								<div className="flex flex-col gap-2">
-									<div className="flex gap-2 items-center">
+									<div className="flex flex-col md:flex-row md:gap-6 md:items-center space-y-1 ">
+										<h1 className="text-large font-medium line-clamp-1">
+											{title}
+										</h1>
+										<p className="text-xs text-foreground/50 ">{date}</p>
+									</div>
+									<div className="flex gap-2 items-center ">
 										<Avatar
 											name={authorInitials}
 											showFallback
@@ -62,16 +68,10 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 									>
 										{tag}
 									</Chip>
-									<div className="flex flex-col md:flex-row md:gap-6 md:items-center space-y-1 mb-4">
-										<h1 className="text-large font-medium line-clamp-1">
-											{title}
-										</h1>
-										<p className="text-xs text-foreground/50 ">{date}</p>
-									</div>
 								</div>
 							</div>
 
-							<div className="flex w-full items-center justify-left">
+							<div className="flex w-full mt-4 items-center justify-left">
 								{description}
 							</div>
 						</div>

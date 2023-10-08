@@ -9,15 +9,17 @@ interface RecentPostProps {
 	title: string
 	description: string
 	date: string
+	slug: string
 }
 
 const RecentPost: React.FC<RecentPostProps> = ({
 	title,
 	description,
 	date,
+	slug,
 }) => {
 	return (
-		<Link href="/">
+		<Link href={'/posts/' + slug}>
 			<Card className="col-span-12 group overflow-hidden shadow-sm sm:col-span-4 h-[300px]">
 				<CardHeader className="absolute z-10 top-1 flex-col !items-start">
 					<p className="text-xs text-white/80 ">{description}</p>

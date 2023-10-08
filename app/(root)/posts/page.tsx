@@ -4,38 +4,30 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { getAllPosts, getPostWhere } from '@/lib/posts'
+import FeaturedPost from '@/components/ui/featured-post'
 
 const Posts = () => {
 	const posts = getAllPosts()
 	getPostWhere({ where: { start: 0, stop: 1 } })
 
 	return (
-		<div className="flex flex-col gap-6">
-			<h1 className="text-3xl">Next JS Blog site</h1>
-			<section className="py-10">
-				<h2 className="text-2xl font-bold">Latest Blogs</h2>
-				<div className="py-2">
-					{posts.map((post) => (
-						<>
-							<Link
-								href={'/posts/' + post.slug}
-								passHref
-								key={post.slug}
-							>
-								<div className="py-2 justify-between align-middle gap-2">
-									<div>
-										<h3 className="text-lg font-bold">{post.meta.title}</h3>
-										<p className="text-gray-400">{post.meta.date}</p>
-										<p className="text-gray-400">{post.meta.description}</p>
-										<p className="text-gray-400">{post.meta.tag}</p>
-									</div>
-								</div>
-							</Link>
-						</>
+		<section className=" w-full">
+			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
+				<h1 className="text-4xl">Check out my posts!</h1>
+				{posts &&
+					posts.map((post) => (
+						<FeaturedPost
+							key={post.meta.id}
+							author={post.meta.author}
+							title={post.meta.title}
+							tag={post.meta.tag}
+							description={post.meta.description}
+							date={post.meta.date}
+							slug={post.slug}
+						/>
 					))}
-				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	)
 }
 
