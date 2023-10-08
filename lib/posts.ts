@@ -41,3 +41,36 @@ export const getPostByTag = ({ tag }: { tag: string }) => {
 
 	return filteredPosts
 }
+
+export const getPostWhere = ({
+	where,
+}: {
+	where?: {
+		start?: number | undefined
+		stop?: number | undefined
+		tag?: string | undefined
+		isFeatured?: boolean | undefined
+	}
+}) => {
+	const posts = getAllPosts()
+	if (!where) {
+		return posts
+	}
+
+	const { start, stop, tag, isFeatured } = where
+
+	const slicedPosts = posts.slice(start, stop)
+
+	const filteredPosts = slicedPosts.filter((post) => {
+		let shouldKeep = true
+		if (tag && post.meta.tag !== tag) {
+			shouldKeep = false
+		}
+		if (isFeatured && post.meta.isFeatured !== isFeatured) {
+			shouldKeep = false
+		}
+		return shouldKeep
+	})
+
+	return filteredPosts
+}

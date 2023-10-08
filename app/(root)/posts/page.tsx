@@ -3,10 +3,11 @@ import Link from 'next/link'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { getAllPosts, getPostByTag } from '@/lib/posts'
+import { getAllPosts, getPostWhere } from '@/lib/posts'
 
 const Posts = () => {
-	const posts = getPostByTag({ tag: 'Not Coding' })
+	const posts = getAllPosts()
+	getPostWhere({ where: { start: 0, stop: 1 } })
 
 	return (
 		<div className="flex flex-col gap-6">

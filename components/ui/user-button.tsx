@@ -51,7 +51,7 @@ const UserButton = () => {
 							name={userInitials}
 							showFallback
 							classNames={{
-								base: 'bg-primary text-background  flex items-center justify-center',
+								base: 'bg-primary text-foreground flex items-center justify-center',
 							}}
 						/>
 					</Skeleton>
