@@ -20,7 +20,7 @@ const HomeBanner = () => {
 						sizes="1024px, (max-width: 744px) 744px, (max-width: 500px) 500px, (max-width: 300px) 300px"
 						fill
 					/>
-					<div className="absolute bg-gradient-to-t from-black/60 from-60% to--transparent h-full w-full" />
+					<div className="absolute bg-gradient-to-t from-black/50 from-60% to--transparent h-full w-full" />
 				</div>
 			</div>
 			<div className="relative h-full flex text-center flex-col items-center md:text-start md:items-start justify-center gap-4 px-4 md:px-6">

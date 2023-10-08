@@ -28,7 +28,6 @@ const MainSiteNav: React.FC<MainNavProps> = ({ session }) => {
 		<Navbar
 			onMenuOpenChange={setIsMenuOpen}
 			isMenuOpen={ieMenuOpen}
-			shouldHideOnScroll
 			isBordered
 			isBlurred={false}
 			className="[&>*:first-child]:px-4 [&>*:first-child]:md:px-6"

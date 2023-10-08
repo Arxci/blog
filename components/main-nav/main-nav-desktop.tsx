@@ -31,7 +31,7 @@ const MainNavDesktop = () => {
 						className={cn(
 							'text-md  text-foreground/80 hover:text-foreground/60',
 							pathName === link.title
-								? 'text-primary font-bold hover:text-secondary'
+								? 'text-primary font-bold hover:text-primary/60'
 								: undefined
 						)}
 					>
