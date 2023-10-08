@@ -5,7 +5,7 @@ import SignInForm from '@/components/forms/sign-in-form'
 import { siteConfig } from '@/config/site'
 import AuthActions from '../components/auth-actions'
 
-const SignIn = () => {
+const SignIn = async () => {
 	return (
 		<div className="px-6 container relative min-h-[700px] h-screen items-center justify-center flex lg:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
 			<AuthActions
@@ -19,6 +19,7 @@ const SignIn = () => {
 						<Image
 							className="object-cover object-right-bottom"
 							src="/HomeBannerHighRes.jpg"
+							priority
 							alt="Home Banner"
 							sizes="2000px, (max-width: 1500px) 1000px, (max-width: 1024px) 512px"
 							fill

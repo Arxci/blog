@@ -19,6 +19,7 @@ const SignUp = () => {
 							className="object-cover object-right-bottom"
 							src="/HomeBannerHighRes.jpg"
 							alt="Home Banner"
+							priority
 							sizes="2000px, (max-width: 1500px) 1000px, (max-width: 1024px) 512px"
 							fill
 						/>

@@ -33,20 +33,18 @@ const MainSiteNav: React.FC<MainNavProps> = ({ session }) => {
 			isBlurred={false}
 			className="[&>*:first-child]:px-4 [&>*:first-child]:md:px-6"
 		>
-			<NavbarContent>
-				<NavbarMenuToggle
-					aria-label={ieMenuOpen ? 'Close menu' : 'Open menu'}
-					className="sm:hidden"
-				/>
-				<NavbarBrand>
-					<Link
-						href="/"
-						className="text-lg text-foreground hover:text-foreground/80"
-					>
-						{siteConfig.name}
-					</Link>
-				</NavbarBrand>
-			</NavbarContent>
+			<NavbarMenuToggle
+				aria-label={ieMenuOpen ? 'Close menu' : 'Open menu'}
+				className="sm:hidden"
+			/>
+			<NavbarBrand>
+				<Link
+					href="/"
+					className="text-lg text-foreground hover:text-foreground/80"
+				>
+					{siteConfig.name}
+				</Link>
+			</NavbarBrand>
 			<MainNavDesktop />
 			<MainNavActions session={session} />
 			<MainNavMobile onMenuClose={() => setIsMenuOpen(false)} />
