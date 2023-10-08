@@ -12,7 +12,6 @@ const SignUp = () => {
 				label="Sign In"
 				href="sign-in"
 			/>
-
 			<div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
 				<div className="-z-1 absolute w-full h-full top-0 left-0 ">
 					<div className="relative h-full ">

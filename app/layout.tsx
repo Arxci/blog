@@ -29,10 +29,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={font.className}>
 				<NextUIProvider>
-					<Toaster
-						richColors
-						closeButton
-					/>
+					<Toaster closeButton />
 					<SessionProvider>{children}</SessionProvider>
 				</NextUIProvider>
 			</body>

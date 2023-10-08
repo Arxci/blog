@@ -32,7 +32,10 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
 			label="Password"
 			placeholder="Enter your password."
 			endContent={
-				<button aria-label="Toggle visibility">
+				<button
+					aria-label="Toggle visibility"
+					type="button"
+				>
 					<FontAwesomeIcon
 						className="cursor-pointer w-4 h-4"
 						icon={showPassword ? faEye : faEyeSlash}

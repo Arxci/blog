@@ -45,7 +45,7 @@ const SignIn = () => {
 							Sign in to your account
 						</h1>
 						<p className="text-sm text-muted-foreground">
-							Enter your email and password below to login
+							Enter your email and password below to sign in
 						</p>
 					</div>
 					<SignInForm />

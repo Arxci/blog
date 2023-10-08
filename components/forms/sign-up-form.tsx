@@ -37,8 +37,10 @@ const SignUpForm = () => {
 		try {
 			await axios.post('/api/register', data)
 
-			setLoading(false)
 			router.push('/auth/sign-in')
+			toast.success('Account created', {
+				description: 'Please sign in',
+			})
 		} catch (error) {
 			setLoading(false)
 			toast.error('Failed to create account', {
