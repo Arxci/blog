@@ -19,6 +19,17 @@ const MainNavActions: React.FC<MainNavActionsProps> = ({ session }) => {
 				</NavbarItem>
 			) : (
 				<>
+					<NavbarItem className="block sm:hidden">
+						<Button
+							as={Link}
+							color="primary"
+							radius="full"
+							href="/auth/sign-in"
+							variant="shadow"
+						>
+							Sign In
+						</Button>
+					</NavbarItem>
 					<NavbarItem className="hidden sm:block">
 						<Link
 							className="text-foreground "
@@ -31,6 +42,7 @@ const MainNavActions: React.FC<MainNavActionsProps> = ({ session }) => {
 						<Button
 							as={Link}
 							color="primary"
+							radius="full"
 							href="/auth/sign-up"
 							variant="shadow"
 						>

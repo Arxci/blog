@@ -7,16 +7,9 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 interface PasswordInputProps {
 	loading: boolean
-	form: UseFormReturn<
-		{
-			email?: string
-			firstName?: string
-			lastName?: string
-			password?: string
-		},
-		any,
-		undefined
-	>
+	form: UseFormReturn<{
+		password?: string
+	}>
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
@@ -39,19 +32,15 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
 			label="Password"
 			placeholder="Enter your password."
 			endContent={
-				showPassword ? (
+				<button aria-label="Toggle visibility">
 					<FontAwesomeIcon
 						className="cursor-pointer w-4 h-4"
-						icon={faEye}
-						onClick={disableVisibilityHandle}
+						icon={showPassword ? faEye : faEyeSlash}
+						onClick={
+							showPassword ? disableVisibilityHandle : enableVisibilityHandle
+						}
 					/>
-				) : (
-					<FontAwesomeIcon
-						className="cursor-pointer w-4 h-4"
-						icon={faEyeSlash}
-						onClick={enableVisibilityHandle}
-					/>
-				)
+				</button>
 			}
 			errorMessage={
 				form.formState.errors.password

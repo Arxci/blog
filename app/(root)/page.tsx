@@ -3,10 +3,10 @@ import FeaturedPosts from './components/featured-posts'
 
 export default function Home() {
 	return (
-		<section className="h-screen w-full">
+		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4">
 				<HomeBanner />
-				<div className="flex gap-4 h-full px-6">
+				<div className="flex gap-4 h-full px-4 md:px-6">
 					<div className="flex-1 ">
 						<FeaturedPosts />
 					</div>

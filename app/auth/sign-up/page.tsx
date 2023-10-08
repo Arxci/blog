@@ -1,31 +1,17 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 
 import SignUpForm from '@/components/forms/sign-up-form'
 import { siteConfig } from '@/config/site'
-import { Button } from '@nextui-org/react'
+import AuthActions from '../components/auth-actions'
 
 const SignUp = () => {
 	return (
-		<div className="px-6 container relative min-h-[700px] h-full items-center justify-center flex lg:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-			<Button
-				className="absolute left-2 top-4 lg:hidden"
-				as={Link}
-				href="/"
-				variant="light"
-			>
-				{siteConfig.name}
-			</Button>
-			<Button
-				className="absolute right-2 top-4 "
-				as={Link}
-				href="/auth/sign-in"
-				variant="light"
-			>
-				Sign in
-			</Button>
+		<div className="px-6 container relative min-h-[700px] h-screen items-center justify-center flex lg:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+			<AuthActions
+				label="Sign In"
+				href="sign-in"
+			/>
 
 			<div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
 				<div className="-z-1 absolute w-full h-full top-0 left-0 ">

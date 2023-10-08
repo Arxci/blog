@@ -11,9 +11,9 @@ export default async function RootLayout({
 	const session = await getServerSession(authOptions)
 
 	return (
-		<div className="h-screen ">
+		<div className="min-h-screen ">
 			<MainSiteNav session={session} />
-			<main className=" h-[calc(100vh-65px)]">{children}</main>
+			<main className=" min-h-[calc(100vh-65px)]">{children}</main>
 		</div>
 	)
 }

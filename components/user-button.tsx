@@ -25,8 +25,6 @@ const UserButton = () => {
 
 	const userInitials = session?.user?.firstName[0] + session?.user?.lastName[0]
 
-	console.log(session)
-
 	return (
 		<Dropdown
 			placement="bottom-end"
@@ -41,25 +39,28 @@ const UserButton = () => {
 					isIconOnly={true}
 					className="rounded-full "
 					variant="solid"
+					aria-label="User"
+					disableRipple
 				>
-					<Avatar
-						src={session?.user?.image || '/'}
-						name={userInitials}
-						fallback={
-							!session ? (
-								<Skeleton className="flex rounded-full w-12 h-12" />
-							) : undefined
-						}
-						showFallback
-						classNames={{
-							base: 'bg-foreground text-background focus-within:bg-foreground',
-						}}
-					/>
+					<Skeleton
+						isLoaded={!!session}
+						className="flex rounded-full "
+					>
+						<Avatar
+							src={session?.user?.image || '/'}
+							name={userInitials}
+							showFallback
+							classNames={{
+								base: 'bg-foreground text-background focus-within:bg-foreground flex items-center justify-center',
+							}}
+						/>
+					</Skeleton>
 				</Button>
 			</DropdownTrigger>
 			<DropdownMenu
 				className="p-3"
 				closeOnSelect={false}
+				aria-label="User button"
 				variant="faded"
 			>
 				<DropdownSection
@@ -69,6 +70,7 @@ const UserButton = () => {
 					<DropdownItem
 						key="user"
 						isReadOnly
+						aria-label="User Information"
 						className="h-14 gap-2 opacity-100 !hover:bg-background"
 					>
 						<User
@@ -89,15 +91,17 @@ const UserButton = () => {
 					</DropdownItem>
 					<DropdownItem
 						key="theme"
+						aria-label="Dark theme toggle"
 						startContent={<FontAwesomeIcon icon={faMoon} />}
 						endContent={<Switch color="primary" />}
 					>
-						<span>Dark Mode</span>
+						Dark Mode
 					</DropdownItem>
 				</DropdownSection>
 				<DropdownSection>
 					<DropdownItem
 						key="logout"
+						aria-label="Sign out of account"
 						className="[&>*]:text-danger"
 						color="danger"
 						onClick={() => signOut()}
