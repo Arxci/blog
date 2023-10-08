@@ -11,7 +11,7 @@ export const siteConfig = {
 		{
 			id: 1,
 			title: 'Posts',
-			href: '/',
+			href: '/posts',
 		},
 		{
 			id: 2,

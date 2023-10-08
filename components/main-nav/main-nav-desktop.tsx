@@ -12,6 +12,8 @@ const MainNavDesktop = () => {
 
 	if (pathName === '/') {
 		pathName = 'Home'
+	} else {
+		pathName = pathName[1].toUpperCase() + pathName.slice(2)
 	}
 
 	return (

@@ -39,8 +39,6 @@ const UserButton = () => {
 				<Button
 					isIconOnly={true}
 					className="rounded-full "
-					variant="shadow"
-					color="primary"
 					aria-label="User"
 					disableRipple
 				>
