@@ -1,13 +1,16 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
+import { Session } from 'next-auth'
+import Link from 'next/link'
 
-import { NavbarContent, NavbarItem, Button, Link } from '@nextui-org/react'
+import { NavbarContent, NavbarItem, Button } from '@nextui-org/react'
 import UserButton from '../user-button'
 
-const MainNavActions = () => {
-	const { data: session } = useSession()
+interface MainNavActionsProps {
+	session: Session
+}
 
+const MainNavActions: React.FC<MainNavActionsProps> = ({ session }) => {
 	return (
 		<NavbarContent justify="end">
 			{session ? (

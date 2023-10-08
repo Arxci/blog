@@ -12,21 +12,24 @@ import {
 	DropdownItem,
 	User,
 	Switch,
-	AvatarIcon,
+	Skeleton,
 } from '@nextui-org/react'
+import {
+	faArrowRightFromBracket,
+	faMoon,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const UserButton = () => {
 	const { data: session } = useSession()
 
-	if (!session) {
-		return
-	}
-
 	const userInitials = session?.user?.firstName[0] + session?.user?.lastName[0]
+
+	console.log(session)
 
 	return (
 		<Dropdown
-			showArrow
+			placement="bottom-end"
 			radius="sm"
 			classNames={{
 				base: 'p-0 border-small border-divider bg-background',
@@ -42,6 +45,11 @@ const UserButton = () => {
 					<Avatar
 						src={session?.user?.image || '/'}
 						name={userInitials}
+						fallback={
+							!session ? (
+								<Skeleton className="flex rounded-full w-12 h-12" />
+							) : undefined
+						}
 						showFallback
 						classNames={{
 							base: 'bg-foreground text-background focus-within:bg-foreground',
@@ -52,25 +60,14 @@ const UserButton = () => {
 			<DropdownMenu
 				className="p-3"
 				closeOnSelect={false}
-				itemClasses={{
-					base: [
-						'rounded-md',
-						'text-default-500',
-						'transition-opacity',
-						'data-[hover=true]:text-foreground',
-						'data-[hover=true]:bg-default-100',
-						'dark:data-[hover=true]:bg-default-50',
-						'data-[selectable=true]:focus:bg-default-50',
-						'data-[pressed=true]:opacity-70',
-						'data-[focus-visible=true]:ring-default-500',
-					],
-				}}
+				variant="faded"
 			>
 				<DropdownSection
 					aria-label="Profile & Actions"
 					showDivider
 				>
 					<DropdownItem
+						key="user"
 						isReadOnly
 						className="h-14 gap-2 opacity-100 !hover:bg-background"
 					>
@@ -91,16 +88,20 @@ const UserButton = () => {
 						/>
 					</DropdownItem>
 					<DropdownItem
-						endContent={<Switch />}
-						description="Change your color theme"
+						key="theme"
+						startContent={<FontAwesomeIcon icon={faMoon} />}
+						endContent={<Switch color="primary" />}
 					>
 						<span>Dark Mode</span>
 					</DropdownItem>
 				</DropdownSection>
 				<DropdownSection>
 					<DropdownItem
-						description="Sign out of your account"
+						key="logout"
+						className="[&>*]:text-danger"
+						color="danger"
 						onClick={() => signOut()}
+						startContent={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
 					>
 						Log Out
 					</DropdownItem>

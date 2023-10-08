@@ -16,6 +16,7 @@ const HomeBanner = () => {
 						className="object-cover object-bottom"
 						src="/HomeBanner.jpg"
 						alt="Home Banner"
+						sizes="1024px, (max-width: 744px) 744px, (max-width: 500px) 500px, (max-width: 300px) 300px"
 						fill
 					/>
 					<div className="absolute bg-gradient-to-t from-black/60 to--transparent h-full w-full" />

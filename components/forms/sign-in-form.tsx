@@ -16,11 +16,11 @@ import PasswordInput from '../ui/password-input'
 const formSchema = z.object({
 	email: z
 		.string()
-		.min(1, { message: 'This field has to be filled in.' })
+		.min(1, { message: 'Please enter at least 1 character.' })
 		.email('This is not a valid email.'),
 	password: z
 		.string()
-		.min(5, { message: 'Please enter at least 5 characters' }),
+		.min(5, { message: 'Please enter at least 5 characters.' }),
 })
 
 type SignInFormValues = z.infer<typeof formSchema>
@@ -49,7 +49,7 @@ const SignInForm = () => {
 			})
 			setLoading(false)
 		} else if (res?.status === 200) {
-			router.push('/')
+			window.location.replace('/')
 			setLoading(false)
 		}
 	}
@@ -80,6 +80,7 @@ const SignInForm = () => {
 				type="submit"
 				className="w-full "
 				color="primary"
+				variant="shadow"
 				isLoading={loading}
 			>
 				Sign in

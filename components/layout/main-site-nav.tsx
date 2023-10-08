@@ -3,6 +3,8 @@
 import { useState } from 'react'
 
 import { usePathname } from 'next/navigation'
+import { Session } from 'next-auth'
+import Link from 'next/link'
 
 import {
 	Navbar,
@@ -11,7 +13,6 @@ import {
 	NavbarMenuToggle,
 	NavbarMenu,
 	NavbarMenuItem,
-	Link,
 } from '@nextui-org/react'
 
 import { siteConfig } from '@/config/site'
@@ -19,7 +20,11 @@ import { cn } from '@/lib/utils'
 import MainNavActions from '../main-nav/main-nav-actions'
 import MainNavDesktop from '../main-nav/main-nav-desktop'
 
-const MainSiteNav = () => {
+interface MainNavProps {
+	session: Session
+}
+
+const MainSiteNav: React.FC<MainNavProps> = ({ session }) => {
 	const [ieMenuOpen, setIsMenuOpen] = useState(false)
 	var pathName = usePathname()
 
@@ -49,7 +54,7 @@ const MainSiteNav = () => {
 				</NavbarBrand>
 			</NavbarContent>
 			<MainNavDesktop />
-			<MainNavActions />
+			<MainNavActions session={session} />
 			<NavbarMenu>
 				{siteConfig.mainNavLinks.map((link) => (
 					<NavbarMenuItem key={link.id}>

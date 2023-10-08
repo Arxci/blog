@@ -98,9 +98,10 @@ const SignUpForm = () => {
 
 			<Button
 				type="submit"
-				isLoading={loading}
 				className="w-full "
 				color="primary"
+				variant="shadow"
+				isLoading={loading}
 			>
 				Sign Up
 			</Button>

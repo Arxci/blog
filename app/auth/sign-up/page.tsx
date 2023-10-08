@@ -1,10 +1,11 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 import SignUpForm from '@/components/forms/sign-up-form'
 import { siteConfig } from '@/config/site'
-import { Button, Link } from '@nextui-org/react'
+import { Button } from '@nextui-org/react'
 
 const SignUp = () => {
 	return (

@@ -1,6 +1,8 @@
 import { usePathname } from 'next/navigation'
 
-import { NavbarContent, NavbarItem, Link } from '@nextui-org/react'
+import Link from 'next/link'
+
+import { NavbarContent, NavbarItem } from '@nextui-org/react'
 
 import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'

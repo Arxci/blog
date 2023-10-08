@@ -24,8 +24,16 @@ const config: Config = {
 			themes: {
 				light: {
 					colors: {
+						default: {
+							DEFAULT: 'bg-foreground',
+							foreground: 'bg-background',
+						},
 						primary: {
 							DEFAULT: '#e11d48',
+							foreground: '#FFFFFF',
+						},
+						danger: {
+							DEFAULT: '#dc2626',
 							foreground: '#FFFFFF',
 						},
 						secondary: {
@@ -36,8 +44,16 @@ const config: Config = {
 				},
 				dark: {
 					colors: {
+						default: {
+							DEFAULT: 'bg-foreground',
+							foreground: 'bg-background',
+						},
 						primary: {
 							DEFAULT: '#6d28d9',
+							foreground: '#FFFFFF',
+						},
+						danger: {
+							DEFAULT: '#dc2626',
 							foreground: '#FFFFFF',
 						},
 						secondary: {
