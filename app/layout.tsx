@@ -8,6 +8,7 @@ import { Toaster } from 'sonner'
 import './globals.css'
 
 import SessionProvider from '@/providers/SessionProvier'
+import NextThemesProvider from '@/providers/NextThemesProvider'
 
 const font = Nunito({ subsets: ['latin'] })
 
@@ -26,11 +27,20 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en">
+		<html
+			lang="en"
+			suppressHydrationWarning
+		>
 			<body className={font.className}>
 				<NextUIProvider>
-					<Toaster closeButton />
-					<SessionProvider>{children}</SessionProvider>
+					<SessionProvider>
+						<NextThemesProvider
+							themeProps={{ attribute: 'class', defaultTheme: 'dark' }}
+						>
+							<Toaster closeButton />
+							{children}
+						</NextThemesProvider>
+					</SessionProvider>
 				</NextUIProvider>
 			</body>
 		</html>

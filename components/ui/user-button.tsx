@@ -19,6 +19,7 @@ import {
 	faMoon,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import DarkModeSwitch from './dark-mode-switch'
 
 const UserButton = () => {
 	const { data: session } = useSession()
@@ -93,7 +94,7 @@ const UserButton = () => {
 						key="theme"
 						aria-label="Dark theme toggle"
 						startContent={<FontAwesomeIcon icon={faMoon} />}
-						endContent={<Switch color="primary" />}
+						endContent={<DarkModeSwitch />}
 					>
 						Dark Mode
 					</DropdownItem>

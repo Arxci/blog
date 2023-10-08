@@ -4,7 +4,9 @@ import { Session } from 'next-auth'
 import Link from 'next/link'
 
 import { NavbarContent, NavbarItem, Button } from '@nextui-org/react'
-import UserButton from '../user-button'
+
+import UserButton from '../ui/user-button'
+import DarkModeButton from '../ui/dark-mode-button'
 
 interface MainNavActionsProps {
 	session: Session
@@ -29,6 +31,9 @@ const MainNavActions: React.FC<MainNavActionsProps> = ({ session }) => {
 						>
 							Sign In
 						</Button>
+					</NavbarItem>
+					<NavbarItem className="hidden sm:block">
+						<DarkModeButton />
 					</NavbarItem>
 					<NavbarItem className="hidden sm:block">
 						<Link

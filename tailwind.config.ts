@@ -49,7 +49,7 @@ const config: Config = {
 							foreground: 'bg-background',
 						},
 						primary: {
-							DEFAULT: '#6d28d9',
+							DEFAULT: '#e11d48',
 							foreground: '#FFFFFF',
 						},
 						danger: {

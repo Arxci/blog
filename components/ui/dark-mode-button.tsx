@@ -1,0 +1,49 @@
+'use client'
+
+import React, { useEffect, useState } from 'react'
+
+import { useTheme } from 'next-themes'
+import { Moon } from 'lucide-react'
+import { Sun } from 'lucide-react'
+import { Button } from '@nextui-org/react'
+
+const DarkModeButton = () => {
+	const [mounted, setMounted] = useState(false)
+	const { theme, setTheme } = useTheme()
+	const isDarkMode = theme === 'dark'
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	const themeChangeHandle = () => {
+		if (isDarkMode) {
+			setTheme('light')
+		} else {
+			setTheme('dark')
+		}
+	}
+
+	if (!mounted) {
+		return (
+			<Button
+				isIconOnly
+				radius="full"
+			>
+				<Sun className="w-4 h-4" />
+			</Button>
+		)
+	}
+
+	return (
+		<Button
+			isIconOnly
+			radius="full"
+			onClick={themeChangeHandle}
+		>
+			{isDarkMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+		</Button>
+	)
+}
+
+export default DarkModeButton
