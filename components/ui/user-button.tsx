@@ -39,7 +39,8 @@ const UserButton = () => {
 				<Button
 					isIconOnly={true}
 					className="rounded-full "
-					variant="solid"
+					variant="shadow"
+					color="primary"
 					aria-label="User"
 					disableRipple
 				>
@@ -52,7 +53,7 @@ const UserButton = () => {
 							name={userInitials}
 							showFallback
 							classNames={{
-								base: 'bg-foreground text-background focus-within:bg-foreground flex items-center justify-center',
+								base: 'bg-primary text-background  flex items-center justify-center',
 							}}
 						/>
 					</Skeleton>
@@ -84,7 +85,7 @@ const UserButton = () => {
 							avatarProps={{
 								showFallback: true,
 								name: userInitials,
-								className: 'bg-foreground text-background',
+								className: 'bg-primary text-background',
 								size: 'sm',
 								src: session?.user?.image || '/',
 							}}

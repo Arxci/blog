@@ -97,7 +97,6 @@ const SignUpForm = () => {
 				form={form}
 				loading={loading}
 			/>
-
 			<Button
 				type="submit"
 				className="w-full "
