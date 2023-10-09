@@ -18,6 +18,7 @@ const FeaturedPosts = () => {
 							description={post.meta.description}
 							date={post.meta.date}
 							slug={post.slug}
+							image={post.meta.banner}
 						/>
 					))}
 			</div>

@@ -10,6 +10,7 @@ interface RecentPostProps {
 	description: string
 	date: string
 	slug: string
+	image: string
 }
 
 const RecentPost: React.FC<RecentPostProps> = ({
@@ -17,21 +18,27 @@ const RecentPost: React.FC<RecentPostProps> = ({
 	description,
 	date,
 	slug,
+	image,
 }) => {
 	return (
 		<Link href={'/posts/' + slug}>
-			<Card className="col-span-12 group overflow-hidden shadow-sm sm:col-span-4 h-[300px]">
+			<Card
+				shadow="sm"
+				isBlurred
+				className="col-span-12 group overflow-hidden sm:col-span-4 h-[300px] relative "
+			>
 				<CardHeader className="absolute z-10 top-1 flex-col !items-start">
-					<p className="text-xs text-white/80 ">{description}</p>
-					<h4 className="text-white font-medium text-bold">{title}</h4>
-					<p className="text-tiny text-white/80 ">{date}</p>
+					<p className="text-sm font-bold text-white/80 ">{description}</p>
+					<h4 className="text-white text-xl font-black">{title}</h4>
+					<p className="text-sm text-white/80 font-bold ">{date}</p>
 				</CardHeader>
 				<Image
 					alt="Card background"
 					className="z-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform"
 					fill
-					src="/HomeBanner.jpg"
+					src={image}
 				/>
+				<div className="absolute h-full w-full bg-gradient-to-b from-black/60 to--transparent" />
 			</Card>
 		</Link>
 	)

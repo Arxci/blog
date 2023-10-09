@@ -12,6 +12,7 @@ interface FeaturedPostProps {
 	title: string
 	description: string
 	slug: string
+	image: string
 }
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({
@@ -21,6 +22,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 	title,
 	description,
 	slug,
+	image,
 }) => {
 	const authorInitials = author.split(' ')[0][0] + author.split(' ')[1][0]
 
@@ -38,18 +40,20 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 								alt="Album cover"
 								className="object-cover "
 								fill
-								src="/HomeBanner.jpg"
+								src={image}
 							/>
 						</div>
 
 						<div className="flex flex-col col-span-6 md:col-span-8 overflow-hidden">
 							<div className="flex justify-between items-start">
-								<div className="flex flex-col gap-2">
-									<div className="flex flex-col md:flex-row md:gap-6 md:items-center space-y-1 ">
+								<div className="flex flex-col gap-2 w-full">
+									<div className="flex flex-col md:flex-row md:gap-6 md:items-center space-y-1 w-full ">
 										<h1 className="text-large font-medium line-clamp-1">
 											{title}
 										</h1>
-										<p className="text-xs text-foreground/50 ">{date}</p>
+										<p className="ml-auto text-xs text-foreground/50 ">
+											{date}
+										</p>
 									</div>
 									<div className="flex gap-2 items-center ">
 										<Avatar
@@ -59,7 +63,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 												base: 'bg-primary w-8 h-8 text-foreground flex items-center justify-center',
 											}}
 										/>
-										<p className="text-blue-600 text-sm">@{author}</p>
+										<p className="text-primary text-sm font-bold">@{author}</p>
 									</div>
 
 									<Chip

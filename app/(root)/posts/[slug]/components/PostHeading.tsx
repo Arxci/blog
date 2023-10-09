@@ -31,7 +31,7 @@ const PostHeading: React.FC<PropsHeadingProps> = ({
 							base: 'bg-primary w-8 h-8 text-foreground flex items-center justify-center',
 						}}
 					/>
-					<p className="text-blue-600">@{author}</p>
+					<p className="text-primary font-bold">@{author}</p>
 				</div>
 				<span className="hidden sm:block w-1 h-1 rounded-full bg-foreground/60" />
 				<p className="text-sm text-foreground/80">{date}</p>

@@ -1,0 +1,152 @@
+---
+id: 0
+author: Garrett Humbert
+title: NextJS 13 How To Set Up Next Themes
+date: Oct 10, 2023
+tag: Next Themes
+description:
+  Step by step guide on how to set up Next Themes in NextJS's App Router
+isFeatured: true
+banner: /NextThemesBanner.jpg
+---
+
+## NextThemes Installation
+
+[Next Themes](https://www.npmjs.com/package/next-themes?activeTab=readme 'title'),
+is an abstraction for themes in your NextJS app. Next Themes allows for simple
+theme switching with support for system setting with prefers-color-scheme,
+synced theme across tabs and windows, dark mode in just two lines of code, and
+much more!
+
+To get started install the below package into your NextJS 13 application
+
+```tsx
+$ npm install next-themes
+```
+
+## NextThemesProvider
+
+Adding dark mode takes two lines of code.
+
+First, create a providers folder in the root of your application. Then, create a
+file called NextThemesProvider.tsx
+
+```tsx
+'use client'
+
+import { ThemeProvider as Provider } from 'next-themes'
+import { ThemeProviderProps } from 'next-themes/dist/types'
+
+export interface NextThemesProviderProps {
+	children: React.ReactNode
+	themeProps?: ThemeProviderProps
+}
+
+const NextThemesProvider: React.FC<NextThemesProviderProps> = ({
+	children,
+	themeProps,
+}) => {
+	return <Provider {...themeProps}>{children}</Provider>
+}
+
+export default NextThemesProvider
+```
+
+Once thats created. Simply head over to the root of your app folder and wrap the
+children with the theme provider
+
+```tsx
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode
+}) {
+	return (
+		<html
+			lang="en"
+			suppressHydrationWarning
+		>
+			<body className={font.className}>
+				<NextThemesProvider
+					themeProps={{ attribute: 'class', defaultTheme: 'dark' }}
+				>
+					{children}
+				</NextThemesProvider>
+			</body>
+		</html>
+	)
+}
+```
+
+Once that has been set up, you can start using dark mode! You will need to set
+up your styles in your css file.
+
+```tsx
+:root {
+  /* Your default theme */
+  --background: white;
+  --foreground: black;
+}
+
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
+}
+```
+
+## UseTheme Hook
+
+That wasn't quite hard. But how can we change the theme at runtime? Well that's
+also quite simple with use of the UseTheme() hook provided by NextThemes.
+
+We can create a simple button that will allow us to toggle between light and
+dark mode.
+
+Due to NextJS 13 hydration errors we need an initial isMounted check before we
+can utilize the theme switcher.
+
+```tsx
+'use client'
+
+import React, { useEffect, useState } from 'react'
+
+import { useTheme } from 'next-themes'
+
+const DarkModeButton = () => {
+	const [mounted, setMounted] = useState(false)
+	const { theme, setTheme } = useTheme()
+	const isDarkMode = theme === 'dark'
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	if (!mounted) {
+		return null
+	}
+
+	const themeChangeHandle = () => {
+		if (isDarkMode) {
+			setTheme('light')
+		} else {
+			setTheme('dark')
+		}
+	}
+
+	return (
+		<button
+			onClick={themeChangeHandle}
+		>
+			{isDarkMode ? 'Dark Mode' : 'Light Mode}
+		</button>
+	)
+}
+
+export default DarkModeButton
+```
+
+And there you go! Thats all you need to get start using NextThemes!
+
+export function newComponent() {
+	return <p> new Component Test </p>
+}

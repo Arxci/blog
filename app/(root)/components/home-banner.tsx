@@ -28,7 +28,7 @@ const HomeBanner = () => {
 				<p className="text-white/80 ">{siteConfig.description}</p>
 				<Button
 					as={Link}
-					href="#"
+					href="/posts"
 					color="primary"
 					radius="full"
 					variant="shadow"
