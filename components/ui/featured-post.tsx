@@ -43,7 +43,6 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 								src={image}
 							/>
 						</div>
-
 						<div className="flex flex-col col-span-6 md:col-span-8 overflow-hidden">
 							<div className="flex justify-between items-start">
 								<div className="flex flex-col gap-2 w-full">
@@ -51,7 +50,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 										<h1 className="text-large font-medium line-clamp-1">
 											{title}
 										</h1>
-										<p className="ml-auto text-xs text-foreground/50 ">
+										<p className="md:ml-auto text-xs text-foreground/50 ">
 											{date}
 										</p>
 									</div>
