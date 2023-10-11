@@ -14,7 +14,7 @@ const FeaturedPosts = () => {
 							key={post.meta.id}
 							author={post.meta.author}
 							title={post.meta.title}
-							tag={post.meta.tag}
+							tags={post.meta.tags}
 							description={post.meta.description}
 							date={post.meta.date}
 							slug={post.slug}

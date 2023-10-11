@@ -3,11 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Card, CardBody, Chip, Avatar } from '@nextui-org/react'
+import { Card, CardBody } from '@nextui-org/react'
+import TagsShowcase from './tags-showcase'
+import AuthorShowcase from './author-showcase'
 
 interface FeaturedPostProps {
 	author: string
-	tag: string
+	tags: string
 	date: string
 	title: string
 	description: string
@@ -17,15 +19,13 @@ interface FeaturedPostProps {
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({
 	author,
-	tag,
+	tags,
 	date,
 	title,
 	description,
 	slug,
 	image,
 }) => {
-	const authorInitials = author.split(' ')[0][0] + author.split(' ')[1][0]
-
 	return (
 		<Link href={'/posts/' + slug}>
 			<Card
@@ -54,23 +54,8 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 											{date}
 										</p>
 									</div>
-									<div className="flex gap-2 items-center ">
-										<Avatar
-											name={authorInitials}
-											showFallback
-											classNames={{
-												base: 'bg-primary w-8 h-8 text-foreground flex items-center justify-center',
-											}}
-										/>
-										<p className="text-primary text-sm font-bold">@{author}</p>
-									</div>
-
-									<Chip
-										className="bg-foreground/10"
-										size="sm"
-									>
-										{tag}
-									</Chip>
+									<AuthorShowcase author={author} />
+									<TagsShowcase tags={tags} />
 								</div>
 							</div>
 

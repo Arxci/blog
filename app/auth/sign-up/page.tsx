@@ -1,7 +1,16 @@
+import { Metadata } from 'next'
+
 import SignUpForm from '@/components/forms/sign-up-form'
 import AuthActions from '../components/auth-actions'
 import AuthImage from '../components/auth-image'
 import AuthHeader from '../components/auth-header'
+
+import { siteConfig } from '@/config/site'
+
+export const metadata: Metadata = {
+	title: siteConfig.name + ' Sign Up',
+	description: 'Create an account to access all of the sites features',
+}
 
 const SignUp = () => {
 	return (

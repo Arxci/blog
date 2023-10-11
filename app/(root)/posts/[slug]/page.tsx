@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import type { Metadata, ResolvingMetadata } from 'next'
 
 import fs from 'fs'
 import path from 'path'
@@ -17,6 +18,15 @@ export async function generateStaticParams() {
 	})
 
 	return paths
+}
+
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+	const props = getPost(params)
+
+	return {
+		title: props.fontMatter.title,
+		description: props.fontMatter.description,
+	}
 }
 
 const Post = ({ params }: any) => {
@@ -38,7 +48,7 @@ const Post = ({ params }: any) => {
 						title={props.fontMatter.title}
 						author={props.fontMatter.author}
 						description={props.fontMatter.description}
-						tag={props.fontMatter.tag}
+						tags={props.fontMatter.tags}
 						date={props.fontMatter.date}
 					/>
 					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert dark:prose-code:invert dark:prose-pre:invert dark:prose-pre:bg-foreground/80 dark:prose-code:text-white ">

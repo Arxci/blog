@@ -1,8 +1,3 @@
-import Link from 'next/link'
-
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 import { getAllPosts, getPostWhere } from '@/lib/posts'
 import FeaturedPost from '@/components/ui/featured-post'
 
@@ -20,7 +15,7 @@ const Posts = () => {
 							key={post.meta.id}
 							author={post.meta.author}
 							title={post.meta.title}
-							tag={post.meta.tag}
+							tags={post.meta.tags}
 							description={post.meta.description}
 							date={post.meta.date}
 							slug={post.slug}
