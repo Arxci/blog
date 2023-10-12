@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 
 import fs from 'fs'
 import path from 'path'
@@ -35,10 +35,12 @@ const Post = ({ params }: any) => {
 	return (
 		<section className=" w-full pb-6">
 			<div className="container h-full flex flex-col gap-4">
-				<div className="relative w-full h-[300px] sm:h-[350px] ">
+				<div className="relative w-full h-[300px] sm:h-[450px] overflow-hidden lg:rounded-b-xl">
 					<Image
 						fill
 						className="object-cover"
+						placeholder="blur"
+						blurDataURL={props.fontMatter.banner}
 						src={props.fontMatter.banner}
 						alt={props.fontMatter.title}
 					/>

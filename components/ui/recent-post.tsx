@@ -38,7 +38,8 @@ const RecentPost: React.FC<RecentPostProps> = ({
 					alt="Card background"
 					className="z-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform"
 					fill
-					priority
+					placeholder="blur"
+					blurDataURL={image}
 					src={image}
 					sizes="500px, (max-width: 825px) 400px, (max-width: 769px) 1200px, (max-width: 600px) 800px, (max-width: 340px) 500px"
 				/>

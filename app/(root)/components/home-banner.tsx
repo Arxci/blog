@@ -16,7 +16,8 @@ const HomeBanner = () => {
 						className="object-cover object-right-bottom md:object-bottom"
 						src="/HomeBanner.jpg"
 						alt="Home Banner"
-						priority
+						placeholder="blur"
+						blurDataURL={'/HomeBanner.jpg'}
 						sizes="1024px, (max-width: 744px) 744px, (max-width: 500px) 500px, (max-width: 300px) 300px"
 						fill
 					/>

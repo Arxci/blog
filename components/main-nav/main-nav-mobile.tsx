@@ -26,7 +26,7 @@ const MainNavMobile = ({ onMenuClose }: { onMenuClose: () => void }) => {
 						onClick={onMenuClose}
 						className={cn(
 							'text-lg  text-foreground/80 hover:text-foreground/60',
-							pathName === link.title
+							pathName.includes(link.title)
 								? 'text-primary hover:text-primary/60'
 								: undefined
 						)}

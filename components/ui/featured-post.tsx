@@ -40,7 +40,8 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 								alt="Album cover"
 								className="object-cover "
 								sizes="400px, (max-width: 825px) 300px, (max-width: 769px) 1000px, (max-width: 600px) 700px, (max-width: 340px) 400px"
-								priority
+								placeholder="blur"
+								blurDataURL={image}
 								fill
 								src={image}
 							/>

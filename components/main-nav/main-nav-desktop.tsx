@@ -30,7 +30,7 @@ const MainNavDesktop = () => {
 						href={link.href}
 						className={cn(
 							'text-md  text-foreground/80 hover:text-foreground/60',
-							pathName === link.title
+							pathName.includes(link.title)
 								? 'text-primary font-bold hover:text-primary/60'
 								: undefined
 						)}
