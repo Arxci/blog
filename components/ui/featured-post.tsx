@@ -39,6 +39,8 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 							<Image
 								alt="Album cover"
 								className="object-cover "
+								sizes="400px, (max-width: 825px) 300px, (max-width: 769px) 1000px, (max-width: 600px) 700px, (max-width: 340px) 400px"
+								priority
 								fill
 								src={image}
 							/>
@@ -50,7 +52,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 										<h1 className="text-large font-medium line-clamp-1">
 											{title}
 										</h1>
-										<p className="md:ml-auto text-xs text-foreground/50 ">
+										<p className="whitespace-nowrap md:ml-auto text-xs text-foreground/50 ">
 											{date}
 										</p>
 									</div>
@@ -59,9 +61,9 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 								</div>
 							</div>
 
-							<div className="flex w-full mt-4 items-center justify-left">
+							<p className="flex w-full mt-4 items-center justify-left !line-clamp-2">
 								{description}
-							</div>
+							</p>
 						</div>
 					</div>
 				</CardBody>

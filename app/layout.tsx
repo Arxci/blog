@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 
 import { siteConfig } from '@/config/site'
-import NextUIProvider from '@/providers/NextUIProvider'
+import NextUIProvider from '@/providers/next-ui-provider'
 import { Toaster } from 'sonner'
 
 import './globals.css'
 
-import SessionProvider from '@/providers/SessionProvier'
-import NextThemesProvider from '@/providers/NextThemesProvider'
+import SessionProvider from '@/providers/session-provider'
+import NextThemesProvider from '@/providers/next-themes-provider'
 
 const font = Nunito({ subsets: ['latin'] })
 

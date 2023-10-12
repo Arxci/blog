@@ -1,5 +1,12 @@
 import { getAllPosts, getPostWhere } from '@/lib/posts'
 import FeaturedPost from '@/components/ui/featured-post'
+import { Metadata } from 'next'
+import { siteConfig } from '@/config/site'
+
+export const metadata: Metadata = {
+	title: siteConfig.name + ' About Me',
+	description: 'Get to know more about me, the author',
+}
 
 const Posts = () => {
 	const posts = getAllPosts()
@@ -8,7 +15,7 @@ const Posts = () => {
 	return (
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
-				<h1 className="text-4xl">Check out my posts!</h1>
+				<h1 className="text-2xl sm:text-4xl">Check out my posts!</h1>
 				{posts &&
 					posts.map((post) => (
 						<FeaturedPost

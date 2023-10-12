@@ -1,0 +1,231 @@
+---
+id: 1
+author: Garrett Humbert
+title: Setting Up Nodemailer in Next.js 13. Sending Email the Easy Way
+date: Oct 11, 2023
+tags: Nodemailer,NextJS
+description:
+  Learn how to seamlessly integrate Nodemailer into your Next.js 13 application
+  and send emails with ease. This step-by-step guide covers installation,
+  configuration, email template creation, error handling, testing, security
+  considerations, and deployment. Enhance your Next.js project with robust email
+  functionality and improve user engagement.
+isFeatured: true
+banner: /NodeMailerNextJSBanner.jpg
+---
+
+In the world of modern web development, creating a full-stack application with
+Next.js is a popular choice. However, one essential feature often overlooked is
+email communication. Whether you want to send confirmation emails, password
+reset links, or notifications, Nodemailer can be your trusted companion. In this
+blog post, we will guide you through the process of setting up Nodemailer in
+Next.js 13, making email integration a breeze for your application. We will be
+using gmail for the service provider.
+
+Gmail either works well, or it does not work at all. It is probably easier to
+switch to an alternative service instead of fixing issues with Gmail. If Gmail
+does not work for you, then don't use it. Read more about it
+[here](https://nodemailer.com/usage/using-gmail/).
+
+## Why Use Nodemailer?
+
+The Nodemailer module makes it easy to send emails from your computer. In this
+example we will be creating a simple contact form, that will allow the user to
+enter their information and send you an email.
+
+By the end of this comprehensive guide, you'll be well-equipped to set up
+Nodemailer in your Next.js 13 application, enabling you to enhance user
+engagement and streamline communication. Get ready to unlock the power of email
+in your Next.js projects with ease.
+
+## Installing Nodemailer in Next.js 13
+
+All you have to do is run the below command. We will also be using axios to make
+api calls to our custom contact route much easier and zod with react hook form
+to manage our form
+
+```tsx
+$ npm install nodemailer axios react-hook-form @hookform/resolvers/zod zod
+```
+
+## Creating the contact form
+
+Let's start by creating our formSchema
+
+```tsx
+const formSchema = z.object({
+	email: z
+		.string()
+		.min(1, { message: 'This field has to be filled.' })
+		.email('This is not a valid email.'),
+	name: z.string().min(1, { message: 'Please enter at least 1 character.' }),
+	subject: z.string().min(1, { message: 'Please enter at least 1 character.' }),
+	message: z
+		.string()
+		.min(10, { message: 'Please enter at least 10 characters.' }),
+})
+
+//typing for TypeScript
+type ProductFormValues = z.infer<typeof formSchema>
+```
+
+Next lets initialize our Component
+
+```tsx
+const defaultValues = {
+	email: '',
+	name: '',
+	subject: '',
+	message: '',
+}
+
+const form = useForm<ProductFormValues>({
+	resolver: zodResolver(formSchema),
+	defaultValues,
+})
+
+const submitFormHandle = async (data: ProductFormValues) => {
+	try {
+		await axios.post('/api/contact', data)
+
+		form.reset()
+		console.log('Email Received!')
+	} catch (error) {
+		console.log('Failed to send email.')
+	}
+}
+```
+
+Now lets add in our JSX
+
+```tsx
+return (
+	<form onSubmit={form.handleSubmit((data) => submitFormHandle(data))}>
+		<div>
+			<label htmlFor="email">Email</label>
+			<input
+				{...form}
+				for="email"
+				type="email"
+				placeholder="Enter your email..."
+			/>
+			{form.formState.errors.email && (
+				<p>form.formState.errors.email.message</p>
+			)}
+		</div>
+		<div>
+			<label htmlFor="name">Name</label>
+			<input
+				{...form}
+				for="name"
+				type="text"
+				placeholder="Enter your name..."
+			/>
+			{form.formState.errors.name && <p>form.formState.errors.name.message</p>}
+		</div>
+		<div>
+			<label htmlFor="subject">Subject</label>
+			<input
+				{...form}
+				for="subject"
+				type="text"
+				placeholder="Enter your subject..."
+			/>
+			{form.formState.errors.subject && (
+				<p>form.formState.errors.subject.message</p>
+			)}
+		</div>
+		<div>
+			<label htmlFor="message">Subject</label>
+			<textarea
+				{...form}
+				id="message"
+				name="message"
+				placeholder="Enter your message..."
+			/>
+			{form.formState.errors.message && (
+				<p>form.formState.errors.message.message</p>
+			)}
+		</div>
+		<button type="submit">Submit</button>
+	</form>
+)
+```
+
+## Creating the api route
+
+Once our component has been created we can then create our API route
+
+Create an API folder in the app folder of your application. Inside that folder
+create a contact folder then a route.tsx file.
+
+Now we can start making our POST request
+
+```tsx
+export const POST = async (req: Request) => {}
+```
+
+We can also do some initial validation to make sure the data passed to us is
+what we're looking for
+
+```tsx
+const body = await req.json()
+
+const { email, name, subject, message } = body
+
+if (!email || !name || !subject || !message) {
+	return new NextResponse('bad request', { status: 400 })
+}
+```
+
+Now we'll get into the fun stuff. Import nodemailer. Due to typescript typing
+errors, you may need to include the // @ts-ignore
+
+```tsx
+// @ts-ignore
+import nodemailer from 'nodemailer'
+```
+
+Now lets create the transporter. Let's start by creating a .env file at the root
+of your application. In that folder create two variables EMAIL and EMAIL_PASS.
+EMAIL will be your gmail and EMAIL_PASS can be a random string of characters.
+Now, back in the API route we can use those variables to create the transporter
+
+```tsx
+const transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+		user: process.env.EMAIL,
+		pass: process.env.EMAIL_PASS,
+	},
+	tls: {
+		rejectUnauthorized: false,
+	},
+})
+```
+
+We'll also need to initialize some mail options as well
+
+```tsx
+const mailOptions = {
+	from: process.env.EMAIL,
+	to: process.env.EMAIL,
+}
+```
+
+Finally, we can send the email with the below code
+
+```tsx
+await transporter.sendMail({
+	...mailOptions,
+	subject,
+	text: `Name: ${name} Email: ${email} message: ${message}`,
+})
+
+return NextResponse.json(body)
+```
+
+And thats all you need to send emails with nodemailer. This was a very simple
+example on creating a contact form, but you can try to integrate HTML into your
+emails, and add more inputs the user can fill out. You can find more information
+on nodemailer [here](https://nodemailer.com/about/)
