@@ -35,7 +35,7 @@ const Post = ({ params }: any) => {
 	return (
 		<section className=" w-full pb-6">
 			<div className="container h-full flex flex-col gap-4">
-				<div className="relative w-full h-[300px] sm:h-[350px] bg-red-500">
+				<div className="relative w-full h-[300px] sm:h-[350px] ">
 					<Image
 						fill
 						className="object-cover"
