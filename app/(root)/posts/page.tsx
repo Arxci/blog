@@ -1,11 +1,13 @@
+import { Metadata } from 'next'
+
 import { getAllPosts, getPostWhere } from '@/lib/posts'
 import FeaturedPost from '@/components/ui/featured-post'
-import { Metadata } from 'next'
 import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
-	title: siteConfig.name + ' About Me',
-	description: 'Get to know more about me, the author',
+	title: siteConfig.name + ' Posts',
+	description:
+		'View my posts and learn more about web development. I cover a wide array of topics.',
 }
 
 const Posts = () => {

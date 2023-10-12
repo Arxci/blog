@@ -44,7 +44,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
 						</ModalBody>
 						<ModalFooter>
 							<Button
-								color="danger"
+								color="default"
 								variant="light"
 								onPress={onClose}
 							>

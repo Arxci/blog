@@ -1,8 +1,17 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { Avatar } from '@nextui-org/react'
 
-const AuthorShowcase = ({ author }: { author: string }) => {
+const AuthorShowcase = ({
+	author,
+	className,
+	avatarClassName,
+}: {
+	author: string
+	className?: string
+	avatarClassName?: string
+}) => {
 	const authorInitials = author.split(' ')[0][0] + author.split(' ')[1][0]
 
 	return (
@@ -11,10 +20,15 @@ const AuthorShowcase = ({ author }: { author: string }) => {
 				name={authorInitials}
 				showFallback
 				classNames={{
-					base: 'bg-primary w-8 h-8 text-foreground flex items-center justify-center',
+					base: cn(
+						'bg-primary w-8 h-8 text-foreground flex items-center justify-center',
+						avatarClassName
+					),
 				}}
 			/>
-			<p className="text-primary text-sm font-bold">@{author}</p>
+			<p className={cn('text-primary text-sm font-bold', className)}>
+				@{author}
+			</p>
 		</div>
 	)
 }

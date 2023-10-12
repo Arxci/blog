@@ -16,12 +16,12 @@ export const siteConfig = {
 		{
 			id: 2,
 			title: 'About',
-			href: '/',
+			href: '/about',
 		},
 		{
 			id: 3,
 			title: 'Contact',
-			href: '/',
+			href: '/contact',
 		},
 	],
 }
