@@ -112,7 +112,7 @@ const UserButton = () => {
 						<DropdownItem
 							key="logout"
 							aria-label="Sign out of account"
-							className="[&>*]:text-primary"
+							className="[&>*]:text-primary [&>*]:font-bold"
 							color="primary"
 							onClick={onOpen}
 							closeOnSelect

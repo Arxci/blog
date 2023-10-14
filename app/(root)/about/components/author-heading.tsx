@@ -34,18 +34,6 @@ const AuthorHeading = () => {
 					>
 						Contact Me
 					</Button>
-					<Button
-						as={Link}
-						href="/contact"
-						variant="solid"
-						color="primary"
-						className="uppercase"
-						size="sm"
-						radius="full"
-						startContent={<FontAwesomeIcon icon={faLink} />}
-					>
-						Portfolio
-					</Button>
 				</div>
 			</div>
 		</header>
