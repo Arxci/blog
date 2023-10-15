@@ -40,6 +40,7 @@ const Post = ({ params }: any) => {
 						fill
 						className="object-cover"
 						placeholder="blur"
+						sizes="1024px, (max-width: 1023px) 100vw"
 						blurDataURL={props.fontMatter.banner}
 						src={props.fontMatter.banner}
 						alt={props.fontMatter.title}
