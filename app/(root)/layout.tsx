@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 
 import MainSiteNav from '@/components/layout/main-site-nav'
+import MainSiteFooter from '@/components/layout/main-site-footer'
 
 export default async function RootLayout({
 	children,
@@ -14,6 +15,7 @@ export default async function RootLayout({
 		<div className="min-h-screen ">
 			<MainSiteNav session={session} />
 			<main className=" min-h-[calc(100vh-65px)]">{children}</main>
+			<MainSiteFooter />
 		</div>
 	)
 }

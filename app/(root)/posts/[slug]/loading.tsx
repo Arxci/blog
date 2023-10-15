@@ -5,7 +5,8 @@ export default function Loading() {
 		<section className=" w-full">
 			<div className="container  h-full flex flex-col gap-4 px-4 md:px-6 py-6">
 				<Skeleton className="h-[300px] sm:h-[450px] lg:rounded-b-xl" />
-				<Skeleton className="mt-10 h-[45px] w-full rounded-xl" />
+				<Skeleton className="mt-10 h-[50px] w-full rounded-xl" />
+				<Skeleton className="h-[50px] min-w-[300px] w-[40%] rounded-xl" />
 				<div className="flex gap-2 flex-col sm:flex-row">
 					<div className="flex gap-2">
 						<Skeleton className="h-[25px] w-[150px] rounded-xl" />
