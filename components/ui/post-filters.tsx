@@ -1,5 +1,11 @@
+import TagSelect from './tag-select'
+
 const PostFilters = () => {
-	return <div></div>
+	return (
+		<div>
+			<TagSelect />
+		</div>
+	)
 }
 
 export default PostFilters

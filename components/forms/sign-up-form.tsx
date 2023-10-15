@@ -61,6 +61,7 @@ const SignUpForm = () => {
 				type="text"
 				label="Email"
 				placeholder="Enter your email."
+				description="Your email used to sign in"
 				errorMessage={
 					form.formState.errors.email
 						? form.formState.errors.email.message
@@ -74,6 +75,7 @@ const SignUpForm = () => {
 				type="text"
 				label="Fist Name"
 				placeholder="Enter your first name."
+				description="Your fist name visible to others"
 				errorMessage={
 					form.formState.errors.firstName
 						? form.formState.errors.firstName.message
@@ -87,6 +89,7 @@ const SignUpForm = () => {
 				type="text"
 				label="Last Name"
 				placeholder="Enter your last name."
+				description="Your last name visible to others"
 				errorMessage={
 					form.formState.errors.lastName
 						? form.formState.errors.lastName.message

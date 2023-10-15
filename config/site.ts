@@ -24,4 +24,9 @@ export const siteConfig = {
 			href: '/contact',
 		},
 	],
+	tagFilters: [
+		{ label: 'NextJS', value: 'NextJS' },
+		{ label: 'Next Themes', value: 'Next Themes' },
+		{ label: 'Nodemailer', value: 'Nodemailer' },
+	],
 }
