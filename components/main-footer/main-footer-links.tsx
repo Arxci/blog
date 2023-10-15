@@ -2,9 +2,9 @@ import Link from 'next/link'
 
 import { siteConfig } from '@/config/site'
 
-const MainFooterDesktop = () => {
+const MainFooterLinks = () => {
 	return (
-		<ul className="flex gap-6 items-center">
+		<ul className="flex gap-6 flex-col md:flex-row md:items-center ">
 			{siteConfig.mainNavLinks.map((link) => (
 				<li key={link.id}>
 					<Link
@@ -19,4 +19,4 @@ const MainFooterDesktop = () => {
 	)
 }
 
-export default MainFooterDesktop
+export default MainFooterLinks

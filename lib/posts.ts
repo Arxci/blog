@@ -32,16 +32,6 @@ export const getAllPosts = () => {
 	return posts
 }
 
-export const getPostByTag = ({ tag }: { tag: string }) => {
-	const posts = getAllPosts()
-
-	const filteredPosts = posts.filter((post) => {
-		return post.meta.tag === tag
-	})
-
-	return filteredPosts
-}
-
 export const getPostWhere = ({
 	where,
 }: {
@@ -50,6 +40,7 @@ export const getPostWhere = ({
 		stop?: number | undefined
 		tag?: string | undefined
 		isFeatured?: boolean | undefined
+		mostRecent?: boolean | undefined
 	}
 }) => {
 	const posts = getAllPosts()
@@ -57,19 +48,31 @@ export const getPostWhere = ({
 		return posts
 	}
 
-	const { start, stop, tag, isFeatured } = where
+	const { start, stop, tag, isFeatured, mostRecent } = where
 
-	const slicedPosts = posts.slice(start, stop)
+	var orderedPosts
+
+	if (mostRecent) {
+		orderedPosts = posts.sort(function (postOne, postTwo) {
+			//@ts-ignore
+			return new Date(postOne.meta.date) - new Date(postTwo.meta.date)
+		})
+		orderedPosts.reverse()
+	} else {
+		orderedPosts = posts
+	}
+
+	const slicedPosts = orderedPosts.slice(start, stop)
 
 	const filteredPosts = slicedPosts.filter((post) => {
-		let shouldKeep = true
 		if (tag && post.meta.tag !== tag) {
-			shouldKeep = false
+			return false
 		}
 		if (isFeatured && post.meta.isFeatured !== isFeatured) {
-			shouldKeep = false
+			return false
 		}
-		return shouldKeep
+
+		return true
 	})
 
 	return filteredPosts
