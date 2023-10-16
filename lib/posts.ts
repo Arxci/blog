@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { siteConfig } from '@/config/site'
 
 export const getPost = ({ slug }: { slug: string }) => {
 	const markdownFile = fs.readFileSync(
@@ -65,7 +66,7 @@ export const getPostWhere = ({
 	const slicedPosts = orderedPosts.slice(start, stop)
 
 	const filteredPosts = slicedPosts.filter((post) => {
-		if (tag && post.meta.tag !== tag) {
+		if (tag && !post.meta.tags.split(',').includes(tag)) {
 			return false
 		}
 		if (isFeatured && post.meta.isFeatured !== isFeatured) {

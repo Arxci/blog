@@ -26,7 +26,11 @@ export const siteConfig = {
 	],
 	tagFilters: [
 		{ label: 'NextJS', value: 'NextJS' },
-		{ label: 'Next Themes', value: 'Next Themes' },
+		{ label: 'NextThemes', value: 'NextThemes' },
 		{ label: 'Nodemailer', value: 'Nodemailer' },
+	],
+	checkboxFilters: [
+		{ label: 'Most Recent', value: 'mostRecent' },
+		{ label: 'Featured', value: 'isFeatured' },
 	],
 }
