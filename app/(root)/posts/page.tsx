@@ -42,6 +42,7 @@ const Posts = async ({
 							date={post.meta.date}
 							slug={post.slug}
 							image={post.meta.banner}
+							isFeatured={post.meta.isFeatured}
 						/>
 					))}
 			</div>

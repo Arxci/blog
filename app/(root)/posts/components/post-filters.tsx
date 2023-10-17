@@ -7,7 +7,7 @@ const PostFilters = ({
 	searchParams: { tag: string; mostRecent: string; isFeatured: string }
 }) => {
 	return (
-		<div className="flex gap-6">
+		<div className="flex gap-6 flex-col md:flex-row">
 			<TagSelect searchParams={searchParams} />
 			<CheckboxSelect searchParams={searchParams} />
 		</div>
