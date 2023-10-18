@@ -1,9 +1,11 @@
 import { Metadata } from 'next'
 
-import { getAllPosts, getPostWhere } from '@/lib/posts'
+import { getPostWhere } from '@/lib/posts'
 import FeaturedPost from '@/components/ui/featured-post'
 import { siteConfig } from '@/config/site'
-import PostFilters from '@/app/(root)/posts/components/post-filters'
+import TagFilters from './components/tag-filters'
+import CheckboxFilters from './components/checkbox-filters'
+import SearchFilter from './components/search-filter'
 
 export const metadata: Metadata = {
 	title: siteConfig.name + ' Posts',
@@ -14,15 +16,21 @@ export const metadata: Metadata = {
 const Posts = async ({
 	searchParams,
 }: {
-	searchParams: { tag: string; mostRecent: string; isFeatured: string }
+	searchParams: {
+		tag: string
+		mostRecent: string
+		isFeatured: string
+		search: string
+	}
 }) => {
-	const { tag, mostRecent, isFeatured } = searchParams
+	const { tag, mostRecent, isFeatured, search } = searchParams
 
 	const posts = getPostWhere({
 		where: {
 			tag,
 			mostRecent: mostRecent === 'true',
 			isFeatured: isFeatured === 'true',
+			search,
 		},
 	})
 
@@ -30,7 +38,11 @@ const Posts = async ({
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
 				<h1 className="text-2xl sm:text-4xl">Check out my posts!</h1>
-				<PostFilters searchParams={searchParams} />
+				<div className="grid gap-6 grid-cols-1 md:grid-cols-3 ">
+					<TagFilters searchParams={searchParams} />
+					<CheckboxFilters searchParams={searchParams} />
+					<SearchFilter searchParams={searchParams} />
+				</div>
 				{posts &&
 					posts.map((post) => (
 						<FeaturedPost

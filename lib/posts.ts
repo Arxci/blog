@@ -3,18 +3,56 @@ import path from 'path'
 import matter from 'gray-matter'
 import { siteConfig } from '@/config/site'
 
+interface Post {
+	meta: {
+		id: number
+		author: string
+		title: string
+		date: string
+		tags: string
+		description: string
+		isFeatured: boolean
+		banner: string
+	}
+	slug: string
+	content?: string
+}
+
+/*
+id: 0
+author: Garrett Humbert
+title: NextJS 13 How To Set Up Next Themes
+date: Oct 10, 2023
+tags: NextThemes,NextJS
+description:
+  Step by step guide on how to set up Next Themes in NextJS's App Router
+isFeatured: true
+banner: /NextThemesBanner.jpg
+*/
+
+const orderPostsByDate = (posts: Post[], asc: boolean) => {
+	const orderedPosts = posts.sort(function (postOne, postTwo) {
+		//@ts-ignore
+		return new Date(postOne.meta.date) - new Date(postTwo.meta.date)
+	})
+	if (asc) {
+		orderedPosts.reverse()
+	}
+	return orderedPosts
+}
+
 export const getPost = ({ slug }: { slug: string }) => {
 	const markdownFile = fs.readFileSync(
 		path.join('posts', slug + '.mdx'),
 		'utf-8'
 	)
 
-	const { data: fontMatter, content } = matter(markdownFile)
+	const { data: frontMatter, content } = matter(markdownFile)
 
-	return { fontMatter, slug, content }
+	return <Post>{ meta: frontMatter, slug, content }
 }
 
-export const getAllPosts = () => {
+export const getAllPosts = (): Post[] => {
 	const blogDir = 'posts'
 
 	const files = fs.readdirSync(path.join(blogDir))
@@ -24,7 +62,7 @@ export const getAllPosts = () => {
 
 		const { data: frontMatter } = matter(fileContent)
 
-		return {
+		return <Post>{
 			meta: frontMatter,
 			slug: filename.replace('.mdx', ''),
 		}
@@ -37,31 +75,22 @@ export const getPostWhere = ({
 	where,
 }: {
 	where?: {
-		start?: number | undefined
-		stop?: number | undefined
-		tag?: string | undefined
-		isFeatured?: boolean | undefined
-		mostRecent?: boolean | undefined
+		start?: number
+		stop?: number
+		tag?: string
+		isFeatured?: boolean
+		mostRecent?: boolean
+		search?: string
 	}
-}) => {
+}): Post[] => {
 	const posts = getAllPosts()
 	if (!where) {
 		return posts
 	}
 
-	const { start, stop, tag, isFeatured, mostRecent } = where
+	const { start, stop, tag, isFeatured, mostRecent, search } = where
 
-	var orderedPosts
-
-	if (mostRecent) {
-		orderedPosts = posts.sort(function (postOne, postTwo) {
-			//@ts-ignore
-			return new Date(postOne.meta.date) - new Date(postTwo.meta.date)
-		})
-		orderedPosts.reverse()
-	} else {
-		orderedPosts = posts
-	}
+	const orderedPosts = orderPostsByDate(posts, mostRecent)
 
 	const slicedPosts = orderedPosts.slice(start, stop)
 
@@ -72,7 +101,15 @@ export const getPostWhere = ({
 		if (isFeatured && post.meta.isFeatured !== isFeatured) {
 			return false
 		}
-
+		if (
+			search &&
+			!(
+				post.meta.title.toLowerCase().includes(search.toLowerCase()) ||
+				post.meta.description.toLowerCase().includes(search.toLowerCase())
+			)
+		) {
+			return false
+		}
 		return true
 	})
 

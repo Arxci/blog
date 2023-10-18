@@ -4,18 +4,18 @@ import { useState } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 
-import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { useQueryString } from '@/hooks/useQueryString'
 import { CheckboxGroup, Checkbox } from '@nextui-org/react'
 
 import { siteConfig } from '@/config/site'
 
-const CheckboxSelect = ({
+const CheckboxFilters = ({
 	searchParams,
 }: {
 	searchParams: { isFeatured: string; mostRecent: string }
 }) => {
 	const [groupSelected, setGroupSelected] = useState(() => {
-		var { isFeatured, mostRecent } = searchParams
+		const { isFeatured, mostRecent } = searchParams
 		const temp = []
 
 		if (isFeatured === 'true') {
@@ -30,17 +30,27 @@ const CheckboxSelect = ({
 	})
 	const router = useRouter()
 	const pathname = usePathname()
-	const { createQueryString } = useCreateQueryString()
+	const { createQueryString } = useQueryString()
 
-	const checkboxChangedHandle = (e) => {
+	const checkboxChangedHandle = (e: string[]) => {
 		setGroupSelected(e)
 
 		router.push(
 			pathname +
 				'?' +
 				createQueryString([
-					{ name: 'mostRecent', value: e.includes('mostRecent') },
-					{ name: 'isFeatured', value: e.includes('isFeatured') },
+					{
+						name: 'mostRecent',
+						value: e.includes('mostRecent')
+							? e.includes('mostRecent').toString()
+							: undefined,
+					},
+					{
+						name: 'isFeatured',
+						value: e.includes('isFeatured')
+							? e.includes('isFeatured').toString()
+							: undefined,
+					},
 				])
 		)
 	}
@@ -50,7 +60,9 @@ const CheckboxSelect = ({
 			label="Filters"
 			defaultValue={['buenos-aires', 'london']}
 			orientation="horizontal"
+			className="row-start-3 md:col-start-2 md:row-auto"
 			value={groupSelected}
+			//@ts-ignore
 			onChange={checkboxChangedHandle}
 			size="sm"
 		>
@@ -66,4 +78,4 @@ const CheckboxSelect = ({
 	)
 }
 
-export default CheckboxSelect
+export default CheckboxFilters

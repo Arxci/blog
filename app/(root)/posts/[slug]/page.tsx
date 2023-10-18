@@ -20,16 +20,28 @@ export async function generateStaticParams() {
 	return paths
 }
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
+export async function generateMetadata({
+	params,
+}: {
+	params: {
+		slug: string
+	}
+}): Promise<Metadata> {
 	const props = getPost(params)
 
 	return {
-		title: props.fontMatter.title,
-		description: props.fontMatter.description,
+		title: props.meta.title,
+		description: props.meta.description,
 	}
 }
 
-const Post = ({ params }: any) => {
+const Post = ({
+	params,
+}: {
+	params: {
+		slug: string
+	}
+}) => {
 	const props = getPost(params)
 
 	return (
@@ -41,18 +53,18 @@ const Post = ({ params }: any) => {
 						className="object-cover"
 						placeholder="blur"
 						sizes="1024px, (max-width: 1023px) 100vw"
-						blurDataURL={props.fontMatter.banner}
-						src={props.fontMatter.banner}
-						alt={props.fontMatter.title}
+						blurDataURL={props.meta.banner}
+						src={props.meta.banner}
+						alt={props.meta.title}
 					/>
 				</div>
 				<div className="px-4 md:px-6 w-full ">
 					<PostHeading
-						title={props.fontMatter.title}
-						author={props.fontMatter.author}
-						description={props.fontMatter.description}
-						tags={props.fontMatter.tags}
-						date={props.fontMatter.date}
+						title={props.meta.title}
+						author={props.meta.author}
+						description={props.meta.description}
+						tags={props.meta.tags}
+						date={props.meta.date}
 					/>
 					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert dark:prose-code:invert dark:prose-pre:invert dark:prose-pre:bg-foreground/80 dark:prose-code:text-white ">
 						<MDXRemote
