@@ -1,4 +1,5 @@
-import Skeleton from '@/components/ui/skeleton'
+import FeaturedPostSkeleton from '@/components/skeletons/featured-post-skeleton'
+import Skeleton from '@/components/skeletons/skeleton'
 
 export default function Loading() {
 	return (
@@ -12,10 +13,10 @@ export default function Loading() {
 					<Skeleton className="h-[50px] w-full rounded-xl" />
 					<Skeleton className="h-[50px] w-full rounded-xl" />
 				</div>
-				<Skeleton className="h-[200px] w-full rounded-xl" />
-				<Skeleton className="h-[200px] w-full rounded-xl" />
-				<Skeleton className="h-[200px] w-full rounded-xl" />
-				<Skeleton className="h-[200px] w-full rounded-xl" />
+				<FeaturedPostSkeleton />
+				<FeaturedPostSkeleton />
+				<FeaturedPostSkeleton />
+				<FeaturedPostSkeleton />
 			</div>
 		</section>
 	)

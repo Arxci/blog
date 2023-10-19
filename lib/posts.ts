@@ -108,13 +108,13 @@ export const getPostWhere = ({
 
 	const orderedPosts = orderPostsByDate(posts, mostRecent)
 
-	const slicedPosts = orderedPosts.slice(start, stop)
-
-	const filteredPosts = filterPostsByParams(slicedPosts, {
+	const filteredPosts = filterPostsByParams(orderedPosts, {
 		tag,
 		isFeatured,
 		search,
 	})
 
-	return filteredPosts
+	const slicedPosts = filteredPosts.slice(start, stop)
+
+	return slicedPosts
 }

@@ -1,4 +1,4 @@
-import Skeleton from '@/components/ui/skeleton'
+import Skeleton from '@/components/skeletons/skeleton'
 import AuthActionsLoading from '../components/auth-actions-loading'
 import AuthHeaderLoading from '../components/auth-header-loading'
 import AuthImageLoading from '../components/auth-image-loading'

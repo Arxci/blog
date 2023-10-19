@@ -1,4 +1,4 @@
-import Skeleton from '@/components/ui/skeleton'
+import Skeleton from '@/components/skeletons/skeleton'
 
 const AuthImageLoading = () => {
 	return <Skeleton className="relative hidden h-full lg:flex rounded-none" />
