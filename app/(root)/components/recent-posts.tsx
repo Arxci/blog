@@ -2,7 +2,7 @@ import RecentPost from '@/components/ui/recent-post'
 import { getPostWhere } from '@/lib/posts'
 
 const RecentPosts = () => {
-	const posts = getPostWhere({ where: { stop: 3, mostRecent: true } })
+	const posts = getPostWhere({ where: { stop: 2, mostRecent: true } })
 
 	return (
 		<div className="flex-[.4] py-6">

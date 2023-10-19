@@ -1,0 +1,110 @@
+---
+id: 2
+author: Garrett Humbert
+title: Effortless Loading State in NextJS 13
+date: Oct 18, 2023
+tags: NextJS
+description:
+  Learn how to implement a seamless loading state in your Next.js 13
+  applications to keep your users engaged and satisfied.
+isFeatured: true
+banner: /NextJSLoadingBanner.png
+---
+
+In the fast-paced world of web development, ensuring a delightful user
+experience is a top priority. With NextJS 13, the journey to creating smooth
+loading states has never been easier. In this post, we'll delve into the art of
+implementing loading states in your Next.js applications, taking them from good
+to exceptional. Say goodbye to those frustrating, abrupt page transitions, and
+welcome your users with a loading experience that leaves a lasting impression.
+Let's explore how you can achieve loading state perfection in your Next.js 13
+projects and keep your users hooked from the first click.
+
+## Instant Loading State
+
+An instant loading state is fallback UI that is shown immediately upon
+navigation. You can pre-render loading indicators such as skeletons and
+spinners, or a small but meaningful part of future screens such as a cover
+photo, title, etc. This helps users understand the app is responding and
+provides a better user experience.
+
+The NextJS app directory has introduced a new file convention; you can now add
+all the files and components related to the route in a single directory. In the
+route directory, you can include the loading.tsx file to add your loading UI.
+
+```tsx
+export default function Loading() {
+	// Return your loading UI
+	return <Skeleton />
+}
+```
+
+In the same folder, loading.js will be nested inside layout.js. It will
+automatically wrap the page.js file and any children below in a Suspense
+boundary.
+
+**It is recommended** to use the loading.tsx convention for route segments
+(layouts and pages) as Next.js optimizes this functionality.
+
+## Streaming with Suspense
+
+To learn how Streaming works in React and Next.js, it's helpful to understand
+Server-Side Rendering (SSR) and its limitations.
+
+With SSR, there's a series of steps that need to be completed before a user can
+see and interact with a page:
+
+1. First, all data for a given page is fetched on the server.
+2. The server then renders the HTML for the page.
+3. The HTML, CSS, and JavaScript for the page are sent to the client.
+4. A non-interactive user interface is shown using the generated HTML, and CSS.
+5. Finally, React hydrates the user interface to make it interactive.
+
+These steps are sequential and blocking, meaning the server can only render the
+HTML for a page once all the data has been fetched. And, on the client, React
+can only hydrate the UI once the code for all components in the page has been
+downloaded.
+
+SSR with React and NextJS helps improve the perceived loading performance by
+showing a non-interactive page to the user as soon as possible.
+
+However, it can still be slow as all data fetching on server needs to be
+completed before the page can be shown to the user.
+
+Streaming allows you to break down the page's HTML into smaller chunks and
+progressively send those chunks from the server to the client.
+
+### Example
+
+Suspense works by wrapping a component that performs an asynchronous action
+(e.g. fetch data), showing fallback UI (e.g. skeleton, spinner) while it's
+happening, and then swapping in your component once the action completes.
+
+```tsx
+import { Suspense } from 'react'
+import { PostFeed, Weather } from './Components'
+
+export default function Posts() {
+	return (
+		<section>
+			<Suspense fallback={<p>Loading feed...</p>}>
+				<PostFeed />
+			</Suspense>
+			<Suspense fallback={<p>Loading weather...</p>}>
+				<Weather />
+			</Suspense>
+		</section>
+	)
+}
+```
+
+## Conclusion
+
+In the realm of web development, the user experience is the crown jewel of any
+application. With NextJS 13, crafting a flawless loading state has become not
+just achievable but also enjoyable.
+
+Remember, the loading state isn't just about showcasing your technical prowess;
+it's about making a promise to your users. It's a commitment that their time and
+attention matter. By implementing a well-crafted loading state, you're not only
+keeping your users engaged but also building trust and loyalty.

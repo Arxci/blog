@@ -15,7 +15,7 @@ const formSchema = z.object({
 		.email('This is not a valid email.'),
 })
 
-type SignInFormValues = z.infer<typeof formSchema>
+type RegisterFormValues = z.infer<typeof formSchema>
 
 const MainFooterActions = () => {
 	const [loading, setLoading] = useState(false)
@@ -25,12 +25,12 @@ const MainFooterActions = () => {
 		password: '',
 	}
 
-	const form = useForm<SignInFormValues>({
+	const form = useForm<RegisterFormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues,
 	})
 
-	const submitFormHandle = async (data: SignInFormValues) => {
+	const submitFormHandle = async (data: RegisterFormValues) => {
 		setLoading(true)
 		setTimeout(() => {
 			setLoading(false)
@@ -61,7 +61,7 @@ const MainFooterActions = () => {
 					size="md"
 					color="primary"
 				>
-					{loading ? undefined : 'Sign Up'}
+					{loading ? undefined : 'Register'}
 				</Button>
 			</form>
 		</div>
