@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { siteConfig } from '@/config/site'
 
 interface Post {
 	meta: {
@@ -29,14 +28,11 @@ const orderPostsByDate = (posts: Post[], asc: boolean): Post[] => {
 	return orderedPosts
 }
 
-const filterPosts = ({
-	posts,
-	filters,
-}: {
-	posts: Post[]
-	filters: { tag?: string; isFeatured?: boolean; search?: string }
-}): Post[] => {
-	const { tag, isFeatured, search } = filters
+const filterPostsByParams = (
+	posts: Post[],
+	params: { tag?: string; isFeatured?: boolean; search?: string }
+): Post[] => {
+	const { tag, isFeatured, search } = params
 
 	const filteredPosts = posts.filter((post) => {
 		if (tag && !post.meta.tags.split(',').includes(tag)) {
@@ -114,9 +110,10 @@ export const getPostWhere = ({
 
 	const slicedPosts = orderedPosts.slice(start, stop)
 
-	const filteredPosts = filterPosts({
-		posts: slicedPosts,
-		filters: { tag, isFeatured, search },
+	const filteredPosts = filterPostsByParams(slicedPosts, {
+		tag,
+		isFeatured,
+		search,
 	})
 
 	return filteredPosts
