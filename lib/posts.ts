@@ -18,19 +18,7 @@ interface Post {
 	content?: string
 }
 
-/*
-id: 0
-author: Garrett Humbert
-title: NextJS 13 How To Set Up Next Themes
-date: Oct 10, 2023
-tags: NextThemes,NextJS
-description:
-  Step by step guide on how to set up Next Themes in NextJS's App Router
-isFeatured: true
-banner: /NextThemesBanner.jpg
-*/
-
-const orderPostsByDate = (posts: Post[], asc: boolean) => {
+const orderPostsByDate = (posts: Post[], asc: boolean): Post[] => {
 	const orderedPosts = posts.sort(function (postOne, postTwo) {
 		//@ts-ignore
 		return new Date(postOne.meta.date) - new Date(postTwo.meta.date)
@@ -41,7 +29,38 @@ const orderPostsByDate = (posts: Post[], asc: boolean) => {
 	return orderedPosts
 }
 
-export const getPost = ({ slug }: { slug: string }) => {
+const filterPosts = ({
+	posts,
+	filters,
+}: {
+	posts: Post[]
+	filters: { tag?: string; isFeatured?: boolean; search?: string }
+}): Post[] => {
+	const { tag, isFeatured, search } = filters
+
+	const filteredPosts = posts.filter((post) => {
+		if (tag && !post.meta.tags.split(',').includes(tag)) {
+			return false
+		}
+		if (isFeatured && post.meta.isFeatured !== isFeatured) {
+			return false
+		}
+		if (
+			search &&
+			!(
+				post.meta.title.toLowerCase().includes(search.toLowerCase()) ||
+				post.meta.description.toLowerCase().includes(search.toLowerCase())
+			)
+		) {
+			return false
+		}
+		return true
+	})
+
+	return filteredPosts
+}
+
+export const getPost = ({ slug }: { slug: string }): Post => {
 	const markdownFile = fs.readFileSync(
 		path.join('posts', slug + '.mdx'),
 		'utf-8'
@@ -84,6 +103,7 @@ export const getPostWhere = ({
 	}
 }): Post[] => {
 	const posts = getAllPosts()
+
 	if (!where) {
 		return posts
 	}
@@ -94,23 +114,9 @@ export const getPostWhere = ({
 
 	const slicedPosts = orderedPosts.slice(start, stop)
 
-	const filteredPosts = slicedPosts.filter((post) => {
-		if (tag && !post.meta.tags.split(',').includes(tag)) {
-			return false
-		}
-		if (isFeatured && post.meta.isFeatured !== isFeatured) {
-			return false
-		}
-		if (
-			search &&
-			!(
-				post.meta.title.toLowerCase().includes(search.toLowerCase()) ||
-				post.meta.description.toLowerCase().includes(search.toLowerCase())
-			)
-		) {
-			return false
-		}
-		return true
+	const filteredPosts = filterPosts({
+		posts: slicedPosts,
+		filters: { tag, isFeatured, search },
 	})
 
 	return filteredPosts

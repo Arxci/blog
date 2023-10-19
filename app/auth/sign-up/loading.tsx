@@ -9,13 +9,13 @@ export default function Loading() {
 			<AuthActionsLoading />
 			<AuthImageLoading />
 			<div className="lg:p-8 w-full 0">
-				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
+				<div className="mx-auto flex w-full flex-col justify-center space-y-7 sm:w-[450px]">
 					<AuthHeaderLoading />
 					<div className="space-y-6 w-full">
-						<Skeleton className="h-[50px] w-full rounded-xl" />
-						<Skeleton className="h-[50px] w-full rounded-xl" />
-						<Skeleton className="h-[50px] w-full rounded-xl" />
-						<Skeleton className="h-[50px] w-full rounded-xl" />
+						<Skeleton className="h-[55px] w-full rounded-xl" />
+						<Skeleton className="h-[55px] w-full rounded-xl" />
+						<Skeleton className="h-[55px] w-full rounded-xl" />
+						<Skeleton className="h-[55px] w-full rounded-xl" />
 						<Skeleton className="h-[40px] w-full rounded-xl" />
 					</div>
 				</div>

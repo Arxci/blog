@@ -31,7 +31,6 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
 			type={showPassword ? 'text' : 'password'}
 			label="Password"
 			placeholder="Enter your password."
-			description="Your password used to sign in"
 			endContent={
 				<button
 					aria-label="Toggle visibility"

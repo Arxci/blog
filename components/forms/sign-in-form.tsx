@@ -64,7 +64,6 @@ const SignInForm = () => {
 				isDisabled={loading}
 				type="text"
 				label="Email"
-				description="Your email used to sign in"
 				placeholder="Enter your email."
 				errorMessage={
 					form.formState.errors.email

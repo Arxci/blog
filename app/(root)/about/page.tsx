@@ -16,7 +16,7 @@ const Posts = () => {
 
 	return (
 		<section className="h-full w-full">
-			<div className="container h-full flex flex-col gap-4 md:px-6 py-6">
+			<div className="container h-full flex flex-col gap-4  md:px-6 py-6">
 				<AuthorHeading />
 				<AuthorAbout />
 			</div>
