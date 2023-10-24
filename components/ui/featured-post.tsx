@@ -29,14 +29,17 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 	isFeatured,
 }) => {
 	return (
-		<Link href={'/posts/' + slug}>
+		<Link href={'/' + slug}>
 			<Card
-				className="border-none bg-background/60 dark:bg-default-100/50 "
+				className="border-none bg-background/60 dark:bg-default-100/50 [&>*:first-child]:!p-4 sm:[&>*:first-child]:!p-5"
 				shadow="sm"
+				classNames={{
+					base: 'p-0',
+				}}
 			>
 				<CardBody>
-					<div className="md:h-[201px]  grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
-						<div className="relative col-span-6 md:col-span-4 overflow-hidden w-full h-[300px] md:h-full rounded-xl">
+					<div className="md:h-[201px]  grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center ">
+						<div className="relative col-span-6 md:col-span-4 overflow-hidden w-full aspect-video h-full rounded-xl">
 							<Image
 								alt="Album cover"
 								className="object-cover "
@@ -49,7 +52,6 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 							{isFeatured && (
 								<Chip
 									color="primary"
-									variant="shadow"
 									className="absolute bottom-1 left-1"
 								>
 									Featured

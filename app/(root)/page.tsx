@@ -7,9 +7,9 @@ export default function Home() {
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4">
 				<HomeBanner />
-				<div className="flex flex-col md:flex-row md:gap-4 h-full px-4 md:px-6">
-					<FeaturedPosts />
+				<div className="flex flex-col h-full px-4 md:px-6">
 					<RecentPosts />
+					<FeaturedPosts />
 				</div>
 			</div>
 		</section>

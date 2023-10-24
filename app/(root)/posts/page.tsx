@@ -6,6 +6,7 @@ import { siteConfig } from '@/config/site'
 import TagFilters from './components/tag-filters'
 import CheckboxFilters from './components/checkbox-filters'
 import SearchFilter from './components/search-filter'
+import Skeleton from '@/components/skeletons/skeleton'
 
 export const metadata: Metadata = {
 	title: siteConfig.name + ' Posts',
@@ -38,12 +39,12 @@ const Posts = async ({
 	return (
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
-				<h1 className="text-2xl sm:text-4xl">Check out my posts!</h1>
 				<div className="grid gap-6 grid-cols-1 md:grid-cols-3 ">
 					<TagFilters searchParams={searchParams} />
 					<CheckboxFilters searchParams={searchParams} />
 					<SearchFilter searchParams={searchParams} />
 				</div>
+
 				{posts &&
 					posts.map((post) => (
 						<FeaturedPost

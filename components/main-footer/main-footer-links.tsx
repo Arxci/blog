@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site'
 
 const MainFooterLinks = () => {
 	return (
-		<ul className="flex gap-6 flex-col md:flex-row md:items-center ">
+		<ul className="flex gap-6 flex-col md:flex-row md:items-center justify-center w-full">
 			{siteConfig.mainNavLinks.map((link) => (
 				<li key={link.id}>
 					<Link

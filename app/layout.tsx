@@ -35,7 +35,7 @@ export default function RootLayout({
 				<NextUIProvider>
 					<SessionProvider>
 						<NextThemesProvider
-							themeProps={{ attribute: 'class', defaultTheme: 'dark' }}
+							themeProps={{ attribute: 'class', defaultTheme: 'system' }}
 						>
 							<Toaster closeButton />
 							{children}

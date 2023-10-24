@@ -1,7 +1,7 @@
-import Skeleton from '@/components/skeletons/skeleton'
 import AuthActionsLoading from '../components/auth-actions-loading'
 import AuthHeaderLoading from '../components/auth-header-loading'
 import AuthImageLoading from '../components/auth-image-loading'
+import AuthFormSkeleton from '@/components/skeletons/auth-input-skeleton'
 
 export default function Loading() {
 	return (
@@ -12,9 +12,9 @@ export default function Loading() {
 				<div className="mx-auto flex w-full flex-col justify-center space-y-7 sm:w-[450px]">
 					<AuthHeaderLoading />
 					<div className="space-y-6 w-full">
-						<Skeleton className="h-[55px] w-full rounded-xl" />
-						<Skeleton className="h-[55px] w-full rounded-xl" />
-						<Skeleton className="h-[40px] w-full rounded-xl" />
+						<AuthFormSkeleton />
+						<AuthFormSkeleton />
+						<AuthFormSkeleton />
 					</div>
 				</div>
 			</div>

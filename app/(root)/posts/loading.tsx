@@ -5,12 +5,31 @@ export default function Loading() {
 	return (
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
-				<Skeleton className="h-[45px] w-[200px] sm:hidden rounded-full" />
-				<Skeleton className="h-[40px] w-[350px] hidden sm:block rounded-full" />
 				<div className="flex flex-col md:flex-row gap-6">
-					<Skeleton className="h-[50px] w-full rounded-xl" />
-					<Skeleton className="h-[50px] w-full rounded-xl" />
-					<Skeleton className="h-[50px] w-full rounded-xl" />
+					<div className="h-[50px] w-full rounded-xl bg-foreground/10 p-3 flex items-center justify-between">
+						<div className="flex gap-2 flex-col justify-between">
+							<Skeleton className="h-[10px] w-[50px] rounded-full" />
+							<Skeleton className="h-[10px] w-[75px] rounded-full" />
+						</div>
+						<Skeleton className="h-[10px] w-[10px] rounded-full" />
+					</div>
+					<div className="h-[50px] w-full rounded-xl bg-foreground/10 p-3 flex flex-col gap-2">
+						<Skeleton className="h-[10px] w-[50px] rounded-full" />
+						<div className="flex gap-2">
+							<Skeleton className="h-[10px] w-[10px] rounded-md" />
+							<Skeleton className="h-[10px] w-[75px] rounded-full" />
+							<Skeleton className="h-[10px] w-[10px] rounded-md" />
+							<Skeleton className="h-[10px] w-[75px] rounded-full" />
+						</div>
+					</div>
+					<div className="h-[50px] w-full rounded-xl bg-foreground/10 p-3 flex flex-col justify-between">
+						<Skeleton className="h-[7.5px] w-[50px] rounded-full" />
+						<div className="flex gap-2 items-center">
+							<Skeleton className="h-[10px] w-[10px] rounded-full" />
+
+							<Skeleton className="h-[10px] w-[75px] rounded-full" />
+						</div>
+					</div>
 				</div>
 				<FeaturedPostSkeleton />
 				<FeaturedPostSkeleton />

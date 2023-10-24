@@ -7,9 +7,9 @@ export default function Loading() {
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4">
 				<HomeBannerLoading />
-				<div className="flex flex-col md:flex-row md:gap-4 h-full px-4 md:px-6">
-					<FeaturedPostsLoading />
+				<div className="flex flex-col h-full px-4 md:px-6">
 					<RecentPostsLoading />
+					<FeaturedPostsLoading />
 				</div>
 			</div>
 		</section>

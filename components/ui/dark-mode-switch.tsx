@@ -9,7 +9,8 @@ import { Sun } from 'lucide-react'
 
 const DarkModeSwitch = () => {
 	const [mounted, setMounted] = useState(false)
-	const { theme, setTheme } = useTheme()
+	const { resolvedTheme, setTheme } = useTheme()
+	const isDarkMode = mounted && resolvedTheme === 'dark'
 
 	useEffect(() => {
 		setMounted(true)
@@ -27,7 +28,7 @@ const DarkModeSwitch = () => {
 
 	return (
 		<Switch
-			defaultSelected={theme === 'dark'}
+			isSelected={isDarkMode}
 			size="sm"
 			color="primary"
 			startContent={<Sun />}

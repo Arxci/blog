@@ -9,8 +9,8 @@ import { Button } from '@nextui-org/react'
 
 const DarkModeButton = () => {
 	const [mounted, setMounted] = useState(false)
-	const { theme, setTheme } = useTheme()
-	const isDarkMode = theme === 'dark'
+	const { resolvedTheme, setTheme } = useTheme()
+	const isDarkMode = mounted && resolvedTheme === 'dark'
 
 	useEffect(() => {
 		setMounted(true)

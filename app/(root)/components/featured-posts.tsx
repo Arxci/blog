@@ -5,8 +5,8 @@ const FeaturedPosts = () => {
 	const posts = getPostWhere({ where: { isFeatured: true } })
 
 	return (
-		<div className="py-6 flex-1">
-			<h1 className="text-4xl font-bold  h-[60px]">Featured Posts</h1>
+		<div className="my-6">
+			<h1 className="text-4xl font-bold mb-6">Featured Posts</h1>
 			<div className="flex flex-col gap-6 ">
 				{posts &&
 					posts.map((post) => (

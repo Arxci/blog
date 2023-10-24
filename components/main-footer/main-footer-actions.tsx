@@ -40,9 +40,9 @@ const MainFooterActions = () => {
 	}
 
 	return (
-		<div>
+		<div className="w-full flex md:justify-end">
 			<form
-				className="flex gap-2 items-center"
+				className="flex gap-2 items-center w-full"
 				onSubmit={form.handleSubmit((data) => submitFormHandle(data))}
 			>
 				<Input
@@ -52,6 +52,7 @@ const MainFooterActions = () => {
 					isRequired
 					type="email"
 					variant="flat"
+					className="w-full md:w-auto"
 					placeholder="Newsletter"
 				/>
 				<Button
@@ -60,6 +61,7 @@ const MainFooterActions = () => {
 					variant="shadow"
 					size="md"
 					color="primary"
+					radius="full"
 				>
 					{loading ? undefined : 'Register'}
 				</Button>

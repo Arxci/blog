@@ -3,11 +3,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Card, CardHeader } from '@nextui-org/react'
+import { Card } from '@nextui-org/react'
 
 interface RecentPostProps {
 	title: string
-	description: string
+
 	date: string
 	slug: string
 	image: string
@@ -15,25 +15,16 @@ interface RecentPostProps {
 
 const RecentPost: React.FC<RecentPostProps> = ({
 	title,
-	description,
 	date,
 	slug,
 	image,
 }) => {
 	return (
-		<Link href={'/posts/' + slug}>
+		<Link href={'/' + slug}>
 			<Card
-				shadow="sm"
-				isBlurred
-				className="col-span-12 group overflow-hidden sm:col-span-4 h-[300px] relative "
+				shadow="md"
+				className=" group aspect-video relative "
 			>
-				<CardHeader className="absolute z-10 top-1 flex-col !items-start">
-					<p className="!line-clamp-2 text-sm font-bold text-white/80 ">
-						{description}
-					</p>
-					<h4 className="text-white text-xl font-black">{title}</h4>
-					<p className="text-sm text-white/80 font-bold ">{date}</p>
-				</CardHeader>
 				<Image
 					alt="Card background"
 					className="z-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform"
@@ -43,8 +34,11 @@ const RecentPost: React.FC<RecentPostProps> = ({
 					src={image}
 					sizes="500px, (max-width: 825px) 400px, (max-width: 769px) 1200px, (max-width: 600px) 800px, (max-width: 340px) 500px"
 				/>
-				<div className="absolute h-full w-full bg-gradient-to-b from-black/60 to--transparent" />
 			</Card>
+			<div className="px-2 pt-2">
+				<h1 className="font-bold line-clamp-1 overflow-hidden">{title}</h1>
+				<p className="text-foreground/80">{date}</p>
+			</div>
 		</Link>
 	)
 }

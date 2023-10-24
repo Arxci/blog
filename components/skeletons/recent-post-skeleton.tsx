@@ -2,12 +2,11 @@ import Skeleton from './skeleton'
 
 const RecentPostSkeleton = () => {
 	return (
-		<div className="h-[300px] bg-foreground/10  w-full rounded-xl">
-			<div className="p-3 flex gap-2 flex-col">
-				<Skeleton className="w-full h-[15px] rounded-xl" />
-				<Skeleton className="w-[60%] h-[15px] rounded-xl" />
-				<Skeleton className="w-full h-[30px] rounded-xl" />
-				<Skeleton className="w-[100px] h-[15px] rounded-xl" />
+		<div className=" group aspect-video relative ">
+			<Skeleton className="w-full h-full bg-foreground/10 rounded-xl" />
+			<div className="px-2 pt-2 flex flex-col gap-2">
+				<Skeleton className="rounded-full h-[20px] w-full" />
+				<Skeleton className="rounded-full h-[15px] w-[100px]" />
 			</div>
 		</div>
 	)
