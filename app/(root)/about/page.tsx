@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 }
 
 const Posts = () => {
-	const posts = getAllPosts()
-	getPostWhere({ where: { start: 0, stop: 1 } })
-
 	return (
 		<section className="h-full w-full">
 			<div className="container h-full flex flex-col gap-4  md:px-6 py-6">

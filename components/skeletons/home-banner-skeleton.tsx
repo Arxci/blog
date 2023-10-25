@@ -4,11 +4,14 @@ const HomeBannerSkeleton = () => {
 	return (
 		<div className=" h-full w-full lg:rounded-b-xl bg-foreground/10 overflow-hidden">
 			<div className="relative h-full flex text-center flex-col items-center md:text-start md:items-start justify-center gap-4 px-4 md:px-6">
-				<Skeleton className="h-[40px] w-full max-w-[400px] rounded-full" />
-				<Skeleton className="h-[20px] w-full rounded-full" />
-				<Skeleton className="h-[20px] md:hidden w-full rounded-full" />
-				<Skeleton className="h-[20px] w-[60%] hidden md:block   rounded-full" />
-				<Skeleton className="h-[40px] w-[180px] rounded-full" />
+				<div className="space-y-4 mb-4 w-full flex flex-col items-center md:items-start">
+					<Skeleton className="h-[40px] w-[80%] max-w-[300px] rounded-full" />
+					<Skeleton className="h-[15px] w-full rounded-full" />
+					<Skeleton className="h-[15px] md:hidden w-full rounded-full" />
+					<Skeleton className="h-[15px] md:hidden w-full rounded-full" />
+					<Skeleton className="h-[15px] w-[60%] hidden md:block   rounded-full" />
+				</div>
+				<Skeleton className="h-[45px] w-full rounded-full" />
 			</div>
 		</div>
 	)

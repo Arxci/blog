@@ -6,7 +6,7 @@ const FeaturedPosts = () => {
 
 	return (
 		<div className="my-6">
-			<h1 className="text-4xl font-bold mb-6">Featured Posts</h1>
+			<h1 className="text-4xl font-bold mb-6">Trending</h1>
 			<div className="flex flex-col gap-6 ">
 				{posts &&
 					posts.map((post) => (

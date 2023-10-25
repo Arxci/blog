@@ -52,6 +52,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 							{isFeatured && (
 								<Chip
 									color="primary"
+									variant="flat"
 									className="absolute bottom-1 left-1"
 								>
 									Featured

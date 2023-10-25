@@ -33,7 +33,7 @@ const config: Config = {
 							foreground: '#FFFFFF',
 						},
 						danger: {
-							DEFAULT: '#dc2626',
+							DEFAULT: '#e11d48',
 							foreground: '#FFFFFF',
 						},
 						secondary: {
