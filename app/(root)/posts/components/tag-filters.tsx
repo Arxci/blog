@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, useEffect } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -10,23 +10,7 @@ import { siteConfig } from '@/config/site'
 import { useQueryString } from '@/hooks/useQueryString'
 
 const TagFilters = ({ searchParams }: { searchParams: { tag: string } }) => {
-	const [currentTag, setCurrentTag] = useState<Selection>(() => {
-		const { tag } = searchParams
-		var isValidTag = false
-
-		siteConfig.tagFilters.forEach((_tag) => {
-			if (Object.values(_tag).includes(tag)) {
-				isValidTag = true
-				return
-			}
-		})
-
-		if (isValidTag) {
-			return new Set([tag])
-		}
-
-		return new Set([])
-	})
+	const [currentTag, setCurrentTag] = useState<Selection>(new Set([]))
 
 	const router = useRouter()
 	const pathname = usePathname()
@@ -43,6 +27,21 @@ const TagFilters = ({ searchParams }: { searchParams: { tag: string } }) => {
 				])
 		)
 	}
+
+	useEffect(() => {
+		const { tag } = searchParams
+		var isValidTag = false
+
+		siteConfig.tagFilters.forEach((_tag) => {
+			if (Object.values(_tag).includes(tag)) {
+				isValidTag = true
+				return
+			}
+		})
+
+		if (isValidTag) setCurrentTag(new Set([tag]))
+		else setCurrentTag(new Set([]))
+	}, [searchParams])
 
 	return (
 		<Select

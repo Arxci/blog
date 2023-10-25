@@ -10,7 +10,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { useQueryString } from '@/hooks/useQueryString'
 
 const formSchema = z.object({
 	search: z.string().optional(),
@@ -22,8 +21,6 @@ const HomeBannerForm = () => {
 	const [value, setValue] = useState('')
 	const router = useRouter()
 
-	const { createQueryString } = useQueryString()
-
 	const defaultValues = {
 		search: '',
 	}
@@ -34,13 +31,7 @@ const HomeBannerForm = () => {
 	})
 
 	const submitFormHandle = async (data: HomeBannerFormValues) => {
-		router.push(
-			'/posts/' +
-				'?' +
-				createQueryString([
-					{ name: 'search', value: value === '' ? undefined : value },
-				])
-		)
+		router.push('/posts?search=' + value)
 	}
 
 	return (

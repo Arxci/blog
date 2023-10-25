@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -14,20 +14,7 @@ const CheckboxFilters = ({
 }: {
 	searchParams: { isFeatured: string; mostRecent: string }
 }) => {
-	const [groupSelected, setGroupSelected] = useState(() => {
-		const { isFeatured, mostRecent } = searchParams
-		const temp = []
-
-		if (isFeatured === 'true') {
-			temp.push('isFeatured')
-		}
-
-		if (mostRecent === 'true') {
-			temp.push('mostRecent')
-		}
-
-		return temp
-	})
+	const [groupSelected, setGroupSelected] = useState([])
 	const router = useRouter()
 	const pathname = usePathname()
 	const { createQueryString } = useQueryString()
@@ -54,6 +41,21 @@ const CheckboxFilters = ({
 				])
 		)
 	}
+
+	useEffect(() => {
+		const { isFeatured, mostRecent } = searchParams
+		const temp = []
+
+		if (isFeatured === 'true') {
+			temp.push('isFeatured')
+		}
+
+		if (mostRecent === 'true') {
+			temp.push('mostRecent')
+		}
+
+		setGroupSelected(temp)
+	}, [searchParams])
 
 	return (
 		<CheckboxGroup

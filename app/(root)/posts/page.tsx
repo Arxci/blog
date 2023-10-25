@@ -6,6 +6,7 @@ import { siteConfig } from '@/config/site'
 import TagFilters from './components/tag-filters'
 import CheckboxFilters from './components/checkbox-filters'
 import SearchFilter from './components/search-filter'
+import NothingFound from './components/nothing-found'
 
 export const metadata: Metadata = {
 	title: siteConfig.name + ' Posts',
@@ -35,6 +36,8 @@ const Posts = async ({
 		},
 	})
 
+	console.log(searchParams)
+
 	return (
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
@@ -43,7 +46,11 @@ const Posts = async ({
 					<CheckboxFilters searchParams={searchParams} />
 					<SearchFilter searchParams={searchParams} />
 				</div>
-				{posts &&
+
+				{posts.length === 0 ? (
+					<NothingFound />
+				) : (
+					posts &&
 					posts.map((post) => (
 						<FeaturedPost
 							key={post.meta.id}
@@ -56,7 +63,8 @@ const Posts = async ({
 							image={post.meta.banner}
 							isFeatured={post.meta.isFeatured}
 						/>
-					))}
+					))
+				)}
 			</div>
 		</section>
 	)

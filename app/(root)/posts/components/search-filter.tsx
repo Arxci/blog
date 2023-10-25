@@ -1,6 +1,6 @@
 'use client'
 
-import { KeyboardEvent, useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -14,15 +14,8 @@ const SearchFilter = ({
 }: {
 	searchParams: { search: string }
 }) => {
-	const [value, setValue] = useState<string>(() => {
-		const { search } = searchParams
+	const [value, setValue] = useState<string>('')
 
-		console.log(search)
-
-		if (search === undefined) return ''
-
-		return search
-	})
 	const router = useRouter()
 	const pathname = usePathname()
 	const { createQueryString } = useQueryString()
@@ -48,6 +41,13 @@ const SearchFilter = ({
 			pathname + '?' + createQueryString([{ name: 'search', value: undefined }])
 		)
 	}
+
+	useEffect(() => {
+		const { search } = searchParams
+
+		if (search !== undefined) setValue(search)
+		else setValue('')
+	}, [searchParams])
 
 	return (
 		<Input
