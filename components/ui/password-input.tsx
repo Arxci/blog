@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ButtonHTMLAttributes, KeyboardEvent, useState } from 'react'
 
 import { Input } from '@nextui-org/react'
 import { UseFormReturn } from 'react-hook-form'
@@ -35,13 +35,18 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
 				<button
 					aria-label="Toggle visibility"
 					type="button"
+					onKeyDown={(e: KeyboardEvent<HTMLButtonElement>) => {
+						if (e.key === 'Enter') {
+							showPassword ? disableVisibilityHandle : enableVisibilityHandle
+						}
+					}}
+					onClick={
+						showPassword ? disableVisibilityHandle : enableVisibilityHandle
+					}
 				>
 					<FontAwesomeIcon
 						className="cursor-pointer w-4 h-4"
 						icon={showPassword ? faEye : faEyeSlash}
-						onClick={
-							showPassword ? disableVisibilityHandle : enableVisibilityHandle
-						}
 					/>
 				</button>
 			}

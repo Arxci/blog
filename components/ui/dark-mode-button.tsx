@@ -43,7 +43,7 @@ const DarkModeButton = () => {
 			aria-label="Dark Mode Toggle"
 		>
 			{isDarkMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-			<span className="sr-only">Dark Mode</span>
+			<span className="sr-only">Dark Mode Toggle</span>
 		</Button>
 	)
 }

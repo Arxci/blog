@@ -51,6 +51,7 @@ const NewsletterForm = () => {
 				isRequired
 				type="email"
 				variant="flat"
+				radius="full"
 				className="w-full md:w-auto"
 				placeholder="Newsletter"
 			/>
