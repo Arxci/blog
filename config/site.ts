@@ -1,4 +1,22 @@
-export const siteConfig = {
+interface SiteConfigProps {
+	name: string
+	description: string
+	mainNavLinks: {
+		id: number
+		title: string
+		href: string
+	}[]
+	tagFilters: {
+		label: string
+		value: string
+	}[]
+	checkboxFilters: {
+		label: string
+		value: string
+	}[]
+}
+
+export const siteConfig: SiteConfigProps = {
 	name: 'Garrett Humbert',
 	description:
 		'Exploring the Digital Frontier: Unleashing Web Wonders and Creations - Join Me on a Journey through the World of Web Development and Cutting-Edge Technologies',
@@ -29,6 +47,7 @@ export const siteConfig = {
 		{ label: 'NextThemes', value: 'NextThemes' },
 		{ label: 'Nodemailer', value: 'Nodemailer' },
 	],
+
 	checkboxFilters: [
 		{ label: 'Most Recent', value: 'mostRecent' },
 		{ label: 'Featured', value: 'isFeatured' },
