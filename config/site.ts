@@ -17,9 +17,9 @@ interface SiteConfigProps {
 }
 
 export const siteConfig: SiteConfigProps = {
-	name: 'Garrett Humbert',
+	name: 'CodeCrafted',
 	description:
-		'Exploring the Digital Frontier: Unleashing Web Wonders and Creations - Join Me on a Journey through the World of Web Development and Cutting-Edge Technologies',
+		'CodeCrafted: Mastering Web Development: Unleashing Web Wonders and Creations - Join Me on a Journey through the World of Web Development and Cutting-Edge Technologies',
 	mainNavLinks: [
 		{
 			id: 0,

@@ -36,8 +36,6 @@ const Posts = async ({
 		},
 	})
 
-	console.log(searchParams)
-
 	return (
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
