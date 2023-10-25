@@ -61,9 +61,8 @@ const HomeBannerForm = () => {
 						setValue('')
 					}
 				}}
-				variant="flat"
 				className="w-full "
-				placeholder="Search for a post"
+				placeholder="Search for a post..."
 				startContent={
 					<FontAwesomeIcon
 						icon={faMagnifyingGlass}

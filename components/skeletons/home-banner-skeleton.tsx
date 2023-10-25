@@ -11,7 +11,10 @@ const HomeBannerSkeleton = () => {
 					<Skeleton className="h-[15px] md:hidden w-full rounded-full" />
 					<Skeleton className="h-[15px] w-[60%] hidden md:block   rounded-full" />
 				</div>
-				<Skeleton className="h-[45px] w-full rounded-full" />
+				<div className="h-[45px] w-full rounded-full bg-foreground/10 p-3 flex items-center gap-4">
+					<Skeleton className="w-[20px] h-[20px] rounded-full" />
+					<Skeleton className="w-[200px] h-[20px] rounded-full" />
+				</div>
 			</div>
 		</div>
 	)
