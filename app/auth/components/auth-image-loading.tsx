@@ -6,6 +6,7 @@ const AuthImageLoading = () => {
 			<Skeleton className="h-[25px] w-[175px] rounded-full" />
 			<div className="mt-auto space-y-2">
 				<Skeleton className="h-[20px] w-full rounded-full" />
+				<Skeleton className="h-[20px] w-full rounded-full" />
 				<Skeleton className="h-[20px] w-[40%] rounded-full" />
 			</div>
 		</div>

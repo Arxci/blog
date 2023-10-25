@@ -1,5 +1,6 @@
 interface SiteConfigProps {
 	name: string
+	tagLine: string
 	description: string
 	mainNavLinks: {
 		id: number
@@ -17,9 +18,9 @@ interface SiteConfigProps {
 }
 
 export const siteConfig: SiteConfigProps = {
-	name: 'CodeCrafted',
-	description:
-		'CodeCrafted: Mastering Web Development: Unleashing Web Wonders and Creations - Join Me on a Journey through the World of Web Development and Cutting-Edge Technologies',
+	name: 'Code Chronicles',
+	tagLine: 'Your Guide to Web Development',
+	description: `Code Chronicles: Your essential web development guide. Explore HTML, CSS, JavaScript, and more. Unlock the secrets of coding, design, and tech trends. Your compass for creating digital wonders. Embark on your journey now. `,
 	mainNavLinks: [
 		{
 			id: 0,

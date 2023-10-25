@@ -24,7 +24,7 @@ const HomeBanner = () => {
 			<div className="h-full relative flex text-center flex-col items-center md:text-start md:items-start justify-center gap-4 px-4 md:px-6">
 				<div className="space-y-2 mb-4">
 					<h1 className="font-bold text-5xl text-white">
-						Welcome To CodeCrafted!
+						Welcome To {siteConfig.name}!
 					</h1>
 					<p className="text-white/80 ">{siteConfig.description}</p>
 				</div>
