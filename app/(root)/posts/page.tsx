@@ -6,7 +6,6 @@ import { siteConfig } from '@/config/site'
 import TagFilters from './components/tag-filters'
 import CheckboxFilters from './components/checkbox-filters'
 import SearchFilter from './components/search-filter'
-import Skeleton from '@/components/skeletons/skeleton'
 
 export const metadata: Metadata = {
 	title: siteConfig.name + ' Posts',
@@ -44,7 +43,6 @@ const Posts = async ({
 					<CheckboxFilters searchParams={searchParams} />
 					<SearchFilter searchParams={searchParams} />
 				</div>
-
 				{posts &&
 					posts.map((post) => (
 						<FeaturedPost
