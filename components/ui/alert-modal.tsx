@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import {
 	Button,
 	Modal,
@@ -24,6 +26,13 @@ const AlertModal: React.FC<AlertModalProps> = ({
 	isOpen,
 	onOpenChange,
 }) => {
+	const [loading, setLoading] = useState(false)
+
+	const onConfirmHandle = () => {
+		setLoading(true)
+		onConfirm()
+	}
+
 	return (
 		<Modal
 			isOpen={isOpen}
@@ -45,14 +54,17 @@ const AlertModal: React.FC<AlertModalProps> = ({
 						<ModalFooter>
 							<Button
 								color="default"
+								isDisabled={loading}
 								variant="light"
 								onPress={onClose}
 							>
 								Cancel
 							</Button>
 							<Button
+								isLoading={loading}
+								isDisabled={loading}
 								color="primary"
-								onPress={onConfirm}
+								onPress={onConfirmHandle}
 							>
 								Confirm
 							</Button>

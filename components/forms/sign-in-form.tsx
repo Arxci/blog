@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 
-import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 
 import * as z from 'zod'
@@ -27,7 +26,6 @@ type SignInFormValues = z.infer<typeof formSchema>
 
 const SignInForm = () => {
 	const [loading, setLoading] = useState(false)
-	const router = useRouter()
 
 	const defaultValues = {
 		email: '',

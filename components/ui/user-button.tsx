@@ -81,7 +81,7 @@ const UserButton = () => {
 							key="user"
 							isReadOnly
 							aria-label="User Information"
-							className="h-14 gap-2 opacity-100 !hover:bg-background"
+							className="gap-2 opacity-100 !hover:bg-background"
 						>
 							<User
 								name={session?.user?.name}
@@ -102,6 +102,7 @@ const UserButton = () => {
 						<DropdownItem
 							key="theme"
 							aria-label="Dark theme toggle"
+							className="text-sm"
 							startContent={<FontAwesomeIcon icon={faMoon} />}
 							endContent={<DarkModeSwitch />}
 						>
@@ -112,7 +113,7 @@ const UserButton = () => {
 						<DropdownItem
 							key="logout"
 							aria-label="Sign out of account"
-							className="[&>*]:text-primary [&>*]:font-bold"
+							className="[&>*]:text-primary [&>*]:font-bold text-sm"
 							color="primary"
 							onClick={onOpen}
 							closeOnSelect
