@@ -80,7 +80,7 @@ export const PATCH = async (req: Request) => {
 
 		return NextResponse.json(comment)
 	} catch (err) {
-		console.log('COMMENT_POST')
+		console.log('COMMENT_PATCH')
 		return new NextResponse('Internal error', {
 			status: 400,
 		})
