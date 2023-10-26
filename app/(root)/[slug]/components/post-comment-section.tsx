@@ -3,7 +3,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 import PostUserComment from './post-user-comment'
 import prismaDB from '@/lib/prisma'
-import Comment from '@/components/ui/comment'
+import PostComment from '@/app/(root)/[slug]/components/post-comment'
 
 interface PostCommentSectionProps {
 	postId: number
@@ -29,7 +29,7 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = async ({
 				postId={postId}
 			/>
 			{comments.map((comment) => (
-				<Comment
+				<PostComment
 					key={comment.id}
 					session={session}
 					{...comment}

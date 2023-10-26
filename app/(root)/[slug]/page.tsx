@@ -60,13 +60,7 @@ const Post = ({
 					/>
 				</div>
 				<div className="px-4 md:px-6 w-full ">
-					<PostHeading
-						title={props.meta.title}
-						author={props.meta.author}
-						description={props.meta.description}
-						tags={props.meta.tags}
-						date={props.meta.date}
-					/>
+					<PostHeading {...props.meta} />
 					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert dark:prose-code:invert dark:prose-pre:invert dark:prose-pre:bg-foreground/80 dark:prose-code:text-white ">
 						<MDXRemote
 							source={props.content}

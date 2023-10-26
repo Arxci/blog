@@ -5,10 +5,7 @@ export const UserSchema = z.object({
 		.string()
 		.min(1, { message: 'Please enter at least 1 character.' })
 		.email('This is not a valid email.'),
-	firstName: z
-		.string()
-		.min(1, { message: 'Please enter at least 1 character.' }),
-	lastName: z
+	username: z
 		.string()
 		.min(1, { message: 'Please enter at least 1 character.' }),
 	password: z
@@ -17,10 +14,10 @@ export const UserSchema = z.object({
 })
 
 export const CommentSchema = z.object({
-	author: z.string().min(1, { message: 'Please enter at least 1 character.' }),
-	authorId: z
+	username: z
 		.string()
 		.min(1, { message: 'Please enter at least 1 character.' }),
+	userId: z.string().min(1, { message: 'Please enter at least 1 character.' }),
 	postId: z.number(),
 	message: z
 		.string()

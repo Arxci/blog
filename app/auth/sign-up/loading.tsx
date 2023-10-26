@@ -16,7 +16,6 @@ export default function Loading() {
 						<AuthFormSkeleton />
 						<AuthFormSkeleton />
 						<AuthFormSkeleton />
-						<AuthFormSkeleton />
 						<Skeleton className="h-[40px] w-full rounded-xl" />
 					</div>
 				</div>

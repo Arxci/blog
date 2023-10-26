@@ -6,17 +6,13 @@ declare module 'next-auth' {
 		accessToken?: Account.accessToken
 		user: {
 			id: string
-			name: string
+			username: string
 			email: string
-			firstName: string
-			lastName: string
-			image: string
 		}
 	}
 
 	interface User {
-		firstName: string
-		lastName: string
+		username: string
 		error?: string
 	}
 }
@@ -25,8 +21,7 @@ declare module 'next-auth/jwt' {
 	interface JWT {
 		accessToken?: Account.accessToken
 		id: string
-		firstName: string
-		lastName: string
+		username: string
 	}
 }
 
@@ -34,7 +29,6 @@ declare module 'next-auth/jwt' {
 	interface JWT {
 		accessToken?: Account.accessToken
 		id: string
-		firstName: string
-		lastName: string
+		username: string
 	}
 }

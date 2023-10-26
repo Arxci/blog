@@ -22,8 +22,7 @@ const SignUpForm = () => {
 
 	const defaultValues = {
 		email: '',
-		fistName: '',
-		lastName: '',
+		username: '',
 		password: '',
 	}
 
@@ -69,28 +68,15 @@ const SignUpForm = () => {
 				}
 			/>
 			<Input
-				{...form.register('firstName')}
+				{...form.register('username')}
 				isRequired
 				isDisabled={loading}
 				type="text"
 				label="Fist Name"
 				placeholder="Enter your first name."
 				errorMessage={
-					form.formState.errors.firstName
-						? form.formState.errors.firstName.message
-						: undefined
-				}
-			/>
-			<Input
-				{...form.register('lastName')}
-				isRequired
-				isDisabled={loading}
-				type="text"
-				label="Last Name"
-				placeholder="Enter your last name."
-				errorMessage={
-					form.formState.errors.lastName
-						? form.formState.errors.lastName.message
+					form.formState.errors.username
+						? form.formState.errors.username.message
 						: undefined
 				}
 			/>

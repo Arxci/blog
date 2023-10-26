@@ -7,11 +7,11 @@ export const POST = async (req: Request) => {
 	try {
 		const body = await req.json()
 
-		const { author, authorId, postId, message } = body
+		const { username, userId, postId, message } = body
 
 		if (
-			author === undefined ||
-			authorId === undefined ||
+			username === undefined ||
+			userId === undefined ||
 			postId === undefined ||
 			message === undefined
 		) {
@@ -32,8 +32,8 @@ export const POST = async (req: Request) => {
 
 		const comment = await prismaDB.comment.create({
 			data: {
-				author,
-				authorId,
+				username,
+				userId,
 				postId,
 				message,
 			},
