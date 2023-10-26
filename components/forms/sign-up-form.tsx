@@ -72,8 +72,8 @@ const SignUpForm = () => {
 				isRequired
 				isDisabled={loading}
 				type="text"
-				label="Fist Name"
-				placeholder="Enter your first name."
+				label="Username"
+				placeholder="Enter your username."
 				errorMessage={
 					form.formState.errors.username
 						? form.formState.errors.username.message

@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import { Session } from 'next-auth'
 
 import {
@@ -15,10 +17,11 @@ import {
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Comment } from '@prisma/client'
+import { toast } from 'sonner'
 
 import { format } from 'date-fns'
 import AlertModal from '../../../../components/ui/alert-modal'
+import axios from 'axios'
 
 interface CommentProps {
 	id: string
@@ -39,17 +42,28 @@ const PostComment: React.FC<CommentProps> = ({
 	session,
 	onCommentDeleted,
 }) => {
+	const [loading, setLoading] = useState(false)
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 	const isAuthor = session.user.id == userId
 
-	const deleteCommentHandle = () => {
-		onCommentDeleted(id)
+	const deleteCommentHandle = async () => {
+		setLoading(true)
+		try {
+			await axios.patch('/api/comment', { commentId: id })
+
+			toast.success('Comment deleted.')
+			onCommentDeleted(id)
+		} catch (error) {
+			toast.error('Failed to delete comment.')
+		} finally {
+			setLoading(false)
+		}
 	}
 
 	return (
 		<div className="flex items-center gap-4 flex-row">
 			<Avatar
-				name={username[0]}
+				name={username[0].toUpperCase()}
 				showFallback
 				className="bg-primary !w-[40px] min-w-[40px] h-[40px] text-white flex items-center justify-center text-lg mb-[3em] sm:mb-[2em]"
 			/>
@@ -72,7 +86,10 @@ const PostComment: React.FC<CommentProps> = ({
 								isOpen={isOpen}
 								onOpenChange={onOpenChange}
 							/>
-							<Dropdown placement="left">
+							<Dropdown
+								placement="left"
+								isDisabled={loading}
+							>
 								<DropdownTrigger>
 									<Button
 										className="ml-auto"

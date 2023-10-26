@@ -28,12 +28,16 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 		setComments((prevComments) => [...prevComments, comment])
 	}
 
-	const deleteCommentHandle = (id: string) => {}
+	const deleteCommentHandle = (id: string) => {
+		setComments((prevComments) =>
+			prevComments.filter((comment) => comment.id !== id)
+		)
+	}
 
 	return (
 		<div className="mt-10 space-y-6">
 			<h3 className="font-bold text-lg">
-				{comments.length} {`Comment${comments.length === 1 ? undefined : 's'}`}
+				{comments.length} {`Comment${comments.length === 1 ? '' : 's'}`}
 			</h3>
 
 			<CommentForm
