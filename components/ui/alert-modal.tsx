@@ -37,7 +37,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
 		<Modal
 			isOpen={isOpen}
 			onOpenChange={onOpenChange}
-			backdrop="blur"
+			backdrop="opaque"
 			classNames={{
 				backdrop: '!z-[100000000]',
 				wrapper: '!z-[600000000]',

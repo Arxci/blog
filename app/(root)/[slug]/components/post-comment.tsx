@@ -42,12 +42,10 @@ const PostComment: React.FC<CommentProps> = ({
 	session,
 	onCommentDeleted,
 }) => {
-	const [loading, setLoading] = useState(false)
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 	const isAuthor = session.user.id == userId
 
 	const deleteCommentHandle = async () => {
-		setLoading(true)
 		try {
 			await axios.patch('/api/comment', { commentId: id })
 
@@ -55,8 +53,6 @@ const PostComment: React.FC<CommentProps> = ({
 			onCommentDeleted(id)
 		} catch (error) {
 			toast.error('Failed to delete comment.')
-		} finally {
-			setLoading(false)
 		}
 	}
 
@@ -86,10 +82,7 @@ const PostComment: React.FC<CommentProps> = ({
 								isOpen={isOpen}
 								onOpenChange={onOpenChange}
 							/>
-							<Dropdown
-								placement="left"
-								isDisabled={loading}
-							>
+							<Dropdown placement="left">
 								<DropdownTrigger>
 									<Button
 										className="ml-auto"
@@ -109,7 +102,7 @@ const PostComment: React.FC<CommentProps> = ({
 											key="delete"
 											className="text-danger"
 											color="danger"
-											description="Permanently delete the comment"
+											description="Permanently delete this comment"
 											startContent={
 												<FontAwesomeIcon
 													className="text-xl text-default-500 pointer-events-none flex-shrink-0"
