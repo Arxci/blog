@@ -15,7 +15,7 @@ const AuthorShowcase = ({
 	return (
 		<div className="flex gap-2 items-center ">
 			<Avatar
-				name={author[0]}
+				name={author[0].toUpperCase()}
 				showFallback
 				classNames={{
 					base: cn(
