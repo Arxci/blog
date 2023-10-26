@@ -10,41 +10,56 @@ import {
 	DropdownMenu,
 	DropdownSection,
 	DropdownTrigger,
+	useDisclosure,
 } from '@nextui-org/react'
+import AlertModal from './alert-modal'
 
 const CommentActions = () => {
+	const { isOpen, onOpen, onOpenChange } = useDisclosure()
+
+	const deleteCommentHandle = () => {}
+
 	return (
-		<Dropdown placement="left">
-			<DropdownTrigger>
-				<Button
-					className="ml-auto"
-					isIconOnly
-					radius="full"
-					startContent={<FontAwesomeIcon icon={faEllipsisV} />}
-				/>
-			</DropdownTrigger>
-			<DropdownMenu
-				variant="faded"
-				aria-label="Dropdown menu with icons"
-			>
-				<DropdownSection title="Manage ">
-					<DropdownItem
-						key="delete"
-						className="text-danger"
-						color="danger"
-						description="Permanently delete the comment"
-						startContent={
-							<FontAwesomeIcon
-								className="text-xl text-default-500 pointer-events-none flex-shrink-0"
-								icon={faTrashCan}
-							/>
-						}
-					>
-						Delete
-					</DropdownItem>
-				</DropdownSection>
-			</DropdownMenu>
-		</Dropdown>
+		<>
+			<AlertModal
+				title="Sign out of your account"
+				subtext="Are you sure you want to sign out?"
+				onConfirm={deleteCommentHandle}
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
+			/>
+			<Dropdown placement="left">
+				<DropdownTrigger>
+					<Button
+						className="ml-auto"
+						isIconOnly
+						radius="full"
+						startContent={<FontAwesomeIcon icon={faEllipsisV} />}
+					/>
+				</DropdownTrigger>
+				<DropdownMenu
+					variant="faded"
+					aria-label="Dropdown menu with icons"
+				>
+					<DropdownSection title="Manage ">
+						<DropdownItem
+							key="delete"
+							className="text-danger"
+							color="danger"
+							description="Permanently delete the comment"
+							startContent={
+								<FontAwesomeIcon
+									className="text-xl text-default-500 pointer-events-none flex-shrink-0"
+									icon={faTrashCan}
+								/>
+							}
+						>
+							Delete
+						</DropdownItem>
+					</DropdownSection>
+				</DropdownMenu>
+			</Dropdown>
+		</>
 	)
 }
 

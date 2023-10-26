@@ -38,7 +38,7 @@ const Comment: React.FC<CommentProps> = ({
 						<p className="lowercase text-primary truncate max-w-[150px]">
 							@{author.replace(/\s/g, '')}
 						</p>
-						<p className="text-foreground/80 text-sm">
+						<p className="text-foreground/80 text-sm ">
 							{format(createdAt, 'dd MMMM yyyy')}
 						</p>
 					</div>
