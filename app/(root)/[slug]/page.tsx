@@ -8,6 +8,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getPost } from '@/lib/posts'
 import PostHeading from './components/post-heading'
 import PostCommentSection from './components/post-comment-section'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import prismaDB from '@/lib/prisma'
 
 export async function generateStaticParams() {
 	const files = fs.readdirSync(path.join('posts'))
@@ -36,7 +39,7 @@ export async function generateMetadata({
 	}
 }
 
-const Post = ({
+const Post = async ({
 	params,
 }: {
 	params: {
@@ -44,6 +47,12 @@ const Post = ({
 	}
 }) => {
 	const props = getPost(params)
+	const session = await getServerSession(authOptions)
+	const comments = await prismaDB.comment.findMany({
+		where: {
+			postId: props.meta.id,
+		},
+	})
 
 	return (
 		<section className=" w-full pb-6">
@@ -67,7 +76,11 @@ const Post = ({
 							components={{}}
 						></MDXRemote>
 					</article>
-					<PostCommentSection postId={props.meta.id} />
+					<PostCommentSection
+						postId={props.meta.id}
+						comments={comments}
+						session={session}
+					/>
 				</div>
 			</div>
 		</section>

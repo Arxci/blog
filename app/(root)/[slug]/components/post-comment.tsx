@@ -15,29 +15,36 @@ import {
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Comment } from '@prisma/client'
 
 import { format } from 'date-fns'
 import AlertModal from '../../../../components/ui/alert-modal'
 
 interface CommentProps {
+	id: string
 	username: string
 	userId: string
 	message: string
 	createdAt: Date
 	session: Session
+	onCommentDeleted: (id: string) => void
 }
 
 const PostComment: React.FC<CommentProps> = ({
+	id,
 	userId,
 	username,
 	message,
 	createdAt,
 	session,
+	onCommentDeleted,
 }) => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 	const isAuthor = session.user.id == userId
 
-	const deleteCommentHandle = () => {}
+	const deleteCommentHandle = () => {
+		onCommentDeleted(id)
+	}
 
 	return (
 		<div className="flex items-center gap-4 flex-row">
@@ -53,7 +60,7 @@ const PostComment: React.FC<CommentProps> = ({
 							@{username.replace(/\s/g, '')}
 						</p>
 						<p className="text-foreground/80 text-sm ">
-							{format(createdAt, 'dd MMMM yyyy')}
+							{format(new Date(createdAt), 'dd MMMM yyyy')}
 						</p>
 					</div>
 					{isAuthor && (
