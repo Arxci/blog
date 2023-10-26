@@ -32,7 +32,7 @@ const Comment: React.FC<CommentProps> = ({
 				showFallback
 				className="bg-primary !w-[40px] min-w-[40px] h-[40px] text-white flex items-center justify-center text-lg mb-[3em] sm:mb-[2em]"
 			/>
-			<div className="space-y-4 w-full">
+			<div className="space-y-2 w-full">
 				<div className="flex gap-2 items-center">
 					<div className="flex sm:gap-2 flex-col sm:flex-row sm:items-center">
 						<p className="lowercase text-primary truncate max-w-[150px]">

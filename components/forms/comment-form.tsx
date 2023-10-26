@@ -12,7 +12,8 @@ import { toast } from 'sonner'
 const formSchema = z.object({
 	message: z
 		.string()
-		.min(5, { message: 'Please enter at least 5 characters.' }),
+		.min(5, { message: 'Please enter at least 5 characters.' })
+		.max(50, { message: 'Please enter no more than 50 characters.' }),
 })
 
 type CommentFormValues = z.infer<typeof formSchema>

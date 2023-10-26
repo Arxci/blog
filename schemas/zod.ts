@@ -22,5 +22,8 @@ export const CommentSchema = z.object({
 		.string()
 		.min(1, { message: 'Please enter at least 1 character.' }),
 	postId: z.number(),
-	message: z.string().min(5, { message: 'Please enter at least 1 character.' }),
+	message: z
+		.string()
+		.min(5, { message: 'Please enter at least 1 character.' })
+		.max(50, { message: 'Please enter no more than 50 characters.' }),
 })

@@ -22,8 +22,8 @@ const CommentActions = () => {
 	return (
 		<>
 			<AlertModal
-				title="Sign out of your account"
-				subtext="Are you sure you want to sign out?"
+				title="Delete Comment"
+				subtext="Are you sure you want to delete this comment?"
 				onConfirm={deleteCommentHandle}
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
@@ -38,11 +38,13 @@ const CommentActions = () => {
 					/>
 				</DropdownTrigger>
 				<DropdownMenu
+					closeOnSelect={false}
 					variant="faded"
 					aria-label="Dropdown menu with icons"
 				>
 					<DropdownSection title="Manage ">
 						<DropdownItem
+							onClick={onOpen}
 							key="delete"
 							className="text-danger"
 							color="danger"
