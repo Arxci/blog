@@ -42,10 +42,11 @@ const SignUpForm = () => {
 				description: 'Please sign in',
 			})
 		} catch (error) {
-			setLoading(false)
 			toast.error('Failed to create account', {
 				description: 'Please try again',
 			})
+		} finally {
+			setLoading(false)
 		}
 	}
 

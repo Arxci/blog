@@ -18,7 +18,6 @@ const formSchema = z.object({
 type HomeBannerFormValues = z.infer<typeof formSchema>
 
 const HomeBannerForm = () => {
-	const [value, setValue] = useState('')
 	const router = useRouter()
 
 	const defaultValues = {
@@ -31,7 +30,7 @@ const HomeBannerForm = () => {
 	})
 
 	const submitFormHandle = async (data: HomeBannerFormValues) => {
-		router.push('/posts?search=' + value)
+		router.push('/posts?search=' + data.search)
 	}
 
 	return (
@@ -45,11 +44,9 @@ const HomeBannerForm = () => {
 				type="text"
 				isClearable
 				radius="full"
-				onValueChange={setValue}
-				value={value}
 				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
 					if (e.key === 'Escape') {
-						setValue('')
+						form.setValue('search', '')
 					}
 				}}
 				className="w-full "

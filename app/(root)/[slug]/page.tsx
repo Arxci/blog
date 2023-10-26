@@ -6,7 +6,8 @@ import path from 'path'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import { getPost } from '@/lib/posts'
-import PostHeading from './components/PostHeading'
+import PostHeading from './components/post-heading'
+import PostCommentSection from './components/post-comment-section'
 
 export async function generateStaticParams() {
 	const files = fs.readdirSync(path.join('posts'))
@@ -72,6 +73,7 @@ const Post = ({
 							components={{}}
 						></MDXRemote>
 					</article>
+					<PostCommentSection postId={props.meta.id} />
 				</div>
 			</div>
 		</section>
