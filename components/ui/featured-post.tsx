@@ -14,7 +14,7 @@ interface FeaturedPostProps {
 	title: string
 	description: string
 	slug: string
-	image: string
+	banner: string
 	isFeatured: boolean
 }
 
@@ -25,7 +25,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 	title,
 	description,
 	slug,
-	image,
+	banner,
 	isFeatured,
 }) => {
 	return (
@@ -45,9 +45,9 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 								className="object-cover "
 								sizes="400px, (max-width: 825px) 300px, (max-width: 769px) 1000px, (max-width: 600px) 700px, (max-width: 340px) 400px"
 								placeholder="blur"
-								blurDataURL={image}
+								blurDataURL={banner}
 								fill
-								src={image}
+								src={banner}
 							/>
 							{isFeatured && (
 								<Chip

@@ -7,9 +7,14 @@ export const POST = async (req: Request) => {
 	try {
 		const body = await req.json()
 
-		const { author, postId, message } = body
+		const { author, authorId, postId, message } = body
 
-		if (author === undefined || postId === undefined || message === undefined) {
+		if (
+			author === undefined ||
+			authorId === undefined ||
+			postId === undefined ||
+			message === undefined
+		) {
 			console.log(!message)
 
 			return new NextResponse('Please enter author, postId, and message', {
@@ -28,6 +33,7 @@ export const POST = async (req: Request) => {
 		const comment = await prismaDB.comment.create({
 			data: {
 				author,
+				authorId,
 				postId,
 				message,
 			},

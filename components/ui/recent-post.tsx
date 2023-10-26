@@ -7,17 +7,16 @@ import { Card } from '@nextui-org/react'
 
 interface RecentPostProps {
 	title: string
-
 	date: string
 	slug: string
-	image: string
+	banner: string
 }
 
 const RecentPost: React.FC<RecentPostProps> = ({
 	title,
 	date,
 	slug,
-	image,
+	banner,
 }) => {
 	return (
 		<Link href={'/' + slug}>
@@ -30,8 +29,8 @@ const RecentPost: React.FC<RecentPostProps> = ({
 					className="z-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform"
 					fill
 					placeholder="blur"
-					blurDataURL={image}
-					src={image}
+					blurDataURL={banner}
+					src={banner}
 					sizes="500px, (max-width: 825px) 400px, (max-width: 769px) 1200px, (max-width: 600px) 800px, (max-width: 340px) 500px"
 				/>
 			</Card>

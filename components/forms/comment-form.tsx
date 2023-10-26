@@ -20,9 +20,14 @@ type CommentFormValues = z.infer<typeof formSchema>
 interface CommentFormProps {
 	postId: number
 	author: string
+	authorId: string
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({ postId, author }) => {
+const CommentForm: React.FC<CommentFormProps> = ({
+	postId,
+	author,
+	authorId,
+}) => {
 	const [loading, setLoading] = useState(false)
 
 	const defaultValues = {
@@ -35,7 +40,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId, author }) => {
 	})
 
 	const submitFormHandle = async (data: CommentFormValues) => {
-		const commentData = { message: data.message, postId, author }
+		const commentData = { message: data.message, postId, author, authorId }
 
 		setLoading(true)
 		try {

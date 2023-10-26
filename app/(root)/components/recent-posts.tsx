@@ -11,10 +11,8 @@ const RecentPosts = () => {
 				{posts.map((post) => (
 					<RecentPost
 						key={post.meta.id}
-						title={post.meta.title}
-						date={post.meta.date}
 						slug={post.slug}
-						image={post.meta.banner}
+						{...post.meta}
 					/>
 				))}
 			</div>

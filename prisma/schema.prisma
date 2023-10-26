@@ -23,6 +23,7 @@ model User {
 model Comment {
   id                      String    @id @default(cuid())
   author                  String
+  authorId                String
   message                 String
   postId                  Int
   createdAt               DateTime  @default(now())

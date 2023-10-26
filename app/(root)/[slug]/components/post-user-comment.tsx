@@ -19,11 +19,12 @@ const PostUserComment = ({
 			<Avatar
 				name={authorInitials}
 				showFallback
-				className="bg-primary w-[50px] h-[50px] text-white flex items-center justify-center text-xl mb-auto"
+				className="bg-primary !w-[40px] min-w-[40px] h-[40px] text-white flex items-center justify-center text-lg mb-[2em]"
 			/>
 			<CommentForm
 				postId={postId}
 				author={session.user.name}
+				authorId={session.user.id}
 			/>
 		</div>
 	)
