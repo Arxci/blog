@@ -15,7 +15,7 @@ const PostUserComment = ({
 		session.user.name.split(' ')[0][0] + session.user.name.split(' ')[1][0]
 
 	return (
-		<div className="flex items-center gap-2 flex-row">
+		<div className="flex items-center gap-4 flex-row">
 			<Avatar
 				name={authorInitials}
 				showFallback

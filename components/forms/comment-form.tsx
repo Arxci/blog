@@ -70,7 +70,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 				type="text"
 				size="sm"
 				variant="underlined"
-				label="Message"
+				label="Post a comment..."
 				errorMessage={
 					form.formState.errors.message
 						? form.formState.errors.message.message

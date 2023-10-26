@@ -19,12 +19,10 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = async ({
 		},
 	})
 
-	console.log(comments)
-
 	if (!session) return null
 
 	return (
-		<div className="mt-10 space-y-2">
+		<div className="mt-10 space-y-6">
 			<h3 className="font-bold text-lg">{comments.length} Comments</h3>
 			<PostUserComment
 				session={session}
@@ -33,6 +31,7 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = async ({
 			{comments.map((comment) => (
 				<Comment
 					key={comment.id}
+					session={session}
 					{...comment}
 				/>
 			))}
