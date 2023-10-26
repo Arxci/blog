@@ -8,7 +8,6 @@ const NothingFound = () => {
 
 	const clearFiltersHandle = () => {
 		router.push('/posts')
-		router.refresh()
 	}
 
 	return (

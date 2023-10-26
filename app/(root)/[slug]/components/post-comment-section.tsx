@@ -32,7 +32,9 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 
 	return (
 		<div className="mt-10 space-y-6">
-			<h3 className="font-bold text-lg">{comments.length} Comments</h3>
+			<h3 className="font-bold text-lg">
+				{comments.length} {`Comment${comments.length === 1 ? undefined : 's'}`}
+			</h3>
 
 			<CommentForm
 				postId={postId}
