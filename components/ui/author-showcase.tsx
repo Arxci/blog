@@ -12,12 +12,10 @@ const AuthorShowcase = ({
 	className?: string
 	avatarClassName?: string
 }) => {
-	const authorInitials = author.split(' ')[0][0] + author.split(' ')[1][0]
-
 	return (
 		<div className="flex gap-2 items-center ">
 			<Avatar
-				name={authorInitials}
+				name={author[0]}
 				showFallback
 				classNames={{
 					base: cn(
