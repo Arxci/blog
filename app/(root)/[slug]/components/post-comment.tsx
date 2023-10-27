@@ -83,7 +83,13 @@ const PostComment: React.FC<CommentProps> = ({
 								isOpen={isOpen}
 								onOpenChange={onOpenChange}
 							/>
-							<Dropdown placement="left">
+							<Dropdown
+								placement="left"
+								classNames={{
+									base: 'w-[10px]',
+								}}
+								size="sm"
+							>
 								<DropdownTrigger>
 									<Button
 										className="ml-auto"
@@ -97,23 +103,18 @@ const PostComment: React.FC<CommentProps> = ({
 									variant="faded"
 									aria-label="Dropdown menu with icons"
 								>
-									<DropdownSection title="Manage ">
-										<DropdownItem
-											onClick={onOpen}
-											key="delete"
-											className="text-danger"
-											color="danger"
-											description="Permanently delete this comment"
-											startContent={
-												<FontAwesomeIcon
-													className="text-xl text-default-500 pointer-events-none flex-shrink-0"
-													icon={faTrashCan}
-												/>
-											}
-										>
-											Delete
-										</DropdownItem>
-									</DropdownSection>
+									<DropdownItem
+										onClick={onOpen}
+										key="delete"
+										endContent={
+											<FontAwesomeIcon
+												className="text-xl h-4 w-4 pointer-events-none flex-shrink-0"
+												icon={faTrashCan}
+											/>
+										}
+									>
+										Delete
+									</DropdownItem>
 								</DropdownMenu>
 							</Dropdown>
 						</>
