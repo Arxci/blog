@@ -10,7 +10,7 @@ const HomeBanner = () => {
 				<div className="relative h-full ">
 					<Image
 						className="object-cover object-right-bottom md:object-bottom"
-						src="/HomeBanner.jpg"
+						src="/banners/HomeBanner.jpg"
 						alt="Home Banner"
 						placeholder="blur"
 						blurDataURL={'/HomeBanner.jpg'}
