@@ -71,7 +71,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 	}
 
 	return (
-		<div className="flex items-center gap-4 flex-row">
+		<div className="flex items-center gap-2 flex-row">
 			<Avatar
 				name={session.user.username[0].toUpperCase()}
 				showFallback

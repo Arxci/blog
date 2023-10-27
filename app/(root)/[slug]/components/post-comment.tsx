@@ -57,15 +57,16 @@ const PostComment: React.FC<CommentProps> = ({
 	}
 
 	return (
-		<div className="flex items-center gap-4 flex-row">
-			<Avatar
-				name={username[0].toUpperCase()}
-				showFallback
-				className="bg-primary !w-[40px] min-w-[40px] h-[40px] text-white flex items-center justify-center text-lg mb-[3em] sm:mb-[2em]"
-			/>
-			<div className="space-y-2 w-full">
-				<div className="flex gap-2 items-center">
-					<div className="flex sm:gap-2 flex-col sm:flex-row sm:items-center">
+		<div className="flex gap-2 items-start w-full">
+			<div className="w-[40px]  ">
+				<Avatar
+					name={username[0].toUpperCase()}
+					className="bg-primary text-white flex items-center justify-center text-lg "
+				/>
+			</div>
+			<div className="space-y-2 w-[calc(100%-(0.5rem+40px))]  overflow-auto;">
+				<div className="flex gap-2 items-center justify-start w-full ">
+					<div className="flex sm:gap-2 flex-col sm:flex-row sm:items-center ">
 						<p className="lowercase text-primary truncate max-w-[150px]">
 							@{username.replace(/\s/g, '')}
 						</p>
@@ -118,7 +119,7 @@ const PostComment: React.FC<CommentProps> = ({
 						</>
 					)}
 				</div>
-				<p>{message}</p>
+				<p className="break-words">{message}</p>
 			</div>
 		</div>
 	)
