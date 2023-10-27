@@ -68,7 +68,7 @@ export default function RootLayout({
 		>
 			<body className={font.className}>
 				<NextThemesProvider
-					themeProps={{ attribute: 'class', defaultTheme: 'dark' }}
+					themeProps={{ attribute: 'class', defaultTheme: 'system' }}
 				>
 					{children}
 				</NextThemesProvider>
@@ -114,16 +114,12 @@ import { useTheme } from 'next-themes'
 
 const DarkModeButton = () => {
 	const [mounted, setMounted] = useState(false)
-	const { theme, setTheme } = useTheme()
-	const isDarkMode = theme === 'dark'
+	const { resolvedTheme, setTheme } = useTheme()
+	const isDarkMode = mounted && resolvedTheme === 'dark'
 
 	useEffect(() => {
 		setMounted(true)
 	}, [])
-
-	if (!mounted) {
-		return null
-	}
 
 	const themeChangeHandle = () => {
 		if (isDarkMode) {
@@ -133,12 +129,27 @@ const DarkModeButton = () => {
 		}
 	}
 
+	if (!mounted) {
+		return (
+			<Button
+				isIconOnly
+				radius="full"
+			>
+				<Sun className="w-4 h-4" />
+			</Button>
+		)
+	}
+
 	return (
-		<button
+		<Button
+			isIconOnly
+			radius="full"
 			onClick={themeChangeHandle}
+			aria-label="Dark Mode Toggle"
 		>
-			{isDarkMode ? 'Dark Mode' : 'Light Mode}
-		</button>
+			{isDarkMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+			<span className="sr-only">Dark Mode Toggle</span>
+		</Button>
 	)
 }
 
@@ -146,3 +157,30 @@ export default DarkModeButton
 ```
 
 And there you go! Thats all you need to get start using NextThemes!
+
+## Conclusion
+
+In conclusion, setting up themes in NextJS 13 opens up a world of possibilities
+for customizing and enhancing the aesthetics and functionality of your web
+applications. Throughout this blog post, we've walked through the step-by-step
+process of configuring and integrating themes into your NextJS 13 project,
+highlighting the flexibility and power this framework offers.
+
+Themes not only make your application visually appealing but also streamline the
+development process by providing a solid foundation. They allow you to maintain
+a consistent design across your entire project, ensuring a polished and
+professional appearance. Additionally, the modular and extensible nature of
+NextJS 13 themes means you can adapt and expand your themes as your project
+evolves.
+
+As you embark on your journey to create stunning, responsive, and feature-rich
+web applications, mastering the art of setting up NextJS 13 themes will be a
+valuable asset. Whether you're building an e-commerce site, a blog, a portfolio,
+or any other web-based project, themes are a powerful tool that can save you
+time and effort, enabling you to focus on creating outstanding user experiences.
+
+So, don't hesitate to explore the world of NextJS 13 themes and unlock your
+creativity. Tailor your web applications to your unique vision and provide users
+with an exceptional online journey. With the knowledge and skills you've gained
+from this blog post, you're well on your way to crafting web experiences that
+leave a lasting impression. Happy theming!
