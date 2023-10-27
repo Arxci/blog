@@ -68,7 +68,7 @@ export const PATCH = async (req: Request) => {
 			},
 		})
 
-		if (comment.userId !== session.user.id) {
+		if (comment.userId !== session.user.id && session.user.role !== 'admin') {
 			return new NextResponse('Not authorized', {
 				status: 401,
 			})

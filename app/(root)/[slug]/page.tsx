@@ -64,6 +64,8 @@ const Post = async ({
 		},
 	}
 
+	if (session) console.log(session.user.role)
+
 	return (
 		<section className=" w-full pb-6">
 			<div className="container h-full flex flex-col gap-4">

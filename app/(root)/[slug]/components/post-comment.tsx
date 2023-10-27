@@ -43,7 +43,7 @@ const PostComment: React.FC<CommentProps> = ({
 	onCommentDeleted,
 }) => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
-	const isAuthor = session.user.id == userId
+	const isAuthor = session.user.id == userId || session.user.role === 'admin'
 
 	const deleteCommentHandle = async () => {
 		try {

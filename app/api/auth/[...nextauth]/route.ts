@@ -41,6 +41,7 @@ export const authOptions: NextAuthOptions = {
 				if (!isMatchingPassword) {
 					return { error: 'Invalid credentials' } as any
 				}
+
 				return user
 			},
 		}),
@@ -59,6 +60,7 @@ export const authOptions: NextAuthOptions = {
 					...token,
 					id: user.id,
 					username: user.username,
+					role: user.role,
 				}
 			}
 
@@ -70,6 +72,7 @@ export const authOptions: NextAuthOptions = {
 				user: {
 					...session.user,
 					id: token.id,
+					role: token.role,
 					username: token.username,
 				},
 			}

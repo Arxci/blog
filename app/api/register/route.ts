@@ -7,7 +7,7 @@ import { UserSchema } from '@/schemas/zod'
 export const POST = async (req: Request) => {
 	const body = await req.json()
 
-	const { username, lastName, password, email } = body
+	const { username, password, email } = body
 
 	if (!username || !password || !email) {
 		return new NextResponse('Please enter name, password, and email', {
@@ -35,11 +35,14 @@ export const POST = async (req: Request) => {
 
 	const hashedPassword = await bcrypt.hash(password, 10)
 
+	const role = ['garretthumbert9@gmail.com'].includes(email) ? 'admin' : 'user'
+
 	const user = await prismaDB.user.create({
 		data: {
 			username,
 			password: hashedPassword,
 			email,
+			role,
 		},
 	})
 
