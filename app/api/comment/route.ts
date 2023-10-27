@@ -52,6 +52,13 @@ export const PATCH = async (req: Request) => {
 	try {
 		const session = await getServerSession(authOptions)
 
+		// Validate that the user is logged in
+		if (!session) {
+			return new NextResponse('Not authenticated', {
+				status: 401,
+			})
+		}
+
 		const body = await req.json()
 
 		const { commentId } = body
@@ -62,13 +69,29 @@ export const PATCH = async (req: Request) => {
 			})
 		}
 
+		// Fetch the logged in users data from the DB
+		const user = await prismaDB.user.findFirst({
+			where: {
+				id: session.user.id,
+			},
+		})
+
+		// Validate that session user is valid
+		if (!user) {
+			return new NextResponse('Not authenticated', {
+				status: 401,
+			})
+		}
+
+		// Fetch the comment from the DB
 		const comment = await prismaDB.comment.findFirst({
 			where: {
 				id: commentId,
 			},
 		})
 
-		if (comment.userId !== session.user.id && session.user.role !== 'admin') {
+		// Validate that the logged in user is allowed to modify the fetched comment
+		if (comment.userId !== user.id && user.role !== 'admin') {
 			return new NextResponse('Not authorized', {
 				status: 401,
 			})
