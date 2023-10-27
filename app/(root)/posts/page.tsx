@@ -32,7 +32,7 @@ const Posts = async ({
 			mostRecent: mostRecent === 'true',
 			isFeatured: isFeatured === 'true',
 			search,
-			stop: 3,
+			stop: 4,
 		},
 	})
 

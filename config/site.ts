@@ -45,6 +45,7 @@ export const siteConfig: SiteConfigProps = {
 	],
 	tagFilters: [
 		{ label: 'NextJS', value: 'NextJS' },
+		{ label: 'Markdown', value: 'Markdown' },
 		{ label: 'NextThemes', value: 'NextThemes' },
 		{ label: 'Nodemailer', value: 'Nodemailer' },
 	],
