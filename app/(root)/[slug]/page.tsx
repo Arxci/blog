@@ -1,16 +1,19 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 import fs from 'fs'
 import path from 'path'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypeHighlight from 'rehype-highlight'
 
 import { getPost } from '@/lib/posts'
 import PostHeading from './components/post-heading'
 import PostCommentSection from './components/post-comment-section'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import prismaDB from '@/lib/prisma'
+
+import '@/styles/mdk-code.css'
 
 export async function generateStaticParams() {
 	const files = fs.readdirSync(path.join('posts'))
@@ -54,6 +57,13 @@ const Post = async ({
 		},
 	})
 
+	const options = {
+		mdxOptions: {
+			remarkPlugins: [],
+			rehypePlugins: rehypeHighlight,
+		},
+	}
+
 	return (
 		<section className=" w-full pb-6">
 			<div className="container h-full flex flex-col gap-4">
@@ -70,10 +80,12 @@ const Post = async ({
 				</div>
 				<div className="px-4 md:px-6 w-full ">
 					<PostHeading {...props.meta} />
-					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert dark:prose-code:invert dark:prose-pre:invert dark:prose-pre:bg-foreground/80 dark:prose-code:text-white ">
+					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert ">
 						<MDXRemote
 							source={props.content}
 							components={{}}
+							//@ts-ignore
+							options={options}
 						></MDXRemote>
 					</article>
 					<PostCommentSection
