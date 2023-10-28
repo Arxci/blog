@@ -11,6 +11,7 @@ import { Button, Input } from '@nextui-org/react'
 import { toast } from 'sonner'
 
 import PasswordInput from '../ui/password-input'
+import AuthOAuth from '@/app/auth/components/auth-oauth'
 
 const formSchema = z.object({
 	email: z
@@ -82,6 +83,7 @@ const SignInForm = () => {
 			>
 				Sign in
 			</Button>
+			<AuthOAuth loading={loading} />
 		</form>
 	)
 }

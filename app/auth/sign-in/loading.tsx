@@ -1,3 +1,4 @@
+import Skeleton from '@/components/skeletons/skeleton'
 import AuthActionsLoading from '../components/auth-actions-loading'
 import AuthHeaderLoading from '../components/auth-header-loading'
 import AuthImageLoading from '../components/auth-image-loading'
@@ -14,7 +15,7 @@ export default function Loading() {
 					<div className="space-y-6 w-full">
 						<AuthFormSkeleton />
 						<AuthFormSkeleton />
-						<AuthFormSkeleton />
+						<Skeleton className="h-[40px] w-full rounded-xl" />
 					</div>
 				</div>
 			</div>

@@ -52,6 +52,9 @@ const PostComment: React.FC<CommentProps> = ({
 			toast.success('Comment deleted.')
 			onCommentDeleted(id)
 		} catch (error) {
+			if (error.response.status === 403) {
+				toast.error('User is not authorized to edit this content.')
+			}
 			toast.error('Failed to delete comment.')
 			onClose()
 		}

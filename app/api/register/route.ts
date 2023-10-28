@@ -15,6 +15,7 @@ export const POST = async (req: Request) => {
 		})
 	}
 
+	// parse the data sent to the API with the zod schema
 	try {
 		await UserSchema.parseAsync(body)
 	} catch (err) {
@@ -23,6 +24,7 @@ export const POST = async (req: Request) => {
 		})
 	}
 
+	// Fetch the user based on the email passed in
 	const userAlreadyExists = await prismaDB.user.findUnique({
 		where: {
 			email,
@@ -30,11 +32,12 @@ export const POST = async (req: Request) => {
 	})
 
 	if (userAlreadyExists) {
-		return new NextResponse('Email already in use', { status: 400 })
+		return new NextResponse('Email already in use', { status: 409 })
 	}
 
 	const hashedPassword = await bcrypt.hash(password, 10)
 
+	// Assign an admin role for certain user
 	const role = ['garretthumbert9@gmail.com'].includes(email) ? 'admin' : 'user'
 
 	const user = await prismaDB.user.create({

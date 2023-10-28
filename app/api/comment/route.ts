@@ -1,29 +1,32 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
 
 import { CommentSchema } from '@/schemas/zod'
 import prismaDB from '@/lib/prisma'
+import { isValidUser } from '@/lib/auth'
 
 export const POST = async (req: Request) => {
 	try {
+		const validUser = await isValidUser()
+
+		if (validUser.status !== 200) return validUser
+
+		const user = await validUser.json()
+
 		const body = await req.json()
 
-		const { username, userId, postId, message } = body
+		const { postId, message } = body
 
-		if (
-			username === undefined ||
-			userId === undefined ||
-			postId === undefined ||
-			message === undefined
-		) {
-			return new NextResponse('Please enter author, postId, and message', {
+		const data = { username: user.username, userId: user.id, postId, message }
+
+		if (postId === undefined || message === undefined) {
+			return new NextResponse('Please enter  postId, and message', {
 				status: 400,
 			})
 		}
 
+		// parse the data sent to the API with the zod schema
 		try {
-			await CommentSchema.parseAsync(body)
+			await CommentSchema.parseAsync(data)
 		} catch (err) {
 			return new NextResponse('Please enter author, postId, and message', {
 				status: 400,
@@ -31,12 +34,7 @@ export const POST = async (req: Request) => {
 		}
 
 		const comment = await prismaDB.comment.create({
-			data: {
-				username,
-				userId,
-				postId,
-				message,
-			},
+			data,
 		})
 
 		return NextResponse.json(comment)
@@ -50,14 +48,13 @@ export const POST = async (req: Request) => {
 
 export const PATCH = async (req: Request) => {
 	try {
-		const session = await getServerSession(authOptions)
+		const validUser = await isValidUser()
 
-		// Validate that the user is logged in
-		if (!session) {
-			return new NextResponse('Not authenticated', {
-				status: 401,
-			})
+		if (validUser.status !== 200) {
+			return validUser
 		}
+
+		const user = await validUser.json()
 
 		const body = await req.json()
 
@@ -66,20 +63,6 @@ export const PATCH = async (req: Request) => {
 		if (commentId === undefined) {
 			return new NextResponse('Please enter commentId', {
 				status: 400,
-			})
-		}
-
-		// Fetch the logged in users data from the DB
-		const user = await prismaDB.user.findFirst({
-			where: {
-				id: session.user.id,
-			},
-		})
-
-		// Validate that session user is valid
-		if (!user) {
-			return new NextResponse('Not authenticated', {
-				status: 401,
 			})
 		}
 
@@ -93,7 +76,7 @@ export const PATCH = async (req: Request) => {
 		// Validate that the logged in user is allowed to modify the fetched comment
 		if (comment.userId !== user.id && user.role !== 'admin') {
 			return new NextResponse('Not authorized', {
-				status: 401,
+				status: 403,
 			})
 		}
 

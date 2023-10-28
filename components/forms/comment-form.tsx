@@ -23,16 +23,12 @@ type CommentFormValues = z.infer<typeof formSchema>
 
 interface CommentFormProps {
 	postId: number
-	username: string
-	userId: string
 	session: Session
 	onCommentAdded: (comment: Comment) => void
 }
 
 const CommentForm: React.FC<CommentFormProps> = ({
 	postId,
-	username,
-	userId,
 	session,
 	onCommentAdded,
 }) => {
@@ -48,7 +44,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 	})
 
 	const submitFormHandle = async (data: CommentFormValues) => {
-		const commentData = { message: data.message, postId, username, userId }
+		const commentData = { message: data.message, postId }
 
 		setLoading(true)
 		try {
@@ -60,6 +56,9 @@ const CommentForm: React.FC<CommentFormProps> = ({
 			clearFormHandle()
 			onCommentAdded(newComment)
 		} catch (error) {
+			if (error.response.status === 401) {
+				toast.error('Please sign in.')
+			}
 			toast.error('Failed to post comment.')
 		} finally {
 			setLoading(false)

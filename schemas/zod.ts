@@ -14,10 +14,6 @@ export const UserSchema = z.object({
 })
 
 export const CommentSchema = z.object({
-	username: z
-		.string()
-		.min(1, { message: 'Please enter at least 1 character.' }),
-	userId: z.string().min(1, { message: 'Please enter at least 1 character.' }),
 	postId: z.number(),
 	message: z
 		.string()

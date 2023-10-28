@@ -2,13 +2,50 @@ import NextAuth from 'next-auth/next'
 import { JWT } from 'next-auth/jwt'
 import { NextAuthOptions, Session, User } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-
+import GithubProvider, { GithubProfile } from 'next-auth/providers/github'
+import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcrypt'
+
 import prismaDB from '@/lib/prisma'
 
 export const authOptions: NextAuthOptions = {
+	pages: {
+		signIn: '/auth/sign-in',
+		signOut: '/',
+		error: '/auth/sign-in',
+	},
 	providers: [
+		GoogleProvider({
+			clientId: process.env.GOOGLE_CLIENT_ID,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+			profile(profile: GoogleProfile): any {
+				return {
+					username: profile.name,
+					email: profile.email,
+					role: ['garretthumbert9@gmail.com'].includes(profile.email)
+						? 'admin'
+						: 'user',
+					password: profile.at_hash,
+					id: profile.sub,
+				}
+			},
+		}),
+		GithubProvider({
+			clientId: process.env.GITHUB_CLIENT_ID,
+			clientSecret: process.env.GITHUB_CLIENT_SECRET,
+			profile(profile: GithubProfile): any {
+				return {
+					username: profile.name,
+					email: profile.email,
+					role: ['garretthumbert9@gmail.com'].includes(profile.email)
+						? 'admin'
+						: 'user',
+					password: profile.node_id,
+					id: profile.id,
+				}
+			},
+		}),
 		CredentialsProvider({
 			name: 'Credentials',
 

@@ -7,12 +7,13 @@ import { useRouter } from 'next/navigation'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { Button, Input } from '@nextui-org/react'
 import { toast } from 'sonner'
 
 import PasswordInput from '../ui/password-input'
 import { UserSchema } from '@/schemas/zod'
+import AuthOAuth from '@/app/auth/components/auth-oauth'
 
 type SignUpFormValues = z.infer<typeof UserSchema>
 
@@ -37,13 +38,20 @@ const SignUpForm = () => {
 			await axios.post('/api/register', data)
 
 			router.push('/auth/sign-in')
-			toast.success('Account created', {
-				description: 'Please sign in',
+			toast.success('Account successfully created.', {
+				description: 'Please sign in.',
 			})
 		} catch (error) {
-			toast.error('Failed to create account', {
-				description: 'Please try again',
-			})
+			console.log(error)
+			if (error.response.status === 409) {
+				toast.error('Whoops, there may already be an account with that email', {
+					description: 'Please try again.',
+				})
+			} else {
+				toast.error('Failed to create an account.', {
+					description: 'Please try again.',
+				})
+			}
 		} finally {
 			setLoading(false)
 		}
@@ -93,6 +101,7 @@ const SignUpForm = () => {
 			>
 				Sign Up
 			</Button>
+			<AuthOAuth loading={loading} />
 		</form>
 	)
 }

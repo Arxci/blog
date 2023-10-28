@@ -34,6 +34,8 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 		)
 	}
 
+	console.log(session)
+
 	return (
 		<div className="mt-10 space-y-6">
 			<h3 className="font-bold text-lg">
@@ -42,8 +44,6 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 
 			<CommentForm
 				postId={postId}
-				username={session.user.username}
-				userId={session.user.id}
 				session={session}
 				onCommentAdded={addCommentHandle}
 			/>

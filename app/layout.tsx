@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 	],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode
@@ -37,7 +37,10 @@ export default function RootLayout({
 						<NextThemesProvider
 							themeProps={{ attribute: 'class', defaultTheme: 'system' }}
 						>
-							<Toaster closeButton />
+							<Toaster
+								closeButton
+								richColors
+							/>
 							{children}
 						</NextThemesProvider>
 					</SessionProvider>
