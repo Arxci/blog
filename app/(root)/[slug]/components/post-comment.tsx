@@ -10,7 +10,6 @@ import {
 	Dropdown,
 	DropdownItem,
 	DropdownMenu,
-	DropdownSection,
 	DropdownTrigger,
 	useDisclosure,
 } from '@nextui-org/react'
@@ -42,21 +41,26 @@ const PostComment: React.FC<CommentProps> = ({
 	session,
 	onCommentDeleted,
 }) => {
+	const [loading, setLoading] = useState(false)
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const isAuthor = session.user.id == userId || session.user.role === 'admin'
 
 	const deleteCommentHandle = async () => {
+		setLoading(true)
 		try {
 			await axios.patch('/api/comment', { commentId: id })
 
 			toast.success('Comment deleted.')
 			onCommentDeleted(id)
+			onClose()
 		} catch (error) {
 			if (error.response.status === 403) {
-				toast.error('User is not authorized to edit this content.')
+				toast.error("Whoops, looks like you don't own this content.")
+			} else {
+				toast.error('Failed to delete comment.')
 			}
-			toast.error('Failed to delete comment.')
-			onClose()
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -81,6 +85,7 @@ const PostComment: React.FC<CommentProps> = ({
 					{isAuthor && (
 						<>
 							<AlertModal
+								loading={loading}
 								title="Delete Comment"
 								subtext="Are you sure you want to delete this comment?"
 								onConfirm={deleteCommentHandle}

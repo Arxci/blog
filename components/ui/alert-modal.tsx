@@ -16,6 +16,7 @@ interface AlertModalProps {
 	subtext: string
 	onConfirm: () => void
 	isOpen: boolean
+	loading: boolean
 	onOpenChange: () => void
 }
 
@@ -24,12 +25,10 @@ const AlertModal: React.FC<AlertModalProps> = ({
 	subtext,
 	onConfirm,
 	isOpen,
+	loading,
 	onOpenChange,
 }) => {
-	const [loading, setLoading] = useState(false)
-
 	const onConfirmHandle = () => {
-		setLoading(true)
 		onConfirm()
 	}
 
