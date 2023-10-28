@@ -18,7 +18,7 @@ export default function Loading() {
 						<AuthFormSkeleton />
 						<AuthFormSkeleton />
 						<div className="flex items-center justify-center bg-foreground/10 h-[40px] w-full rounded-xl">
-							<Skeleton className="h-[10px] w-[50px] rounded-xl" />
+							<Skeleton className="h-[10px] w-[50px] rounded-full" />
 						</div>
 						<AuthOAuthLoading />
 					</div>

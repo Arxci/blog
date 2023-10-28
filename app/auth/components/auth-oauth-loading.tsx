@@ -14,12 +14,12 @@ const AuthOAuthLoading = () => {
 				</div>
 			</div>
 			<div className="w-full flex gap-2">
-				<div className="flex items-center space-x-2 justify-center bg-foreground/10 h-[40px] w-full rounded-xl">
+				<div className="flex items-center space-x-2 justify-center bg-foreground/10 h-[45px] w-full rounded-xl">
 					<Skeleton className="h-[15px] w-[15px] rounded-full" />
 					<Skeleton className="h-[15px] w-[75px] rounded-full" />
 				</div>
 
-				<div className="flex items-center space-x-2 justify-center bg-foreground/10 h-[40px] w-full rounded-xl">
+				<div className="flex items-center space-x-2 justify-center bg-foreground/10 h-[45px] w-full rounded-xl">
 					<Skeleton className="h-[15px] w-[15px] rounded-full" />
 					<Skeleton className="h-[15px] w-[75px] rounded-full" />
 				</div>
