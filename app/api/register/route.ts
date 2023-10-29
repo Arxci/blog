@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
-import prismaDB from '@/lib/prisma'
 
+import prismaDB from '@/lib/prisma'
 import { RegisterSchema } from '@/schemas/zod'
 import { assignRole } from '@/lib/auth'
 
@@ -26,7 +26,7 @@ export const POST = async (req: Request) => {
 	})
 
 	if (userAlreadyExists) {
-		return new NextResponse('Email already in use', { status: 409 })
+		return new NextResponse('Email already in use.', { status: 409 })
 	}
 
 	// Encrypt the password

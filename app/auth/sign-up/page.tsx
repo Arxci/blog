@@ -4,7 +4,6 @@ import SignUpForm from '@/components/forms/sign-up-form'
 import AuthActions from '../components/auth-actions'
 import AuthImage from '../components/auth-image'
 import AuthHeader from '../components/auth-header'
-
 import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
