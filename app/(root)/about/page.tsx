@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 
-import { getAllPosts, getPostWhere } from '@/lib/posts'
 import { siteConfig } from '@/config/site'
 import AuthorHeading from './components/author-heading'
 import AuthorAbout from './components/author-about'
