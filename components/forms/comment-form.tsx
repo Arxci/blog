@@ -58,8 +58,12 @@ const CommentForm: React.FC<CommentFormProps> = ({
 		} catch (error) {
 			if (error.response.status === 401) {
 				toast.error('Please sign in.')
+			} else {
+				toast.error('Failed to post comment.', {
+					description: error.response.data,
+				})
 			}
-			toast.error('Failed to post comment.')
+			console.log(error)
 		} finally {
 			setLoading(false)
 		}

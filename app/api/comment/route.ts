@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 import { CommentDeleteSchema, CommentPostSchema } from '@/schemas/zod'
 import prismaDB from '@/lib/prisma'
-import { isValidUser } from '@/lib/auth'
+import { isTextProfane, isValidUser } from '@/lib/auth'
 import { User } from '@prisma/client'
 
 export const POST = async (req: Request) => {
@@ -19,9 +19,15 @@ export const POST = async (req: Request) => {
 		try {
 			await CommentPostSchema.parseAsync(body)
 		} catch (err) {
-			console.log(body)
-
 			return new NextResponse('Please verify the information is correct.', {
+				status: 400,
+			})
+		}
+
+		const isProfane = isTextProfane(body.message)
+
+		if (isProfane) {
+			return new NextResponse('Please refrain from using offensive words.', {
 				status: 400,
 			})
 		}

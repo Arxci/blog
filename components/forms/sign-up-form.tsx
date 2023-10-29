@@ -47,7 +47,7 @@ const SignUpForm = () => {
 				toast.error('Whoops, there may already be an account with that email')
 			} else {
 				toast.error('Failed to create an account.', {
-					description: 'Please try again.',
+					description: error.response.data,
 				})
 			}
 		} finally {

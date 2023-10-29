@@ -2,6 +2,12 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 
+import {
+	RegExpMatcher,
+	englishDataset,
+	englishRecommendedTransformers,
+} from 'obscenity'
+
 import prismaDB from './prisma'
 
 export const isValidUser = async (): Promise<NextResponse> => {
@@ -35,4 +41,13 @@ export const assignRole = (email: string): string => {
 	const adminEmails = ['garretthumbert9@gmail.com']
 
 	return adminEmails.includes(email) ? 'admin' : 'user'
+}
+
+export const isTextProfane = (text: string): boolean => {
+	const matcher = new RegExpMatcher({
+		...englishDataset.build(),
+		...englishRecommendedTransformers,
+	})
+
+	return matcher.hasMatch(text)
 }

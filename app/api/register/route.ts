@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 
 import prismaDB from '@/lib/prisma'
 import { RegisterSchema } from '@/schemas/zod'
-import { assignRole } from '@/lib/auth'
+import { assignRole, isTextProfane } from '@/lib/auth'
 
 export const POST = async (req: Request) => {
 	// parse the data sent to the API with the zod schema
@@ -14,6 +14,14 @@ export const POST = async (req: Request) => {
 		await RegisterSchema.parseAsync(body)
 	} catch (err) {
 		return new NextResponse('Please verify the information is correct.', {
+			status: 400,
+		})
+	}
+
+	const isProfane = isTextProfane(body.username)
+
+	if (isProfane) {
+		return new NextResponse('Please refrain from using offensive words.', {
 			status: 400,
 		})
 	}
