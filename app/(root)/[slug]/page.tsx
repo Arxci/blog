@@ -55,6 +55,9 @@ const Post = async ({
 		where: {
 			postId: props.meta.id,
 		},
+		include: {
+			user: true,
+		},
 	})
 
 	const options = {
@@ -63,8 +66,6 @@ const Post = async ({
 			rehypePlugins: rehypeHighlight,
 		},
 	}
-
-	if (session) console.log(session.user.role)
 
 	return (
 		<section className=" w-full pb-6">

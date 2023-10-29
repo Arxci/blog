@@ -17,6 +17,7 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { toast } from 'sonner'
+import { User } from '@prisma/client'
 
 import { format } from 'date-fns'
 import AlertModal from '../../../../components/ui/alert-modal'
@@ -24,8 +25,7 @@ import axios from 'axios'
 
 interface CommentProps {
 	id: string
-	username: string
-	userId: string
+	user: User
 	message: string
 	createdAt: Date
 	session: Session
@@ -34,8 +34,7 @@ interface CommentProps {
 
 const PostComment: React.FC<CommentProps> = ({
 	id,
-	userId,
-	username,
+	user,
 	message,
 	createdAt,
 	session,
@@ -43,7 +42,7 @@ const PostComment: React.FC<CommentProps> = ({
 }) => {
 	const [loading, setLoading] = useState(false)
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
-	const isAuthor = session.user.id == userId || session.user.role === 'admin'
+	const isAuthor = session.user.id == user.id || session.user.role === 'admin'
 
 	const deleteCommentHandle = async () => {
 		setLoading(true)
@@ -68,7 +67,7 @@ const PostComment: React.FC<CommentProps> = ({
 		<div className="flex gap-2 items-start w-full">
 			<div className="w-[40px]  ">
 				<Avatar
-					name={username[0].toUpperCase()}
+					name={user.username[0].toUpperCase()}
 					className="bg-primary text-white flex items-center justify-center text-lg "
 				/>
 			</div>
@@ -76,7 +75,7 @@ const PostComment: React.FC<CommentProps> = ({
 				<div className="flex gap-2 items-center justify-start w-full ">
 					<div className="flex sm:gap-2 flex-col sm:flex-row sm:items-center ">
 						<p className="lowercase text-primary truncate max-w-[150px]">
-							@{username.replace(/\s/g, '')}
+							@{user.username.replace(/\s/g, '')}
 						</p>
 						<p className="text-foreground/80 text-sm ">
 							{format(new Date(createdAt), 'dd MMMM yyyy')}

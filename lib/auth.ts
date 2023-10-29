@@ -29,3 +29,9 @@ export const isValidUser = async (): Promise<NextResponse> => {
 
 	return NextResponse.json(user)
 }
+
+export const assignRole = (email: string): string => {
+	const adminEmails = ['garretthumbert9@gmail.com']
+
+	return adminEmails.includes(email) ? 'admin' : 'user'
+}

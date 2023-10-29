@@ -2,32 +2,26 @@ import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 import prismaDB from '@/lib/prisma'
 
-import { UserSchema } from '@/schemas/zod'
+import { RegisterSchema } from '@/schemas/zod'
+import { assignRole } from '@/lib/auth'
 
 export const POST = async (req: Request) => {
-	const body = await req.json()
-
-	const { username, password, email } = body
-
-	if (!username || !password || !email) {
-		return new NextResponse('Please enter name, password, and email', {
-			status: 400,
-		})
-	}
-
 	// parse the data sent to the API with the zod schema
+	const body: { username: string; password: string; email: string } =
+		await req.json()
+
 	try {
-		await UserSchema.parseAsync(body)
+		await RegisterSchema.parseAsync(body)
 	} catch (err) {
-		return new NextResponse('Please enter name, password, and email', {
+		return new NextResponse('Please verify the information is correct.', {
 			status: 400,
 		})
 	}
 
-	// Fetch the user based on the email passed in
+	// Check if the email provided is already registered to a user
 	const userAlreadyExists = await prismaDB.user.findUnique({
 		where: {
-			email,
+			email: body.email,
 		},
 	})
 
@@ -35,16 +29,16 @@ export const POST = async (req: Request) => {
 		return new NextResponse('Email already in use', { status: 409 })
 	}
 
-	const hashedPassword = await bcrypt.hash(password, 10)
+	// Encrypt the password
+	const hashedPassword = await bcrypt.hash(body.password, 10)
 
-	// Assign an admin role for certain user
-	const role = ['garretthumbert9@gmail.com'].includes(email) ? 'admin' : 'user'
+	// Assign a role
+	const role = assignRole(body.email)
 
 	const user = await prismaDB.user.create({
 		data: {
-			username,
+			...body,
 			password: hashedPassword,
-			email,
 			role,
 		},
 	})

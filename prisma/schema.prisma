@@ -17,6 +17,7 @@ model User {
   role          String
   accounts      Account[]
   sessions      Session[]
+  comments      Comment[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -64,10 +65,13 @@ model VerificationToken {
 
 model Comment {
   id                      String    @id @default(cuid())
-  username                String
-  userId                  String
   message                 String
   postId                  Int
+  userId                  String
+  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
+
+  @@map("comments")
+  @@index([userId])
 }

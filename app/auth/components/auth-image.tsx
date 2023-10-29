@@ -10,7 +10,7 @@ const AuthImage = () => {
 				<div className="relative h-full ">
 					<Image
 						className="object-cover object-right-bottom"
-						src="/banners/HomeBannerHighRes.jpg"
+						src="/HomeBannerHighRes.jpg"
 						priority
 						alt="Home Banner"
 						sizes="2000px, (max-width: 1500px) 1000px, (max-width: 1024px) 512px"

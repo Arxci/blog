@@ -1,4 +1,4 @@
-import AuthProvider from './components/auth-provider'
+import Auth from './components/auth'
 
 export default function RootLayout({
 	children,
@@ -7,7 +7,8 @@ export default function RootLayout({
 }) {
 	return (
 		<main className=" min-h-screen ">
-			<AuthProvider>{children}</AuthProvider>
+			<Auth />
+			{children}
 		</main>
 	)
 }

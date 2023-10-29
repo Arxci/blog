@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server'
 
-import { CommentSchema } from '@/schemas/zod'
+import { CommentDeleteSchema, CommentPostSchema } from '@/schemas/zod'
 import prismaDB from '@/lib/prisma'
 import { isValidUser } from '@/lib/auth'
+import { User } from '@prisma/client'
 
 export const POST = async (req: Request) => {
 	try {
@@ -10,36 +11,36 @@ export const POST = async (req: Request) => {
 
 		if (validUser.status !== 200) return validUser
 
-		const user = await validUser.json()
-
-		const body = await req.json()
-
-		const { postId, message } = body
-
-		const data = { username: user.username, userId: user.id, postId, message }
-
-		if (postId === undefined || message === undefined) {
-			return new NextResponse('Please enter  postId, and message', {
-				status: 400,
-			})
-		}
+		const user: User = await validUser.json()
 
 		// parse the data sent to the API with the zod schema
+		const body: { postId: number; message: string } = await req.json()
+
 		try {
-			await CommentSchema.parseAsync(data)
+			await CommentPostSchema.parseAsync(body)
 		} catch (err) {
-			return new NextResponse('Please enter author, postId, and message', {
+			return new NextResponse('Please verify the information is correct.', {
 				status: 400,
 			})
 		}
 
 		const comment = await prismaDB.comment.create({
-			data,
+			data: {
+				user: {
+					connect: {
+						id: user.id,
+					},
+				},
+				...body,
+			},
+			include: {
+				user: true,
+			},
 		})
 
 		return NextResponse.json(comment)
-	} catch (err) {
-		console.log('COMMENT_POST')
+	} catch (error) {
+		console.log('COMMENT_POST ', +error)
 		return new NextResponse('Internal error', {
 			status: 400,
 		})
@@ -54,39 +55,41 @@ export const PATCH = async (req: Request) => {
 			return validUser
 		}
 
-		const user = await validUser.json()
+		const user: User = await validUser.json()
 
-		const body = await req.json()
+		// parse the data sent to the API with the zod schema
+		const body: { id: string } = await req.json()
 
-		const { commentId } = body
-
-		if (commentId === undefined) {
-			return new NextResponse('Please enter commentId', {
+		try {
+			await CommentDeleteSchema.parseAsync(body)
+		} catch (err) {
+			return new NextResponse('Please verify the information is correct.', {
 				status: 400,
 			})
 		}
 
-		// Fetch the comment from the DB
+		// Validate that the logged in user is allowed to modify the fetched comment
 		const comment = await prismaDB.comment.findFirst({
 			where: {
-				id: commentId,
+				...body,
 			},
 		})
 
-		// Validate that the logged in user is allowed to modify the fetched comment
 		if (comment.userId !== user.id && user.role !== 'admin') {
-			return new NextResponse('Not authorized', {
+			return new NextResponse('User not authorized to modify this content.', {
 				status: 403,
 			})
 		}
 
 		await prismaDB.comment.delete({
-			where: { id: commentId },
+			where: {
+				...body,
+			},
 		})
 
 		return NextResponse.json(comment)
-	} catch (err) {
-		console.log('COMMENT_PATCH')
+	} catch (error) {
+		console.log('COMMENT_PATCH ', +error)
 		return new NextResponse('Internal error', {
 			status: 400,
 		})

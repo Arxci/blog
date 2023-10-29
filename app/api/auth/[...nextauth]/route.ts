@@ -8,6 +8,8 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcrypt'
 
 import prismaDB from '@/lib/prisma'
+import { assignRole } from '@/lib/auth'
+import { SignInSchema } from '@/schemas/zod'
 
 export const authOptions: NextAuthOptions = {
 	pages: {
@@ -23,10 +25,8 @@ export const authOptions: NextAuthOptions = {
 				return {
 					username: profile.name,
 					email: profile.email,
-					role: ['garretthumbert9@gmail.com'].includes(profile.email)
-						? 'admin'
-						: 'user',
-					password: profile.at_hash,
+					role: assignRole(profile.email),
+					password: '',
 					id: profile.sub,
 				}
 			},
@@ -38,10 +38,8 @@ export const authOptions: NextAuthOptions = {
 				return {
 					username: profile.name,
 					email: profile.email,
-					role: ['garretthumbert9@gmail.com'].includes(profile.email)
-						? 'admin'
-						: 'user',
-					password: profile.node_id,
+					role: assignRole(profile.email),
+					password: '',
 					id: profile.id,
 				}
 			},
@@ -54,22 +52,35 @@ export const authOptions: NextAuthOptions = {
 				email: { label: 'Email', type: 'email' },
 			},
 			async authorize(credentials) {
-				if (!credentials) {
-					return { error: 'Invalid credentials' } as any
+				// parse the data sent to the API with the zod schema
+				try {
+					await SignInSchema.parseAsync(credentials)
+				} catch (err) {
+					return { error: 'Please verify the information is correct.' } as any
 				}
-				if (!credentials.password || !credentials.email) {
-					return { error: 'Invalid credentials' } as any
-				}
+
+				// Check for an existing user in the DB
 				const user = await prismaDB.user.findUnique({
 					where: {
 						email: credentials.email,
 					},
+					include: {
+						accounts: true,
+					},
 				})
 
 				if (!user) {
-					return { error: 'Invalid credentials' } as any
+					return { error: 'Please verify the information and try again' } as any
 				}
 
+				// Verify if the user is registered via OAuth
+				if (user.accounts.length > 0) {
+					return {
+						error: `This email is already registered through ${user.accounts[0].provider}`,
+					} as any
+				}
+
+				// Decrypt the password and validate
 				const isMatchingPassword = await bcrypt.compare(
 					credentials.password,
 					user.password

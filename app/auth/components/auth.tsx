@@ -5,15 +5,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const Auth = () => {
 	const { data: session } = useSession()
 	const searchParams = useSearchParams()
 	const router = useRouter()
-
-	if (session) {
-		router.push('/')
-		return null
-	}
 
 	useEffect(() => {
 		const callbackError = searchParams?.get('error')
@@ -23,7 +18,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	}, [searchParams])
 
-	return <div>{children}</div>
+	if (session) {
+		router.push('/')
+		return null
+	}
+
+	return <div />
 }
 
-export default AuthProvider
+export default Auth

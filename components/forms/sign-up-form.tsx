@@ -12,10 +12,10 @@ import { Button, Input } from '@nextui-org/react'
 import { toast } from 'sonner'
 
 import PasswordInput from '../ui/password-input'
-import { UserSchema } from '@/schemas/zod'
+import { RegisterSchema } from '@/schemas/zod'
 import AuthOAuth from '@/app/auth/components/auth-oauth'
 
-type SignUpFormValues = z.infer<typeof UserSchema>
+type SignUpFormValues = z.infer<typeof RegisterSchema>
 
 const SignUpForm = () => {
 	const [loading, setLoading] = useState(false)
@@ -28,7 +28,7 @@ const SignUpForm = () => {
 	}
 
 	const form = useForm<SignUpFormValues>({
-		resolver: zodResolver(UserSchema),
+		resolver: zodResolver(RegisterSchema),
 		defaultValues,
 	})
 
