@@ -47,8 +47,6 @@ const SignInForm = () => {
 				description: res?.error,
 			})
 			setLoading(false)
-		} else if (res?.status === 200) {
-			window.location.replace('/')
 		}
 	}
 
