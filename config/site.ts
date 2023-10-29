@@ -20,7 +20,7 @@ interface SiteConfigProps {
 export const siteConfig: SiteConfigProps = {
 	name: 'Code Chronicles',
 	tagLine: 'Your Guide to Web Development',
-	description: `Code Chronicles: Your essential web development guide. Explore HTML, CSS, JavaScript, and more. Unlock the secrets of coding, design, and tech trends. Your compass for creating digital wonders. Embark on your journey now. `,
+	description: `Code Chronicles: Your essential web development guide. Explore HTML, CSS, JavaScript, and more. Unlock the secrets of coding, design, and tech trends. Your compass for creating digital wonders.`,
 	mainNavLinks: [
 		{
 			id: 0,
