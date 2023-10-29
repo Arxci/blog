@@ -35,8 +35,6 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 		)
 	}
 
-	console.log(comments)
-
 	return (
 		<div className="mt-10 space-y-6">
 			<h3 className="font-bold text-lg">
