@@ -52,7 +52,6 @@ const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 				<PostComment
 					key={comment.id}
 					session={session}
-					user={comment.user}
 					{...comment}
 					onCommentDeleted={deleteCommentHandle}
 				/>
