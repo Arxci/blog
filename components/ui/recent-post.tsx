@@ -21,7 +21,7 @@ const RecentPost: React.FC<RecentPostProps> = ({
 	return (
 		<Link href={'/' + slug}>
 			<Card
-				shadow="md"
+				shadow="sm"
 				className=" group aspect-video relative "
 			>
 				<Image
