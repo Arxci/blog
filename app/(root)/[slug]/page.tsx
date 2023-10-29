@@ -53,7 +53,7 @@ const Post = async ({
 	const session = await getServerSession(authOptions)
 	const comments = await prismaDB.comment.findMany({
 		where: {
-			postId: props.meta.id,
+			postId: props.meta.id.toString(),
 		},
 		include: {
 			user: true,
@@ -92,7 +92,7 @@ const Post = async ({
 						></MDXRemote>
 					</article>
 					<PostCommentSection
-						postId={props.meta.id}
+						postId={props.meta.id.toString()}
 						comments={comments}
 						session={session}
 					/>

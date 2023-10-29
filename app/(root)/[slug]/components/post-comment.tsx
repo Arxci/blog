@@ -47,7 +47,7 @@ const PostComment: React.FC<CommentProps> = ({
 	const deleteCommentHandle = async () => {
 		setLoading(true)
 		try {
-			await axios.patch('/api/comment', { commentId: id })
+			await axios.patch('/api/comment', { id })
 
 			toast.success('Comment deleted.')
 			onCommentDeleted(id)

@@ -10,7 +10,7 @@ import PostComment from '@/app/(root)/[slug]/components/post-comment'
 import CommentForm from '@/components/forms/comment-form'
 
 interface PostCommentSectionProps {
-	postId: number
+	postId: string
 	comments: (Comment & { user: User })[]
 	session: Session
 }

@@ -22,7 +22,7 @@ const formSchema = z.object({
 type CommentFormValues = z.infer<typeof formSchema>
 
 interface CommentFormProps {
-	postId: number
+	postId: string
 	session: Session
 	onCommentAdded: (comment: Comment) => void
 }

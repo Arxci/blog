@@ -70,13 +70,15 @@ export const authOptions: NextAuthOptions = {
 				})
 
 				if (!user) {
-					return { error: 'Please verify the information and try again' } as any
+					return {
+						error: 'Please verify the information and try again.',
+					} as any
 				}
 
 				// Verify if the user is registered via OAuth
 				if (user.accounts.length > 0) {
 					return {
-						error: `This email is already registered through ${user.accounts[0].provider}`,
+						error: `This email is already registered through ${user.accounts[0].provider}.`,
 					} as any
 				}
 
@@ -87,7 +89,9 @@ export const authOptions: NextAuthOptions = {
 				)
 
 				if (!isMatchingPassword) {
-					return { error: 'Invalid credentials' } as any
+					return {
+						error: 'Please verify the information and try again.',
+					} as any
 				}
 
 				return user

@@ -14,11 +14,13 @@ export const POST = async (req: Request) => {
 		const user: User = await validUser.json()
 
 		// parse the data sent to the API with the zod schema
-		const body: { postId: number; message: string } = await req.json()
+		const body: { postId: string; message: string } = await req.json()
 
 		try {
 			await CommentPostSchema.parseAsync(body)
 		} catch (err) {
+			console.log(body)
+
 			return new NextResponse('Please verify the information is correct.', {
 				status: 400,
 			})
