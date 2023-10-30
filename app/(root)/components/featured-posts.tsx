@@ -2,7 +2,7 @@ import FeaturedPost from '@/components/ui/featured-post'
 import { getPostWhere } from '@/lib/posts'
 
 const FeaturedPosts = () => {
-	const posts = getPostWhere({ where: { isFeatured: true } })
+	const { posts } = getPostWhere({ where: { isFeatured: true } })
 
 	return (
 		<div className="my-6">

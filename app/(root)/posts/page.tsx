@@ -26,7 +26,7 @@ const Posts = async ({
 }) => {
 	const { tag, mostRecent, isFeatured, search } = searchParams
 
-	const posts = getPostWhere({
+	const { posts } = getPostWhere({
 		where: {
 			tag,
 			mostRecent: mostRecent === 'true',

@@ -81,7 +81,7 @@ const Post = async ({
 						alt={props.meta.title}
 					/>
 				</div>
-				<div className="px-4 md:px-6 w-full ">
+				<div className="px-4 md:px-6 w-full">
 					<PostHeading {...props.meta} />
 					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert ">
 						<MDXRemote

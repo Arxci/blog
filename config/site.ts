@@ -32,16 +32,6 @@ export const siteConfig: SiteConfigProps = {
 			title: 'Posts',
 			href: '/posts',
 		},
-		{
-			id: 2,
-			title: 'About',
-			href: '/about',
-		},
-		{
-			id: 3,
-			title: 'Contact',
-			href: '/contact',
-		},
 	],
 	tagFilters: [
 		{ label: 'NextJS', value: 'NextJS' },
