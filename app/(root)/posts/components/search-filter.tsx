@@ -12,7 +12,9 @@ import { useQueryString } from '@/hooks/useQueryString'
 const SearchFilter = ({
 	searchParams,
 }: {
-	searchParams: { search: string }
+	searchParams: {
+		search: string
+	}
 }) => {
 	const [value, setValue] = useState<string>('')
 
@@ -31,6 +33,7 @@ const SearchFilter = ({
 					'?' +
 					createQueryString([
 						{ name: 'search', value: value === '' ? undefined : value },
+						{ name: 'stop', value: undefined },
 					])
 			)
 		}
@@ -38,7 +41,12 @@ const SearchFilter = ({
 
 	const clearHandle = () => {
 		router.push(
-			pathname + '?' + createQueryString([{ name: 'search', value: undefined }])
+			pathname +
+				'?' +
+				createQueryString([
+					{ name: 'search', value: undefined },
+					{ name: 'stop', value: undefined },
+				])
 		)
 	}
 

@@ -14,7 +14,9 @@ export default async function RootLayout({
 	return (
 		<div className="min-h-screen ">
 			<MainSiteNav session={session} />
-			<main className=" min-h-[calc(100vh-65px)]">{children}</main>
+			<main className="min-h-[calc(100vh-65px-257px)] md:min-h-[calc(100vh-65px-150px)] ">
+				{children}
+			</main>
 			<MainSiteFooter />
 		</div>
 	)

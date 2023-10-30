@@ -97,12 +97,11 @@ export const getPostWhere = ({
 		mostRecent?: boolean
 		search?: string
 	}
-}): { posts: Post[]; total: number; maxPossible: number } => {
+}): { posts: Post[]; count: number; maxCount: number } => {
 	const posts = getAllPosts()
-	const maxPossible = posts.length
 
 	if (!where) {
-		return { posts, total: posts.length, maxPossible }
+		return { posts, count: posts.length, maxCount: posts.length }
 	}
 
 	const { start, stop, tag, isFeatured, mostRecent, search } = where
@@ -117,5 +116,9 @@ export const getPostWhere = ({
 
 	const slicedPosts = filteredPosts.slice(start, stop)
 
-	return { posts: slicedPosts, total: slicedPosts.length, maxPossible }
+	return {
+		posts: slicedPosts,
+		count: slicedPosts.length,
+		maxCount: filteredPosts.length,
+	}
 }

@@ -12,7 +12,10 @@ import { siteConfig } from '@/config/site'
 const CheckboxFilters = ({
 	searchParams,
 }: {
-	searchParams: { isFeatured: string; mostRecent: string }
+	searchParams: {
+		mostRecent: string
+		isFeatured: string
+	}
 }) => {
 	const [groupSelected, setGroupSelected] = useState([])
 	const router = useRouter()
@@ -20,8 +23,6 @@ const CheckboxFilters = ({
 	const { createQueryString } = useQueryString()
 
 	const checkboxChangedHandle = (e: string[]) => {
-		setGroupSelected(e)
-
 		router.push(
 			pathname +
 				'?' +
@@ -38,6 +39,7 @@ const CheckboxFilters = ({
 							? e.includes('isFeatured').toString()
 							: undefined,
 					},
+					{ name: 'stop', value: undefined },
 				])
 		)
 	}

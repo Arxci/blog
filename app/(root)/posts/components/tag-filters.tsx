@@ -9,7 +9,13 @@ import { Select, SelectItem, Selection } from '@nextui-org/react'
 import { siteConfig } from '@/config/site'
 import { useQueryString } from '@/hooks/useQueryString'
 
-const TagFilters = ({ searchParams }: { searchParams: { tag: string } }) => {
+const TagFilters = ({
+	searchParams,
+}: {
+	searchParams: {
+		tag: string
+	}
+}) => {
 	const [currentTag, setCurrentTag] = useState<Selection>(new Set([]))
 
 	const router = useRouter()
@@ -24,6 +30,7 @@ const TagFilters = ({ searchParams }: { searchParams: { tag: string } }) => {
 				'?' +
 				createQueryString([
 					{ name: 'tag', value: value === '' ? undefined : value },
+					{ name: 'stop', value: undefined },
 				])
 		)
 	}

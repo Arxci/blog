@@ -7,6 +7,7 @@ import TagFilters from './components/tag-filters'
 import CheckboxFilters from './components/checkbox-filters'
 import SearchFilter from './components/search-filter'
 import NothingFound from './components/nothing-found'
+import PaginationFilter from './components/pagination-filter'
 
 export const metadata: Metadata = {
 	title: siteConfig.name + ' Posts',
@@ -22,23 +23,24 @@ const Posts = async ({
 		mostRecent: string
 		isFeatured: string
 		search: string
+		stop: string
 	}
 }) => {
-	const { tag, mostRecent, isFeatured, search } = searchParams
+	const { tag, mostRecent, isFeatured, search, stop = '4' } = searchParams
 
-	const { posts } = getPostWhere({
+	const { posts, maxCount, count } = getPostWhere({
 		where: {
 			tag,
 			mostRecent: mostRecent === 'true',
 			isFeatured: isFeatured === 'true',
 			search,
-			stop: 4,
+			stop: parseInt(stop),
 		},
 	})
 
 	return (
 		<section className=" w-full">
-			<div className="container h-full flex flex-col gap-4 px-4 md:px-6 py-6">
+			<div className="container  h-full flex flex-col gap-4 px-4 md:px-6 py-6">
 				<div className="grid gap-6 grid-cols-1 md:grid-cols-3 ">
 					<TagFilters searchParams={searchParams} />
 					<CheckboxFilters searchParams={searchParams} />
@@ -48,14 +50,21 @@ const Posts = async ({
 				{posts.length === 0 ? (
 					<NothingFound />
 				) : (
-					posts &&
-					posts.map((post) => (
-						<FeaturedPost
-							key={post.meta.id}
-							slug={post.slug}
-							{...post.meta}
+					<>
+						{posts &&
+							posts.map((post) => (
+								<FeaturedPost
+									key={post.meta.id}
+									slug={post.slug}
+									{...post.meta}
+								/>
+							))}
+						<PaginationFilter
+							searchParams={searchParams}
+							maxCount={maxCount}
+							count={count}
 						/>
-					))
+					</>
 				)}
 			</div>
 		</section>
