@@ -67,7 +67,7 @@ const ProfileForm = () => {
 			<Input
 				{...form.register('username')}
 				labelPlacement="outside"
-				isDisabled={loading}
+				isDisabled={loading && !session}
 				radius="sm"
 				type="text"
 				label="Username"
@@ -82,6 +82,7 @@ const ProfileForm = () => {
 			/>
 			<Button
 				color="primary"
+				isDisabled={!session}
 				isLoading={loading}
 				type="submit"
 			>
