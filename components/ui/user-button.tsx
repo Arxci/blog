@@ -89,7 +89,7 @@ const UserButton = () => {
 					<DropdownItem
 						isReadOnly
 						key="profile"
-						className="h-14 gap-2 opacity-100"
+						className="h-14 gap-2 opacity-100 cursor-default"
 					>
 						{session && (
 							<User
