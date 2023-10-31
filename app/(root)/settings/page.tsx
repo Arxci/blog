@@ -1,12 +1,7 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { getServerSession } from 'next-auth'
-
 import ProfileForm from '@/components/forms/profile-form'
 import { Divider } from '@nextui-org/divider'
 
 const Settings = async () => {
-	const session = await getServerSession(authOptions)
-
 	return (
 		<div className="space-y-6">
 			<div>
@@ -16,7 +11,7 @@ const Settings = async () => {
 				</p>
 			</div>
 			<Divider />
-			<ProfileForm session={session} />
+			<ProfileForm />
 		</div>
 	)
 }

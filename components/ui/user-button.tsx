@@ -55,7 +55,6 @@ const UserButton = () => {
 				onOpenChange={onOpenChange}
 			/>
 			<Dropdown
-				closeOnSelect={false}
 				placement="bottom-end"
 				radius="sm"
 				classNames={{
@@ -82,6 +81,8 @@ const UserButton = () => {
 				</DropdownTrigger>
 				<DropdownMenu
 					className="p-3"
+					shouldFocusWrap
+					autoFocus="first"
 					variant="flat"
 					aria-label="Profile Actions"
 				>
@@ -115,6 +116,7 @@ const UserButton = () => {
 						showDivider
 					>
 						<DropdownItem
+							closeOnSelect={true}
 							key="settings"
 							color="default"
 							as={Link}
@@ -146,6 +148,7 @@ const UserButton = () => {
 						key="logout"
 						className="text-danger"
 						color="danger"
+						closeOnSelect={false}
 						onClick={onOpen}
 						startContent={
 							<FontAwesomeIcon

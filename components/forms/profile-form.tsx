@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Session, User } from 'next-auth'
 import { useSession } from 'next-auth/react'
@@ -11,7 +11,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { Button, Input } from '@nextui-org/react'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
 	username: z
@@ -21,17 +20,15 @@ const formSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof formSchema>
 
-const ProfileForm = ({ session }: { session: Session }) => {
+const ProfileForm = () => {
 	const [loading, setLoading] = useState(false)
-	const { update } = useSession()
-
-	const defaultValues = {
-		username: session?.user.username || '',
-	}
+	const { update, data: session } = useSession()
 
 	const form = useForm<ProfileFormValues>({
 		resolver: zodResolver(formSchema),
-		defaultValues,
+		defaultValues: useMemo(() => {
+			return { username: session?.user?.username || '' }
+		}, [session]),
 	})
 
 	const submitFormHandle = async (data: ProfileFormValues) => {
@@ -57,6 +54,10 @@ const ProfileForm = ({ session }: { session: Session }) => {
 			setLoading(false)
 		}
 	}
+
+	useEffect(() => {
+		form.reset({ username: session?.user?.username || '' })
+	}, [session])
 
 	return (
 		<form
