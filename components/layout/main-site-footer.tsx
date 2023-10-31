@@ -21,7 +21,7 @@ const MainSiteFooter = () => {
 							<DarkModeButton />
 						</div>
 					</div>
-					<MainFooterLinks />
+
 					<MainFooterActions />
 				</header>
 			</nav>

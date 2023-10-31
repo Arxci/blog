@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { NavbarContent, NavbarItem, Button } from '@nextui-org/react'
 
 import DarkModeButton from '../ui/dark-mode-button'
-import SignOutButton from '../ui/sign-out-button'
+import UserButton from '../ui/user-button'
 
 interface MainNavActionsProps {
 	session: Session
@@ -20,7 +20,7 @@ const MainNavActions: React.FC<MainNavActionsProps> = ({ session }) => {
 			</NavbarItem>
 			{session ? (
 				<NavbarItem className="flex items-center">
-					<SignOutButton />
+					<UserButton />
 				</NavbarItem>
 			) : (
 				<>

@@ -11,8 +11,6 @@ import PaginationFilter from './components/pagination-filter'
 
 export const metadata: Metadata = {
 	title: siteConfig.name + ' Posts',
-	description:
-		'View my posts and learn more about web development. I cover a wide array of topics.',
 }
 
 const Posts = async ({

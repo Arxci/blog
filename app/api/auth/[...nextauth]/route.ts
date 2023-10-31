@@ -107,7 +107,20 @@ export const authOptions: NextAuthOptions = {
 
 			return true
 		},
-		async jwt({ token, user }: { token: JWT; user: User }) {
+		async jwt({
+			token,
+			user,
+			trigger,
+			session,
+		}: {
+			token: JWT
+			user: User
+			trigger?: 'signIn' | 'signUp' | 'update'
+			session?: any
+		}) {
+			if (trigger === 'update') {
+				return { ...session }
+			}
 			if (user) {
 				return {
 					...token,

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { Button, Input } from '@nextui-org/react'
 import { toast } from 'sonner'
 
@@ -42,7 +42,6 @@ const SignUpForm = () => {
 				description: 'Please sign in.',
 			})
 		} catch (error) {
-			console.log(error)
 			if (error.response.status === 409) {
 				toast.error('Whoops, there may already be an account with that email')
 			} else {

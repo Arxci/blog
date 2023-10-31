@@ -19,7 +19,6 @@ const Auth = () => {
 	}, [searchParams])
 
 	if (session) {
-		router.push('/')
 		return null
 	}
 

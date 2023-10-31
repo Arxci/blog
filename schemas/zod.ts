@@ -31,6 +31,12 @@ export const CommentPostSchema = z.object({
 		.max(50, { message: 'Please enter no more than 50 characters.' }),
 })
 
+export const UserUpdateSchema = z.object({
+	username: z
+		.string()
+		.min(1, { message: 'Please enter at least 1 character.' }),
+})
+
 export const CommentDeleteSchema = z.object({
 	id: z.string(),
 })

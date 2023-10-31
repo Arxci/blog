@@ -12,6 +12,7 @@ import { toast } from 'sonner'
 
 import PasswordInput from '../ui/password-input'
 import AuthOAuth from '@/app/auth/components/auth-oauth'
+import { useSearchParams } from 'next/navigation'
 
 const formSchema = z.object({
 	email: z
@@ -27,6 +28,7 @@ type SignInFormValues = z.infer<typeof formSchema>
 
 const SignInForm = () => {
 	const [loading, setLoading] = useState(false)
+	const searchParams = useSearchParams()
 
 	const defaultValues = {
 		email: '',
@@ -39,8 +41,9 @@ const SignInForm = () => {
 	})
 
 	const submitFormHandle = async (data: SignInFormValues) => {
+		const callback = searchParams.get('callbackUrl') || ''
 		setLoading(true)
-		const res = await signIn('credentials', { ...data, redirect: false })
+		const res = await signIn('credentials', { ...data, callbackUrl: callback })
 
 		if (res?.error) {
 			toast.error('Failed to sign in', {
