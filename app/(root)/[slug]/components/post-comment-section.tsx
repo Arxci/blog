@@ -2,26 +2,24 @@
 
 import { useState } from 'react'
 
-import { Session } from 'next-auth'
-
 import { Comment, User } from '@prisma/client'
 
 import PostComment from '@/app/(root)/[slug]/components/post-comment'
 import CommentForm from '@/components/forms/comment-form'
+import { useSession } from 'next-auth/react'
 
 interface PostCommentSectionProps {
 	postId: string
 	comments: (Comment & { user: User })[]
-	session: Session
 }
 
 const PostCommentSection: React.FC<PostCommentSectionProps> = ({
 	postId,
 	comments: initialComments,
-	session,
 }) => {
 	const [comments, setComments] =
 		useState<(Comment & { user: User })[]>(initialComments)
+	const { data: session } = useSession()
 
 	if (!session) return null
 

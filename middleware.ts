@@ -24,5 +24,5 @@ export default withAuth(
 )
 
 export const config = {
-	matcher: ['/settings', '/auth/sign-in', '/auth/sign-up'],
+	matcher: ['/settings', '/settings/account', '/auth/sign-in', '/auth/sign-up'],
 }

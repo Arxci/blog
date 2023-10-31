@@ -1,6 +1,6 @@
 'use client'
 
-import { Session } from 'next-auth'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 import { NavbarContent, NavbarItem, Button } from '@nextui-org/react'
@@ -8,11 +8,9 @@ import { NavbarContent, NavbarItem, Button } from '@nextui-org/react'
 import DarkModeButton from '../ui/dark-mode-button'
 import UserButton from '../ui/user-button'
 
-interface MainNavActionsProps {
-	session: Session
-}
+const MainNavActions = () => {
+	const { data: session } = useSession()
 
-const MainNavActions: React.FC<MainNavActionsProps> = ({ session }) => {
 	return (
 		<NavbarContent justify="end">
 			<NavbarItem className="hidden sm:block">

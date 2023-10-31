@@ -17,11 +17,7 @@ import MainNavActions from '../main-nav/main-nav-actions'
 import MainNavDesktop from '../main-nav/main-nav-desktop'
 import MainNavMobile from '../main-nav/main-nav-mobile'
 
-interface MainNavProps {
-	session: Session
-}
-
-const MainSiteNav: React.FC<MainNavProps> = ({ session }) => {
+const MainSiteNav = () => {
 	const [ieMenuOpen, setIsMenuOpen] = useState(false)
 
 	return (
@@ -45,7 +41,7 @@ const MainSiteNav: React.FC<MainNavProps> = ({ session }) => {
 				</Link>
 			</NavbarBrand>
 			<MainNavDesktop />
-			<MainNavActions session={session} />
+			<MainNavActions />
 			<MainNavMobile onMenuClose={() => setIsMenuOpen(false)} />
 		</Navbar>
 	)

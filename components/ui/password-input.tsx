@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, KeyboardEvent, useState } from 'react'
 
-import { Input } from '@nextui-org/react'
+import { Input, InputProps } from '@nextui-org/react'
 import { UseFormReturn } from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
@@ -10,9 +10,14 @@ interface PasswordInputProps {
 	form: UseFormReturn<{
 		password?: string
 	}>
+	inputProps?: InputProps
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({
+	loading,
+	form,
+	inputProps,
+}) => {
 	const [showPassword, setShowPassword] = useState(false)
 
 	const disableVisibilityHandle = () => {
@@ -26,6 +31,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
 	return (
 		<Input
 			{...form.register('password')}
+			{...inputProps}
 			isRequired
 			isDisabled={loading}
 			type={showPassword ? 'text' : 'password'}
@@ -50,6 +56,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ loading, form }) => {
 					/>
 				</button>
 			}
+			isInvalid={form.formState.errors.password !== undefined}
 			errorMessage={
 				form.formState.errors.password
 					? form.formState.errors.password.message

@@ -86,11 +86,12 @@ const CommentForm: React.FC<CommentFormProps> = ({
 			>
 				<Input
 					{...form.register('message')}
-					isDisabled={loading}
+					isDisabled={loading || !session}
 					type="text"
 					size="sm"
 					variant="underlined"
 					label="Post a comment..."
+					isInvalid={form.formState.errors.message !== undefined}
 					errorMessage={
 						form.formState.errors.message
 							? form.formState.errors.message.message
@@ -103,7 +104,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 						onClick={clearFormHandle}
 						color="primary"
 						variant="light"
-						isDisabled={loading}
+						isDisabled={loading || !session}
 						radius="full"
 					>
 						Cancel
@@ -111,6 +112,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 					<Button
 						type="submit"
 						isLoading={loading}
+						isDisabled={loading || !session}
 						color="primary"
 						variant="solid"
 						radius="full"

@@ -34,7 +34,7 @@ const SidebarNav = ({ className, items, ...props }: SidebarNavProps) => {
 					variant="flat"
 					className={cn(
 						pathname === item.href
-							? 'bg-default-100 hover:bg-foreground/10 '
+							? 'bg-default-100 hover:bg-default-200 '
 							: 'hover:bg-transparent hover:underline',
 						'lg:justify-start'
 					)}

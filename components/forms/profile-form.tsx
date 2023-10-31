@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-import { Session, User } from 'next-auth'
+import { User } from 'next-auth'
 import { useSession } from 'next-auth/react'
 
 import * as z from 'zod'
@@ -27,7 +27,9 @@ const ProfileForm = () => {
 	const form = useForm<ProfileFormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: useMemo(() => {
-			return { username: session?.user?.username || '' }
+			return {
+				username: session?.user?.username || '',
+			}
 		}, [session]),
 	})
 
@@ -67,7 +69,7 @@ const ProfileForm = () => {
 			<Input
 				{...form.register('username')}
 				labelPlacement="outside"
-				isDisabled={loading && !session}
+				isDisabled={loading || !session}
 				radius="sm"
 				type="text"
 				label="Username"

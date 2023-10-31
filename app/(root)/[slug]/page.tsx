@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 import fs from 'fs'
 import path from 'path'
@@ -50,7 +48,6 @@ const Post = async ({
 	}
 }) => {
 	const props = getPost(params)
-	const session = await getServerSession(authOptions)
 	const comments = await prismaDB.comment.findMany({
 		where: {
 			postId: props.meta.id.toString(),
@@ -94,7 +91,6 @@ const Post = async ({
 					<PostCommentSection
 						postId={props.meta.id.toString()}
 						comments={comments}
-						session={session}
 					/>
 				</div>
 			</div>

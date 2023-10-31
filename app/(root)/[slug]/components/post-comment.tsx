@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { Session } from 'next-auth'
 
+import axios from 'axios'
 import {
 	Avatar,
 	Button,
@@ -18,10 +19,9 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { toast } from 'sonner'
 import { User } from '@prisma/client'
-
 import { format } from 'date-fns'
+
 import AlertModal from '../../../../components/ui/alert-modal'
-import axios from 'axios'
 
 interface CommentProps {
 	id: string
