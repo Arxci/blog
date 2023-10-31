@@ -80,6 +80,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 				showFallback
 				className="bg-primary !w-[40px] min-w-[40px] h-[40px] text-white flex items-center justify-center text-lg mb-[2em]"
 			/>
+
 			<form
 				className="w-full flex flex-col gap-2 "
 				onSubmit={form.handleSubmit((data) => submitFormHandle(data))}

@@ -18,7 +18,7 @@ const AuthOAuth = ({ loading }: { loading: boolean }) => {
 			</div>
 			<div className="w-full flex gap-2">
 				<Button
-					variant="bordered"
+					variant="solid"
 					className="w-full"
 					type="button"
 					size="lg"
@@ -35,7 +35,7 @@ const AuthOAuth = ({ loading }: { loading: boolean }) => {
 				</Button>
 
 				<Button
-					variant="bordered"
+					variant="solid"
 					className="w-full"
 					type="button"
 					size="lg"

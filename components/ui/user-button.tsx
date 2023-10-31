@@ -3,7 +3,6 @@
 import { useState } from 'react'
 
 import { signOut, useSession } from 'next-auth/react'
-import { Session } from 'next-auth'
 
 import {
 	Dropdown,
