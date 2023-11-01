@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	faArrowRightFromBracket,
 	faGear,
+	faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'sonner'
 
@@ -87,7 +88,7 @@ const UserButton = () => {
 				>
 					<DropdownItem
 						isReadOnly
-						key="profile"
+						key="user"
 						className="h-14 gap-2 opacity-100 cursor-default"
 					>
 						{session && (
@@ -116,10 +117,38 @@ const UserButton = () => {
 					>
 						<DropdownItem
 							closeOnSelect={true}
-							key="settings"
+							key="profile"
 							color="default"
 							as={Link}
 							href="/settings"
+							classNames={{
+								base: [
+									'rounded-md',
+									'text-default-500',
+									'transition-opacity',
+									'data-[hover=true]:text-foreground',
+									'data-[hover=true]:bg-default-100',
+									'dark:data-[hover=true]:bg-default-50',
+									'data-[selectable=true]:focus:bg-default-50',
+									'data-[pressed=true]:opacity-70',
+									'data-[focus-visible=true]:ring-default-500',
+								],
+							}}
+							startContent={
+								<FontAwesomeIcon
+									className="text-xl w-4 h-4 text-default-500 pointer-events-none flex-shrink-0"
+									icon={faUser}
+								/>
+							}
+						>
+							Profile
+						</DropdownItem>
+						<DropdownItem
+							closeOnSelect={true}
+							key="account"
+							color="default"
+							as={Link}
+							href="/settings/account"
 							classNames={{
 								base: [
 									'rounded-md',

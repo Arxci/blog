@@ -31,7 +31,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({
 	return (
 		<Link href={'/' + slug}>
 			<Card
-				className="border-none bg-background/60 dark:bg-default-100/50 [&>*:first-child]:!p-4 sm:[&>*:first-child]:!p-5"
+				className="border-none bg-background/60 dark:bg-default-100/50 [&>*:first-child]:!p-4  sm:[&>*:first-child]:!p-5"
 				shadow="sm"
 				classNames={{
 					base: 'p-0',

@@ -5,7 +5,7 @@ import HomeBannerForm from '@/components/forms/home-banner-form'
 
 const HomeBanner = () => {
 	return (
-		<div className="w-full h-[500px] md:h-[400px] relative z-1 overflow-hidden lg:rounded-b-2xl lg:shadow-md">
+		<div className="w-full h-[350px] md:h-[400px] relative z-1 overflow-hidden lg:rounded-b-2xl lg:shadow-md">
 			<div className="-z-1 absolute w-full h-full top-0 left-0 ">
 				<div className="relative h-full ">
 					<Image
@@ -23,10 +23,15 @@ const HomeBanner = () => {
 
 			<div className="h-full relative flex text-center flex-col items-center md:text-start md:items-start justify-center gap-4 px-4 md:px-6">
 				<div className="space-y-2 mb-4">
-					<h1 className="font-bold text-5xl text-white">
+					<h1 className="font-bold text-2xl md:text-5xl text-white">
 						Welcome To {siteConfig.name}!
 					</h1>
-					<p className="text-white/80 ">{siteConfig.description}</p>
+					<p className="text-white/80 hidden md:block">
+						{siteConfig.description}
+					</p>
+					<p className="text-white/80 md:hidden">
+						{siteConfig.name}: Your essential web development guide.
+					</p>
 				</div>
 				<HomeBannerForm />
 			</div>

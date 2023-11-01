@@ -19,7 +19,7 @@ const AuthorShowcase = ({
 				showFallback
 				classNames={{
 					base: cn(
-						'bg-primary w-8 h-8 text-white flex items-center justify-center',
+						'bg-primary w-9 h-9 text-white flex items-center justify-center text-lg',
 						avatarClassName
 					),
 				}}

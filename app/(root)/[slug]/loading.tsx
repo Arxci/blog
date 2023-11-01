@@ -6,7 +6,7 @@ export default function Loading() {
 	return (
 		<section className=" w-full">
 			<div className="container h-full flex flex-col gap-4 ">
-				<Skeleton className="h-[300px] w-full sm:h-[450px] lg:rounded-b-xl" />
+				<Skeleton className="aspect-video w-full " />
 				<div className="px-4 md:px-6 w-full">
 					<PostHeadingLoading />
 					<article className=" prose prose-neutral lg:prose-xl dark:prose-invert ">

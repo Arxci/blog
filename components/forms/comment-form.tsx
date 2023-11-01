@@ -105,6 +105,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 						onClick={clearFormHandle}
 						color="primary"
 						variant="light"
+						size="md"
 						isDisabled={loading || !session}
 						radius="full"
 					>
@@ -116,6 +117,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
 						isDisabled={loading || !session}
 						color="primary"
 						variant="solid"
+						size="md"
 						radius="full"
 					>
 						Comment

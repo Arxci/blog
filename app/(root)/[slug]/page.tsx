@@ -67,7 +67,7 @@ const Post = async ({
 	return (
 		<section className=" w-full pb-6">
 			<div className="container h-full flex flex-col gap-4">
-				<div className="relative w-full h-[300px] sm:h-[450px] overflow-hidden lg:rounded-b-xl">
+				<div className="relative w-full aspect-video  overflow-hidden ">
 					<Image
 						fill
 						className="object-cover"

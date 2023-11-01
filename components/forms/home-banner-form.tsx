@@ -49,7 +49,27 @@ const HomeBannerForm = () => {
 						form.setValue('search', '')
 					}
 				}}
-				className="w-full "
+				className="w-full hidden md:block"
+				placeholder="Search for a post..."
+				startContent={
+					<FontAwesomeIcon
+						icon={faMagnifyingGlass}
+						className="w-4 h-4 text-primary"
+					/>
+				}
+			/>
+			<Input
+				{...form.register('search')}
+				size="md"
+				type="text"
+				isClearable
+				radius="full"
+				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+					if (e.key === 'Escape') {
+						form.setValue('search', '')
+					}
+				}}
+				className="w-full md:hidden"
 				placeholder="Search for a post..."
 				startContent={
 					<FontAwesomeIcon
