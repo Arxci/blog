@@ -120,7 +120,7 @@ const UserButton = () => {
 							key="profile"
 							color="default"
 							as={Link}
-							href="/settings"
+							href="/settings/profile"
 							classNames={{
 								base: [
 									'rounded-md',
